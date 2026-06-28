@@ -417,11 +417,6 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
       <div class="edit-group"><label>Standard FIRE target ($)</label><input type="number" id="s-target" value="2700000" oninput="onSettingChange()"></div>
     </div>
     <div class="card">
-      <div class="card-title">API configuration</div>
-      <div class="edit-group"><label>Anthropic API key (for AI Advisor)</label><input type="password" id="s-api-key" placeholder="sk-ant-..." oninput="onSettingChange()"></div>
-      <div style="font-size:11px;color:var(--text3);margin-top:6px;line-height:1.6">API key stored in localStorage only · never transmitted except to Anthropic's API · required for AI Advisor chat</div>
-    </div>
-    <div class="card">
       <div class="card-title">Data management</div>
       <button onclick="saveState()" style="padding:8px 16px;background:var(--green-bg);border:1px solid rgba(16,212,142,.3);border-radius:4px;color:var(--green);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Save all settings</button>
       <button onclick="exportData()" style="padding:8px 16px;background:var(--blue-bg);border:1px solid rgba(99,102,241,.3);border-radius:4px;color:var(--blue);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Export data (JSON)</button>
@@ -441,8 +436,7 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
 // ═══════════════════════════════════════════════════════════════════
 const DEFAULTS = {
   portfolio: 1059000, savings: 11593, age: 48, fireAge: 55,
-  growth: 0.07, postGrowth: 0.05, inflation: 0.025, target: 2700000,
-  apiKey: ''
+  growth: 0.07, postGrowth: 0.05, inflation: 0.025, target: 2700000
 };
 
 let S = { ...DEFAULTS };
@@ -478,7 +472,6 @@ function onSettingChange() {
   S.postGrowth = (+document.getElementById('s-post').value     || 5) / 100;
   S.inflation  = (+document.getElementById('s-inflation').value|| 2.5) / 100;
   S.target     = +document.getElementById('s-target').value    || S.target;
-  S.apiKey     = document.getElementById('s-api-key').value;
   markDirty();
   renderAll();
 }
@@ -492,7 +485,6 @@ function syncSettingsUI() {
   document.getElementById('s-post').value       = (S.postGrowth * 100).toFixed(1);
   document.getElementById('s-inflation').value  = (S.inflation * 100).toFixed(2);
   document.getElementById('s-target').value     = S.target;
-  document.getElementById('s-api-key').value    = S.apiKey || '';
 }
 
 function exportData() {
@@ -677,20 +669,13 @@ async function sendChat() {
   input.value = '';
 
   addMsg(msg, 'user');
-
-  const apiKey = S.apiKey || localStorage.getItem('fire_os_state') && JSON.parse(localStorage.getItem('fire_os_state')).apiKey;
-  if (!apiKey) {
-    addMsg('Add your Anthropic API key in Settings to enable AI Advisor chat.', 'ai');
-    return;
-  }
-
   document.getElementById('typing').style.display = 'block';
   scrollChat();
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 600,
@@ -699,12 +684,12 @@ async function sendChat() {
       })
     });
     const data = await res.json();
-    const text = data.content?.[0]?.text || 'Unable to get response. Check your API key.';
+    const text = data.content?.[0]?.text || data.error || 'Unable to get response.';
     document.getElementById('typing').style.display = 'none';
     addMsg(text, 'ai');
   } catch(e) {
     document.getElementById('typing').style.display = 'none';
-    addMsg('Error connecting to AI. Check your API key in Settings.', 'ai');
+    addMsg('Error connecting to advisor. Please try again.', 'ai');
   }
 }
 

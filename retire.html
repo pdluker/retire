@@ -2,649 +2,1184 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0f1a">
-<title>FIRE Planner — Luker Household</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>FIRE OS — Luker Household</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --void:#0a0f1a;
-  --deep:#0f1520;
-  --panel:#141c2e;
-  --card:#1a2438;
-  --border:#243048;
-  --border2:#2e3d5a;
-  --green:#00d4a0;
-  --green-dim:#007a5c;
-  --amber:#f59e0b;
-  --red:#ef4444;
-  --blue:#3b82f6;
-  --text:#e2e8f0;
-  --muted:#64748b;
-  --dim:#334155;
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'Inter',sans-serif;
+  --bg:#080d18;--deep:#0c1220;--panel:#111827;--card:#161f30;--card2:#1c2840;
+  --border:#1e2d45;--border2:#263652;
+  --green:#10d48e;--green2:#059669;--green-bg:rgba(16,212,142,.08);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.08);
+  --red:#f43f5e;--red-bg:rgba(244,63,94,.08);
+  --blue:#6366f1;--blue-bg:rgba(99,102,241,.08);
+  --teal:#06b6d4;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
+  --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
+  --r:6px;
 }
-body{background:var(--void);color:var(--text);font-family:var(--sans);min-height:100vh;font-size:14px;line-height:1.6;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh}
 
-/* ── Header ── */
-header{background:var(--deep);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--mono);font-size:13px;color:var(--green);letter-spacing:.08em;}
-.logo span{color:var(--muted);}
-#fire-date-badge{font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);padding:4px 10px;border-radius:3px;}
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,13,24,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;height:52px;gap:0}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--green);margin-right:28px;white-space:nowrap}
+.nav-logo em{color:var(--text3);font-style:normal}
+.nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:6px 14px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;border-radius:4px;white-space:nowrap;border:none;background:transparent;font-family:var(--sans);transition:all .15s}
+.nav-tab:hover{color:var(--text);background:var(--card)}
+.nav-tab.active{color:var(--green);background:var(--green-bg)}
+.nav-right{display:flex;gap:8px;align-items:center;margin-left:12px}
+#save-btn{padding:5px 12px;font-size:11px;font-weight:500;border:1px solid var(--green2);border-radius:4px;background:var(--green-bg);color:var(--green);cursor:pointer;font-family:var(--sans);transition:all .15s}
+#save-btn:hover{background:rgba(16,212,142,.15)}
+.save-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);display:none;margin-right:4px}
 
-/* ── Layout ── */
-.app{max-width:1100px;margin:0 auto;padding:24px 20px;}
+/* ── LAYOUT ── */
+.page{display:none;padding:24px;max-width:1200px;margin:0 auto}
+.page.active{display:block}
 
-/* ── Hero metric strip ── */
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px;}
-.metric{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:16px;position:relative;}
-.metric-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px;}
-.metric-value{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--text);}
-.metric-value.green{color:var(--green);}
-.metric-value.amber{color:var(--amber);}
-.metric-sub{font-size:11px;color:var(--muted);margin-top:4px;}
-.metric-bar{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;}
-.metric-bar-fill{height:100%;background:var(--green);border-radius:2px;transition:width .6s ease;}
+/* ── SECTION HEADER ── */
+.sh{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.sh h2{font-size:15px;font-weight:600}
+.sh-sub{font-size:12px;color:var(--text2)}
+.divider{height:1px;background:var(--border);margin:24px 0}
 
-/* ── Progress ring ── */
-.ring-wrap{display:flex;justify-content:center;align-items:center;margin:8px 0 4px;}
-.ring-label{text-align:center;}
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media(max-width:900px){.g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}}
 
-/* ── Section titles ── */
-.section-title{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:28px 0 12px;display:flex;align-items:center;gap:8px;}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);margin-bottom:14px}
 
-/* ── Grid layouts ── */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
-@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+/* ── KPI TILES ── */
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:6px}
+.kpi-value{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1}
+.kpi-value.g{color:var(--green)}
+.kpi-value.a{color:var(--amber)}
+.kpi-value.r{color:var(--red)}
+.kpi-sub{font-size:11px;color:var(--text2);margin-top:5px}
+.kpi-bar{height:2px;background:var(--border);border-radius:1px;margin-top:10px;overflow:hidden}
+.kpi-fill{height:100%;border-radius:1px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 
-/* ── Cards ── */
-.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:20px;}
-.card-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.card-title .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+/* ── SLIDERS ── */
+.sl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.sl-row label{font-size:12px;color:var(--text2);min-width:140px}
+.sl-right{display:flex;align-items:center;gap:10px}
+input[type=range]{-webkit-appearance:none;width:120px;height:2px;background:var(--border2);border-radius:1px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 0 2px rgba(16,212,142,.2)}
+.vbadge{font-family:var(--mono);font-size:11px;color:var(--green);background:var(--green-bg);border:1px solid rgba(16,212,142,.2);padding:2px 8px;border-radius:3px;min-width:68px;text-align:right}
 
-/* ── Sliders / controls ── */
-.control-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.control-row label{font-size:12px;color:var(--muted);}
-.control-right{display:flex;align-items:center;gap:10px;}
-input[type=range]{-webkit-appearance:none;width:130px;height:3px;background:var(--border2);border-radius:2px;outline:none;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;}
-.val-badge{font-family:var(--mono);font-size:12px;color:var(--green);background:rgba(0,212,160,.08);border:1px solid rgba(0,212,160,.2);padding:2px 8px;border-radius:3px;min-width:72px;text-align:right;}
+/* ── TABLES ── */
+table.dt{width:100%;border-collapse:collapse;font-size:12px}
+table.dt th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+table.dt td{padding:8px 10px;border-bottom:1px solid var(--border)}
+table.dt tr:last-child td{border-bottom:none}
+table.dt tr.hl td{background:var(--green-bg)}
+table.dt tr.fire td{color:var(--green);font-weight:500}
 
-/* ── FIRE timeline table ── */
-.timeline{width:100%;border-collapse:collapse;font-size:12px;}
-.timeline th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
-.timeline td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text);}
-.timeline tr:last-child td{border-bottom:none;}
-.timeline tr.highlight td{background:rgba(0,212,160,.06);}
-.timeline tr.milestone td{color:var(--green);}
-.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:3px;font-weight:500;}
-.tag-green{background:rgba(0,212,160,.15);color:var(--green);}
-.tag-amber{background:rgba(245,158,11,.12);color:var(--amber);}
-.tag-red{background:rgba(239,68,68,.12);color:var(--red);}
-.tag-blue{background:rgba(59,130,246,.12);color:var(--blue);}
+/* ── TAGS ── */
+.tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:3px}
+.tag-g{background:var(--green-bg);color:var(--green)}
+.tag-a{background:var(--amber-bg);color:var(--amber)}
+.tag-r{background:var(--red-bg);color:var(--red)}
+.tag-b{background:var(--blue-bg);color:var(--blue)}
 
-/* ── Account table ── */
-.acct-table{width:100%;border-collapse:collapse;font-size:12px;}
-.acct-table td{padding:7px 10px;border-bottom:1px solid var(--border);}
-.acct-table tr:last-child td{border-bottom:none;}
-.acct-table td:last-child{text-align:right;font-family:var(--mono);color:var(--green);}
-.acct-cat{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+/* ── PROGRESS ── */
+.prog{margin-bottom:13px}
+.prog-hd{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px}
+.prog-hd span:first-child{color:var(--text2)}
+.prog-hd span:last-child{font-family:var(--mono);color:var(--text)}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 
-/* ── Progress bars ── */
-.prog-row{margin-bottom:12px;}
-.prog-header{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;}
-.prog-header span:first-child{color:var(--muted);}
-.prog-header span:last-child{font-family:var(--mono);color:var(--text);}
-.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:2px;transition:width .6s ease;}
+/* ── MONTE CARLO ── */
+.mc-band{padding:14px;border-radius:var(--r);border:1px solid;margin-bottom:10px}
+.mc-band.success{background:var(--green-bg);border-color:rgba(16,212,142,.2)}
+.mc-band.caution{background:var(--amber-bg);border-color:rgba(245,158,11,.2)}
+.mc-band.risk{background:var(--red-bg);border-color:rgba(244,63,94,.2)}
+.mc-pct{font-family:var(--mono);font-size:28px;font-weight:600}
+.mc-pct.success{color:var(--green)}
+.mc-pct.caution{color:var(--amber)}
+.mc-pct.risk{color:var(--red)}
 
-/* ── SVG donut ── */
-svg.donut{overflow:visible;}
+/* ── SCENARIO TABS ── */
+.stabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.stab{padding:5px 13px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text2);background:transparent;font-family:var(--sans);transition:all .15s}
+.stab.on{background:var(--blue-bg);border-color:rgba(99,102,241,.3);color:var(--blue)}
 
-/* ── Action items ── */
-.action-list{list-style:none;}
-.action-list li{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:12px;}
-.action-list li:last-child{border-bottom:none;}
-.action-num{font-family:var(--mono);color:var(--amber);min-width:20px;font-weight:600;}
-.action-text{color:var(--text);line-height:1.5;}
-.action-sub{color:var(--muted);font-size:11px;margin-top:2px;}
+/* ── AI ADVISOR ── */
+.advice-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.advice-priority{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.advice-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.advice-body{font-size:12px;color:var(--text2);line-height:1.6}
+.advice-action{margin-top:10px;font-size:11px;font-weight:500;padding:6px 12px;border-radius:4px;display:inline-block}
 
-/* ── Scenario tabs ── */
-.tab-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-.tab{padding:6px 14px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--muted);background:transparent;font-family:var(--sans);transition:all .15s;}
-.tab.active{background:rgba(0,212,160,.1);border-color:var(--green-dim);color:var(--green);}
+/* ── CHAT ── */
+.chat-wrap{display:flex;flex-direction:column;gap:10px;max-height:400px;overflow-y:auto;margin-bottom:14px;padding-right:4px}
+.chat-wrap::-webkit-scrollbar{width:4px}
+.chat-wrap::-webkit-scrollbar-track{background:transparent}
+.chat-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.msg{padding:10px 14px;border-radius:var(--r);max-width:88%;font-size:13px;line-height:1.6}
+.msg.user{background:var(--blue-bg);border:1px solid rgba(99,102,241,.2);color:var(--text);align-self:flex-end}
+.msg.ai{background:var(--card2);border:1px solid var(--border);color:var(--text);align-self:flex-start}
+.msg.ai .ai-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:4px;font-weight:600}
+.chat-input-row{display:flex;gap:8px}
+.chat-input-row input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none;transition:border .15s}
+.chat-input-row input:focus{border-color:var(--blue)}
+.chat-input-row button{padding:9px 16px;background:var(--blue-bg);border:1px solid rgba(99,102,241,.3);border-radius:var(--r);color:var(--blue);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:all .15s}
+.chat-input-row button:hover{background:rgba(99,102,241,.15)}
+.typing{display:none;padding:10px 14px;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);align-self:flex-start;color:var(--text3);font-size:12px}
 
-/* ── Footer ── */
-footer{text-align:center;padding:32px 20px;color:var(--muted);font-size:11px;border-top:1px solid var(--border);margin-top:40px;}
+/* ── ACTIONS ── */
+.nba{display:flex;gap:10px;padding:12px;border-radius:var(--r);border:1px solid var(--border);background:var(--card);margin-bottom:10px;align-items:flex-start}
+.nba-num{font-family:var(--mono);font-size:11px;font-weight:600;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.nba-num.r{background:var(--red-bg);color:var(--red)}
+.nba-num.a{background:var(--amber-bg);color:var(--amber)}
+.nba-num.g{background:var(--green-bg);color:var(--green)}
+.nba-content{flex:1}
+.nba-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.nba-desc{font-size:11px;color:var(--text2);line-height:1.5}
+.nba-impact{font-size:10px;font-weight:600;margin-top:5px}
+
+/* ── EDIT INPUTS ── */
+.edit-group{margin-bottom:14px}
+.edit-group label{font-size:11px;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+.edit-group input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:8px 10px;font-size:13px;color:var(--text);font-family:var(--mono);outline:none;transition:border .15s}
+.edit-group input:focus{border-color:var(--green)}
+
+/* ── CHART CONTAINER ── */
+.chart-wrap{position:relative;height:220px;width:100%}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:20px}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">FIRE<span>://</span>planner <span>— Luker Household</span></div>
-  <div id="fire-date-badge">Loading...</div>
-</header>
+<nav>
+  <div class="nav-logo">FIRE<em>://</em>OS</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('dashboard',this)">Dashboard</button>
+    <button class="nav-tab" onclick="showPage('montecarlo',this)">Monte Carlo</button>
+    <button class="nav-tab" onclick="showPage('scenarios',this)">Scenarios</button>
+    <button class="nav-tab" onclick="showPage('advisor',this)">AI Advisor</button>
+    <button class="nav-tab" onclick="showPage('actions',this)">Next Actions</button>
+    <button class="nav-tab" onclick="showPage('accounts',this)">Accounts</button>
+    <button class="nav-tab" onclick="showPage('settings',this)">Settings</button>
+  </div>
+  <div class="nav-right">
+    <span class="save-dot" id="save-dot"></span>
+    <button id="save-btn" onclick="saveState()">Save</button>
+  </div>
+</nav>
 
-<div class="app">
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: DASHBOARD -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-dashboard">
 
-  <!-- ── HERO METRICS ── -->
-  <div class="metrics" id="hero-metrics">
-    <div class="metric">
-      <div class="metric-label">Portfolio Value</div>
-      <div class="metric-value green" id="m-portfolio">$1,059,000</div>
-      <div class="metric-sub">As of June 24, 2026</div>
-      <div class="metric-bar"><div class="metric-bar-fill" id="bar-portfolio" style="width:0%"></div></div>
+  <div class="g4" style="margin-bottom:16px" id="kpi-grid"></div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Portfolio trajectory</div>
+      <div class="chart-wrap"><canvas id="chart-trajectory"></canvas></div>
     </div>
-    <div class="metric">
-      <div class="metric-label">FIRE Target</div>
-      <div class="metric-value" id="m-target">$2,700,000</div>
-      <div class="metric-sub">Standard FIRE · 4% rule · Age 55</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Gap Remaining</div>
-      <div class="metric-value amber" id="m-gap">$1,641,000</div>
-      <div class="metric-sub" id="m-gap-sub">~7 years at current rate</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Annual Savings</div>
-      <div class="metric-value green">$139,116</div>
-      <div class="metric-sub">$11,593/mo · 37.3% savings rate</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Progress to FIRE</div>
-      <div class="metric-value green" id="m-pct">39.2%</div>
-      <div class="metric-sub" id="m-pct-sub">$1.06M of $2.7M</div>
-      <div class="metric-bar"><div class="metric-bar-fill" id="bar-fire" style="width:0%"></div></div>
+    <div class="card">
+      <div class="card-title">FIRE progress</div>
+      <div id="dash-progress"></div>
+      <div class="divider" style="margin:14px 0"></div>
+      <div class="card-title">Retirement income (4% rule)</div>
+      <div id="dash-income"></div>
     </div>
   </div>
 
-  <!-- ── ASSUMPTIONS SLIDERS ── -->
-  <div class="section-title">Projection assumptions</div>
-  <div class="card" style="margin-bottom:16px;">
-    <div class="grid-2">
-      <div>
-        <div class="control-row">
-          <label>Portfolio today</label>
-          <div class="control-right">
-            <input type="range" id="sl-portfolio" min="800000" max="1500000" step="5000" value="1059000">
-            <span class="val-badge" id="lbl-portfolio">$1,059K</span>
-          </div>
-        </div>
-        <div class="control-row">
-          <label>Monthly savings</label>
-          <div class="control-right">
-            <input type="range" id="sl-savings" min="5000" max="20000" step="250" value="11593">
-            <span class="val-badge" id="lbl-savings">$11,593</span>
-          </div>
-        </div>
-        <div class="control-row">
-          <label>Pre-retirement return</label>
-          <div class="control-right">
-            <input type="range" id="sl-growth" min="3" max="12" step="0.5" value="7">
-            <span class="val-badge" id="lbl-growth">7.0%</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="control-row">
-          <label>FIRE target</label>
-          <div class="control-right">
-            <input type="range" id="sl-target" min="1500000" max="5000000" step="50000" value="2700000">
-            <span class="val-badge" id="lbl-target">$2,700K</span>
-          </div>
-        </div>
-        <div class="control-row">
-          <label>Post-retirement return</label>
-          <div class="control-right">
-            <input type="range" id="sl-post" min="2" max="8" step="0.5" value="5">
-            <span class="val-badge" id="lbl-post">5.0%</span>
-          </div>
-        </div>
-        <div class="control-row">
-          <label>Annual inflation</label>
-          <div class="control-right">
-            <input type="range" id="sl-inflation" min="1" max="5" step="0.25" value="2.5">
-            <span class="val-badge" id="lbl-inflation">2.5%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── FIRE TIMELINE ── -->
-  <div class="section-title">FIRE timeline</div>
-  <div class="grid-2">
+  <div style="margin-top:16px">
     <div class="card">
-      <div class="card-title"><div class="dot"></div>Age-by-age projections</div>
-      <table class="timeline" id="timeline-table">
-        <thead><tr><th>Age</th><th>Year</th><th>Portfolio</th><th>vs Target</th><th>Status</th></tr></thead>
-        <tbody id="timeline-body"></tbody>
-      </table>
-    </div>
-    <div>
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-title"><div class="dot" style="background:var(--amber)"></div>FIRE scenarios</div>
-        <div class="tab-row">
-          <button class="tab active" onclick="setScenario('standard')">Standard</button>
-          <button class="tab" onclick="setScenario('lean')">Lean FIRE</button>
-          <button class="tab" onclick="setScenario('fat')">Fat FIRE</button>
-          <button class="tab" onclick="setScenario('coast')">Coast FIRE</button>
-        </div>
-        <div id="scenario-detail"></div>
-      </div>
-      <div class="card">
-        <div class="card-title"><div class="dot" style="background:var(--blue)"></div>Retirement income (4% rule)</div>
-        <div id="income-detail"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── ACCOUNTS ── -->
-  <div class="section-title">Account inventory</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title"><div class="dot"></div>Current balances (April 2026)</div>
-      <table class="acct-table">
-        <tr><td class="acct-cat" colspan="2">Retirement</td></tr>
-        <tr><td>401(k) — GDIT / Fidelity</td><td>$765,711</td></tr>
-        <tr><td>Roth IRA — Paul</td><td>$40,534</td></tr>
-        <tr><td>Rollover IRA — Savannah</td><td>$22,639</td></tr>
-        <tr><td>Traditional IRA — Savannah</td><td>$25,000</td></tr>
-        <tr><td class="acct-cat" colspan="2" style="padding-top:12px">Taxable</td></tr>
-        <tr><td>Joint Brokerage (QQQ/VOO/PLTR)</td><td>$89,361</td></tr>
-        <tr><td>Paul Individual</td><td>$7,550</td></tr>
-        <tr><td class="acct-cat" colspan="2" style="padding-top:12px">Liquid</td></tr>
-        <tr><td>HYSA + Savings</td><td>$72,000</td></tr>
-        <tr><td>Cash (safe)</td><td>$20,000</td></tr>
-        <tr style="border-top:1px solid var(--border2)"><td style="font-weight:600;color:var(--text)">Total investable</td><td style="color:var(--green);font-weight:600">$1,059,000</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--amber)"></div>Goals tracker</div>
-      <div class="prog-row" style="margin-top:4px;">
-        <div class="prog-header"><span>Standard FIRE ($2.7M)</span><span id="g-fire-pct">39%</span></div>
-        <div class="prog-bar"><div class="prog-fill" id="g-fire-bar" style="width:0%;background:var(--green)"></div></div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-header"><span>Lean FIRE ($2.16M)</span><span id="g-lean-pct">49%</span></div>
-        <div class="prog-bar"><div class="prog-fill" id="g-lean-bar" style="width:0%;background:var(--blue)"></div></div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-header"><span>529 — Dawson (target $200K)</span><span>64%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:64%;background:var(--amber)"></div></div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-header"><span>529 — Chip (target $200K)</span><span>41%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:41%;background:var(--amber)"></div></div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-header"><span>Mortgage payoff (~$307K → $0)</span><span>~51%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:51%;background:var(--muted)"></div></div>
-      </div>
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
-        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Total net worth (April 2026)</div>
-        <div style="font-family:var(--mono);font-size:20px;color:var(--green)">$1,615,486</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Retirement · 529 · Home equity · Cash · Vehicles</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── OPEN ACTION ITEMS ── -->
-  <div class="section-title">Open action items</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--red)"></div>Tax & IRA — requires action</div>
-      <ul class="action-list">
-        <li>
-          <span class="action-num">1</span>
-          <div>
-            <div class="action-text">File Savannah's late Form 8606 for tax year 2024 <span class="tag tag-red">$2,016 tax exposure</span></div>
-            <div class="action-sub">Line 1: $7,000 · Line 14: $7,000 · Mail certified to IRS Kansas City 64999-0002</div>
-          </div>
-        </li>
-        <li>
-          <span class="action-num">2</span>
-          <div>
-            <div class="action-text">Amend Savannah's 2025 Form 8606 after Step 1 is mailed</div>
-            <div class="action-sub">TurboTax → Amend → update Line 2 from $0 → $7,000 · Corrected basis: $14,500</div>
-          </div>
-        </li>
-        <li>
-          <span class="action-num">3</span>
-          <div>
-            <div class="action-text">Execute Savannah's 2026 Roth conversion ($25K Traditional IRA) <span class="tag tag-amber">~$1,008 tax</span></div>
-            <div class="action-sub">Acct 245-599645 · Liquidate to SPAXX first · Trustee-to-trustee at Fidelity · Do NOT withdraw cash</div>
-          </div>
-        </li>
-        <li>
-          <span class="action-num">4</span>
-          <div>
-            <div class="action-text">2026 estimated tax vouchers — Q3 due Sep 15 / Q4 due Jan 15, 2027 <span class="tag tag-blue">$1,793 each</span></div>
-            <div class="action-sub">Reassess Q3 2026 if no additional stock sales or Roth conversions beyond Savannah's ~$3,500</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title"><div class="dot" style="background:var(--amber)"></div>529 education — on track</div>
-      <table class="acct-table" style="margin-bottom:16px;">
-        <tr><th style="font-size:10px;color:var(--muted);text-align:left;padding:0 10px 8px;text-transform:uppercase;letter-spacing:.08em;">Child</th><th style="font-size:10px;color:var(--muted);padding:0 10px 8px;text-transform:uppercase;letter-spacing:.08em;text-align:right;">Balance</th><th style="font-size:10px;color:var(--muted);padding:0 10px 8px;text-transform:uppercase;letter-spacing:.08em;text-align:right;">Target</th><th style="font-size:10px;color:var(--muted);padding:0 10px 8px;text-transform:uppercase;letter-spacing:.08em;text-align:right;">College</th></tr>
-        <tr><td>Dawson (age 10)</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$127,000</td><td style="text-align:right;font-family:var(--mono);color:var(--muted)">$200K</td><td style="text-align:right;color:var(--muted)">2034</td></tr>
-        <tr><td>Chip (age 6)</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$82,000</td><td style="text-align:right;font-family:var(--mono);color:var(--muted)">$200K</td><td style="text-align:right;color:var(--muted)">2037</td></tr>
-        <tr><td style="color:var(--muted)">Combined gap</td><td style="text-align:right;font-family:var(--mono);color:var(--amber)">$191,000</td><td style="text-align:right;font-family:var(--mono);color:var(--muted)">$400K</td><td></td></tr>
-      </table>
-      <div style="font-size:11px;color:var(--muted);line-height:1.7;">
-        Contributing $9,000/year per child · MO MOST 529 · $768/yr MO tax savings<br>
-        Projected at college start: Dawson ~$297K · Chip ~$303K<br>
-        <strong style="color:var(--green)">Status: On track for full in-state public university funding</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── FINANCIAL SCORECARD ── -->
-  <div class="section-title">Financial health scorecard</div>
-  <div class="card">
-    <div class="grid-3">
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Savings Rate</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--green);font-weight:600;">A+</div>
-        <div style="font-size:11px;color:var(--muted);">~42% of gross · Top 2–3% nationally</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Emergency Fund</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--green);font-weight:600;">A+</div>
-        <div style="font-size:11px;color:var(--muted);">10.2 months · $92,500 liquid</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Debt-to-Income</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--green);font-weight:600;">A+</div>
-        <div style="font-size:11px;color:var(--muted);">8.5% · Mortgage only · $307K bal</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Retirement Readiness</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--amber);font-weight:600;">B</div>
-        <div style="font-size:11px;color:var(--muted);">39% to FIRE · Gap $1.64M</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Asset Concentration</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--amber);font-weight:600;">C+</div>
-        <div style="font-size:11px;color:var(--muted);">Taxable brokerage too thin vs 401k</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Overall</div>
-        <div style="font-family:var(--mono);font-size:28px;color:var(--green);font-weight:600;">A−</div>
-        <div style="font-size:11px;color:var(--muted);">Top 5–8% nationally · NW $1.62M</div>
+      <div class="card-title">Age-by-age projection</div>
+      <div style="overflow-x:auto">
+        <table class="dt" id="timeline-table">
+          <thead><tr><th>Age</th><th>Year</th><th>Portfolio</th><th>Inflation-adj</th><th>vs Target</th><th>Annual Income (4%)</th><th>Status</th></tr></thead>
+          <tbody id="timeline-body"></tbody>
+        </table>
       </div>
     </div>
   </div>
 
 </div>
 
-<footer>
-  FIRE Planner · Luker Household · retire.stluker.com<br>
-  Data current as of June 2026 · Update portfolio value via sliders · Not financial advice
-</footer>
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: MONTE CARLO -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-montecarlo">
+  <div class="sh"><h2>Monte Carlo Simulation</h2><span class="sh-sub">1,000 market scenarios · sequence of returns risk · 40-year horizon</span></div>
 
+  <div class="g2" style="margin-bottom:16px">
+    <div>
+      <div class="mc-band success" id="mc-success">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:4px;">Success rate — portfolio survives to age 90</div>
+        <div class="mc-pct success" id="mc-pct-success">—</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px;" id="mc-success-label">Running simulation...</div>
+      </div>
+      <div class="mc-band caution">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:4px;">Median outcome at age 90</div>
+        <div class="mc-pct caution" id="mc-median">—</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px;">50th percentile portfolio value</div>
+      </div>
+      <div class="mc-band risk">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:4px;">10th percentile (bad sequence)</div>
+        <div class="mc-pct risk" id="mc-p10">—</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px;">Worst 10% of market scenarios</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Outcome distribution</div>
+      <div class="chart-wrap"><canvas id="chart-mc"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Simulation parameters</div>
+    <div class="g2">
+      <div>
+        <div class="sl-row"><label>Return mean (pre-FIRE)</label><div class="sl-right"><input type="range" id="mc-mean" min="3" max="12" step="0.5" value="7"><span class="vbadge" id="mc-mean-lbl">7.0%</span></div></div>
+        <div class="sl-row"><label>Return std dev</label><div class="sl-right"><input type="range" id="mc-std" min="5" max="25" step="1" value="15"><span class="vbadge" id="mc-std-lbl">15%</span></div></div>
+        <div class="sl-row"><label>Withdrawal rate</label><div class="sl-right"><input type="range" id="mc-wr" min="2" max="6" step="0.1" value="4"><span class="vbadge" id="mc-wr-lbl">4.0%</span></div></div>
+      </div>
+      <div>
+        <div class="sl-row"><label>Retirement age</label><div class="sl-right"><input type="range" id="mc-age" min="50" max="65" step="1" value="55"><span class="vbadge" id="mc-age-lbl">55</span></div></div>
+        <div class="sl-row"><label>Longevity (to age)</label><div class="sl-right"><input type="range" id="mc-lon" min="75" max="100" step="1" value="90"><span class="vbadge" id="mc-lon-lbl">90</span></div></div>
+        <div class="sl-row"><label>Simulations</label><div class="sl-right"><input type="range" id="mc-sims" min="200" max="2000" step="200" value="1000"><span class="vbadge" id="mc-sims-lbl">1000</span></div></div>
+      </div>
+    </div>
+    <button onclick="runMonteCarlo()" style="margin-top:8px;padding:8px 18px;background:var(--green-bg);border:1px solid rgba(16,212,142,.3);border-radius:4px;color:var(--green);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans)">▶ Run Simulation</button>
+    <span id="mc-status" style="font-size:11px;color:var(--text2);margin-left:12px"></span>
+  </div>
+
+  <div style="margin-top:16px" class="card">
+    <div class="card-title">Percentile outcomes at FIRE age</div>
+    <table class="dt" id="mc-table">
+      <thead><tr><th>Percentile</th><th>Portfolio at FIRE</th><th>Age 70</th><th>Age 80</th><th>Age 90</th><th>Survives?</th></tr></thead>
+      <tbody id="mc-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: SCENARIOS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-scenarios">
+  <div class="sh"><h2>Scenario Modeling</h2><span class="sh-sub">Compare FIRE paths side by side</span></div>
+  <div class="stabs">
+    <button class="stab on" onclick="setScen('standard',this)">Standard FIRE</button>
+    <button class="stab" onclick="setScen('lean',this)">Lean FIRE</button>
+    <button class="stab" onclick="setScen('fat',this)">Fat FIRE</button>
+    <button class="stab" onclick="setScen('coast',this)">Coast FIRE</button>
+    <button class="stab" onclick="setScen('income_shock',this)">Income Shock</button>
+    <button class="stab" onclick="setScen('market_crash',this)">Market Crash</button>
+    <button class="stab" onclick="setScen('early_55',this)">Age 55 Hard Stop</button>
+  </div>
+  <div id="scen-detail"></div>
+  <div style="margin-top:16px" class="card">
+    <div class="card-title">Scenario trajectory</div>
+    <div class="chart-wrap" style="height:260px"><canvas id="chart-scen"></canvas></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: AI ADVISOR -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-advisor">
+  <div class="sh"><h2>AI Financial Advisor</h2><span class="sh-sub">Powered by Claude · Context-aware · Your data stays local</span></div>
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-title">Recommended actions</div>
+        <div id="ai-recs"></div>
+      </div>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column">
+      <div class="card-title">Ask your advisor</div>
+      <div class="chat-wrap" id="chat-wrap">
+        <div class="msg ai"><div class="ai-label">FIRE Advisor</div>Hello Paul. I have your complete financial profile loaded. You're 39% to Standard FIRE with a $1.06M portfolio. Your strongest lever right now is time — at 7% returns, each year of continued contributions adds roughly $155K in projected portfolio value. What would you like to explore?</div>
+      </div>
+      <div class="typing" id="typing">Advisor is thinking...</div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Ask anything about your finances..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()">Send ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: NEXT ACTIONS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-actions">
+  <div class="sh"><h2>Next Best Actions</h2><span class="sh-sub">Prioritized by financial impact · Updated dynamically</span></div>
+  <div id="nba-list"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: ACCOUNTS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-accounts">
+  <div class="sh"><h2>Account Inventory</h2><span class="sh-sub">April–June 2026 balances</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Retirement accounts</div>
+      <table class="dt">
+        <thead><tr><th>Account</th><th>Owner</th><th style="text-align:right">Balance</th></tr></thead>
+        <tbody>
+          <tr><td>401(k) GDIT — Fidelity 08093</td><td>Paul</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$765,711</td></tr>
+          <tr><td>Roth IRA — Fidelity 230-962807</td><td>Paul</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$40,534</td></tr>
+          <tr><td>Rollover IRA — Fidelity 225-248219</td><td>Savannah</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$22,639</td></tr>
+          <tr><td>Traditional IRA — Fidelity 245-599645</td><td>Savannah</td><td style="text-align:right;font-family:var(--mono);color:var(--amber)">$25,000</td></tr>
+          <tr><td colspan="2" style="color:var(--text3);font-size:11px">Subtotal</td><td style="text-align:right;font-family:var(--mono);font-weight:600">$853,884</td></tr>
+        </tbody>
+      </table>
+      <div class="divider" style="margin:12px 0"></div>
+      <div class="card-title">Taxable & liquid</div>
+      <table class="dt">
+        <thead><tr><th>Account</th><th>Type</th><th style="text-align:right">Balance</th></tr></thead>
+        <tbody>
+          <tr><td>Joint WROS — Fidelity Z33-152454</td><td>Brokerage</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$89,361</td></tr>
+          <tr><td>Paul Individual — Fidelity 2EA-109959</td><td>Brokerage</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$7,550</td></tr>
+          <tr><td>HYSA + Savings</td><td>Liquid</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$72,000</td></tr>
+          <tr><td>Cash (safe)</td><td>Liquid</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">$20,000</td></tr>
+          <tr><td colspan="2" style="color:var(--text3);font-size:11px">Total investable</td><td style="text-align:right;font-family:var(--mono);font-weight:600;color:var(--green)">$1,059,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-title">529 education accounts</div>
+        <div class="prog">
+          <div class="prog-hd"><span>Dawson (age 10) — College 2034</span><span>$135,000</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:67.5%;background:var(--amber)"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:3px;">67.5% of $200K target · $65K gap</div>
+        </div>
+        <div class="prog">
+          <div class="prog-hd"><span>Chip (age 6) — College 2037</span><span>$87,000</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:43.5%;background:var(--amber)"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:3px;">43.5% of $200K target · $113K gap</div>
+        </div>
+        <div style="padding:10px;background:var(--green-bg);border:1px solid rgba(16,212,142,.15);border-radius:4px;font-size:11px;color:var(--text2)">
+          ✓ Contributing $9K/yr per child · MO MOST 529 · On track for full in-state funding<br>
+          Projected at college: Dawson ~$310K · Chip ~$328K
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Net worth summary</div>
+        <table class="dt">
+          <tbody>
+            <tr><td>Retirement & investment accounts</td><td style="text-align:right;font-family:var(--mono)">$941,486</td></tr>
+            <tr><td>529 education accounts</td><td style="text-align:right;font-family:var(--mono)">$222,000</td></tr>
+            <tr><td>Home equity (~$630K − $307K)</td><td style="text-align:right;font-family:var(--mono)">$323,000</td></tr>
+            <tr><td>Cash & savings</td><td style="text-align:right;font-family:var(--mono)">$92,000</td></tr>
+            <tr><td>Vehicles (2 paid-off)</td><td style="text-align:right;font-family:var(--mono)">$50,000</td></tr>
+            <tr style="border-top:1px solid var(--border2)"><td style="font-weight:600">Total net worth</td><td style="text-align:right;font-family:var(--mono);font-weight:600;color:var(--green)">$1,628,486</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- PAGE: SETTINGS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-settings">
+  <div class="sh"><h2>Settings & Assumptions</h2><span class="sh-sub">All projections update live · Saved to localStorage</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Portfolio & income</div>
+      <div class="edit-group"><label>Current portfolio ($)</label><input type="number" id="s-portfolio" value="1059000" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>Monthly savings ($)</label><input type="number" id="s-savings" value="11593" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>Current age</label><input type="number" id="s-age" value="48" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>FIRE target age</label><input type="number" id="s-fire-age" value="55" oninput="onSettingChange()"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Return & target assumptions</div>
+      <div class="edit-group"><label>Pre-FIRE return (%)</label><input type="number" id="s-growth" value="7" step="0.5" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>Post-FIRE return (%)</label><input type="number" id="s-post" value="5" step="0.5" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>Inflation (%)</label><input type="number" id="s-inflation" value="2.5" step="0.25" oninput="onSettingChange()"></div>
+      <div class="edit-group"><label>Standard FIRE target ($)</label><input type="number" id="s-target" value="2700000" oninput="onSettingChange()"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">API configuration</div>
+      <div class="edit-group"><label>Anthropic API key (for AI Advisor)</label><input type="password" id="s-api-key" placeholder="sk-ant-..." oninput="onSettingChange()"></div>
+      <div style="font-size:11px;color:var(--text3);margin-top:6px;line-height:1.6">API key stored in localStorage only · never transmitted except to Anthropic's API · required for AI Advisor chat</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Data management</div>
+      <button onclick="saveState()" style="padding:8px 16px;background:var(--green-bg);border:1px solid rgba(16,212,142,.3);border-radius:4px;color:var(--green);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Save all settings</button>
+      <button onclick="exportData()" style="padding:8px 16px;background:var(--blue-bg);border:1px solid rgba(99,102,241,.3);border-radius:4px;color:var(--blue);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Export data (JSON)</button>
+      <button onclick="if(confirm('Reset all to defaults?'))resetDefaults()" style="padding:8px 16px;background:var(--red-bg);border:1px solid rgba(244,63,94,.2);border-radius:4px;color:var(--red);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%">Reset to defaults</button>
+    </div>
+  </div>
+</div>
+
+<footer>FIRE OS · Luker Household · retire.stluker.com · Data stored locally · Not financial advice</footer>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT ENGINE -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
 <script>
-// ── State ──
-const STATE = {
-  portfolio: 1059000,
-  savings: 11593,
-  growth: 0.07,
-  postGrowth: 0.05,
-  inflation: 0.025,
-  target: 2700000,
-  currentAge: 48,
-  birthYear: 1977
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: STATE & PERSISTENCE
+// ═══════════════════════════════════════════════════════════════════
+const DEFAULTS = {
+  portfolio: 1059000, savings: 11593, age: 48, fireAge: 55,
+  growth: 0.07, postGrowth: 0.05, inflation: 0.025, target: 2700000,
+  apiKey: ''
 };
 
-const SCENARIOS = {
-  standard: { target: 2700000, label: 'Standard FIRE', withdrawalPct: 0.04, age: 55 },
-  lean:     { target: 2160000, label: 'Lean FIRE',     withdrawalPct: 0.04, age: 53 },
-  fat:      { target: 4050000, label: 'Fat FIRE',      withdrawalPct: 0.04, age: 58 },
-  coast:    { target: null,    label: 'Coast FIRE',    withdrawalPct: 0.04, age: null }
-};
+let S = { ...DEFAULTS };
+let dirty = false;
 
-let currentScenario = 'standard';
-
-function fmt(n) {
-  if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
-  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
-  return '$' + Math.round(n).toLocaleString();
+function loadState() {
+  try {
+    const saved = localStorage.getItem('fire_os_state');
+    if (saved) S = { ...DEFAULTS, ...JSON.parse(saved) };
+  } catch(e) {}
+  syncSettingsUI();
 }
-function fmtFull(n) { return '$' + Math.round(n).toLocaleString(); }
-function pct(a, b) { return Math.min(100, Math.round(a/b*100)); }
 
-// ── Projection engine ──
-function project(years) {
-  let p = STATE.portfolio;
-  const monthly = STATE.savings;
-  const r = STATE.growth / 12;
-  const results = [];
-  for (let y = 0; y <= years; y++) {
-    const age = STATE.currentAge + y;
-    const year = STATE.birthYear + age;
-    results.push({ age, year, portfolio: p });
-    // Compound monthly for this year
-    for (let m = 0; m < 12; m++) {
-      p = (p + monthly) * (1 + r);
-    }
+function saveState() {
+  localStorage.setItem('fire_os_state', JSON.stringify(S));
+  dirty = false;
+  document.getElementById('save-dot').style.display = 'none';
+  document.getElementById('save-btn').textContent = 'Saved ✓';
+  setTimeout(() => document.getElementById('save-btn').textContent = 'Save', 1500);
+}
+
+function markDirty() {
+  dirty = true;
+  document.getElementById('save-dot').style.display = 'inline-block';
+}
+
+function onSettingChange() {
+  S.portfolio  = +document.getElementById('s-portfolio').value || S.portfolio;
+  S.savings    = +document.getElementById('s-savings').value   || S.savings;
+  S.age        = +document.getElementById('s-age').value       || S.age;
+  S.fireAge    = +document.getElementById('s-fire-age').value  || S.fireAge;
+  S.growth     = (+document.getElementById('s-growth').value   || 7) / 100;
+  S.postGrowth = (+document.getElementById('s-post').value     || 5) / 100;
+  S.inflation  = (+document.getElementById('s-inflation').value|| 2.5) / 100;
+  S.target     = +document.getElementById('s-target').value    || S.target;
+  S.apiKey     = document.getElementById('s-api-key').value;
+  markDirty();
+  renderAll();
+}
+
+function syncSettingsUI() {
+  document.getElementById('s-portfolio').value  = S.portfolio;
+  document.getElementById('s-savings').value    = S.savings;
+  document.getElementById('s-age').value        = S.age;
+  document.getElementById('s-fire-age').value   = S.fireAge;
+  document.getElementById('s-growth').value     = (S.growth * 100).toFixed(1);
+  document.getElementById('s-post').value       = (S.postGrowth * 100).toFixed(1);
+  document.getElementById('s-inflation').value  = (S.inflation * 100).toFixed(2);
+  document.getElementById('s-target').value     = S.target;
+  document.getElementById('s-api-key').value    = S.apiKey || '';
+}
+
+function exportData() {
+  const d = { state: S, timestamp: new Date().toISOString() };
+  const a = document.createElement('a');
+  a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(d, null, 2));
+  a.download = 'fire-os-export.json';
+  a.click();
+}
+
+function resetDefaults() {
+  S = { ...DEFAULTS };
+  syncSettingsUI();
+  markDirty();
+  renderAll();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: FORMATTING
+// ═══════════════════════════════════════════════════════════════════
+const fmt  = n => n >= 1e6 ? '$'+(n/1e6).toFixed(2)+'M' : n >= 1e3 ? '$'+Math.round(n/1e3)+'K' : '$'+Math.round(n);
+const fmtF = n => '$'+Math.round(n).toLocaleString();
+const pct  = (a,b) => Math.min(100, Math.round(a/b*100));
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: PROJECTION ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function project(years, overrides = {}) {
+  const cfg = { ...S, ...overrides };
+  let p = cfg.portfolio;
+  const r = cfg.growth / 12;
+  const results = [{ age: cfg.age, year: 1977 + cfg.age, portfolio: p }];
+  for (let y = 1; y <= years; y++) {
+    for (let m = 0; m < 12; m++) p = (p + cfg.savings) * (1 + r);
+    results.push({ age: cfg.age + y, year: 1977 + cfg.age + y, portfolio: p });
   }
   return results;
 }
 
-// ── Coast FIRE: amount needed today to hit $2.7M at 55 with no more contributions ──
-function coastFireNumber() {
-  const yearsToFire = 55 - STATE.currentAge;
-  if (yearsToFire <= 0) return STATE.portfolio;
-  return STATE.target / Math.pow(1 + STATE.growth, yearsToFire);
+function findFireYear(target, overrides = {}) {
+  const data = project(35, overrides);
+  return data.find(d => d.portfolio >= target) || null;
 }
 
-// ── Find FIRE age ──
-function findFireAge(target) {
-  const data = project(30);
-  for (const d of data) {
-    if (d.portfolio >= target) return d;
-  }
-  return null;
+function coastNumber() {
+  const years = S.fireAge - S.age;
+  if (years <= 0) return S.portfolio;
+  return S.target / Math.pow(1 + S.growth, years);
 }
 
-// ── Render timeline ──
-function renderTimeline() {
-  const data = project(20);
-  const target = STATE.target;
-  const tbody = document.getElementById('timeline-body');
-  tbody.innerHTML = '';
-
-  data.forEach(d => {
-    if (d.age < 49 || d.age > 68) return;
-    const pctDone = pct(d.portfolio, target);
-    const isFire = d.portfolio >= target;
-    const isLean = d.portfolio >= 2160000 && !isFire;
-    const tr = document.createElement('tr');
-    if (d.age === 55) tr.className = 'highlight';
-    if (isFire) tr.className = 'milestone';
-
-    let tag = '';
-    if (isFire) tag = '<span class="tag tag-green">FIRE ✓</span>';
-    else if (d.portfolio >= 2160000) tag = '<span class="tag tag-blue">Lean ✓</span>';
-    else if (pctDone >= 70) tag = '<span class="tag tag-amber">70%+</span>';
-
-    tr.innerHTML = `
-      <td>${d.age}</td>
-      <td>${d.year}</td>
-      <td style="font-family:var(--mono)">${fmt(d.portfolio)}</td>
-      <td style="color:var(--muted);font-family:var(--mono)">${pctDone}%</td>
-      <td>${tag}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: MONTE CARLO ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function gaussianRandom(mean, std) {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return mean + std * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
 }
 
-// ── Render scenario detail ──
-function renderScenario() {
-  const s = SCENARIOS[currentScenario];
-  const div = document.getElementById('scenario-detail');
+let mcResults = null;
 
-  if (currentScenario === 'coast') {
-    const coastNum = coastFireNumber();
-    const reached = STATE.portfolio >= coastNum;
-    div.innerHTML = `
-      <div style="margin-bottom:10px;">
-        <div style="font-size:11px;color:var(--muted);margin-bottom:3px;">Coast FIRE number (today)</div>
-        <div style="font-family:var(--mono);font-size:20px;color:${reached?'var(--green)':'var(--amber)'}">${fmtFull(Math.round(coastNum))}</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:3px;">Amount needed now to hit $2.7M at 55 with no more contributions</div>
-      </div>
-      <div style="padding:10px;background:${reached?'rgba(0,212,160,.06)':'rgba(245,158,11,.06)'};border-radius:4px;border:1px solid ${reached?'var(--green-dim)':'rgba(245,158,11,.2)'};">
-        <div style="font-size:12px;color:${reached?'var(--green)':'var(--amber)'};">
-          ${reached ? '✓ Coast FIRE achieved — contributions are optional' : `Gap to coast: ${fmtFull(Math.round(coastNum - STATE.portfolio))} · ~${Math.round((coastNum-STATE.portfolio)/(STATE.savings*12)*10)/10} years at current rate`}
-        </div>
-      </div>
-    `;
+function runMonteCarlo() {
+  const mean     = parseFloat(document.getElementById('mc-mean').value) / 100;
+  const std      = parseFloat(document.getElementById('mc-std').value) / 100;
+  const wr       = parseFloat(document.getElementById('mc-wr').value) / 100;
+  const retAge   = parseInt(document.getElementById('mc-age').value);
+  const lonAge   = parseInt(document.getElementById('mc-lon').value);
+  const sims     = parseInt(document.getElementById('mc-sims').value);
+  const status   = document.getElementById('mc-status');
+
+  status.textContent = `Running ${sims.toLocaleString()} simulations...`;
+
+  setTimeout(() => {
+    const yearsToFire     = retAge - S.age;
+    const yearsRetirement = lonAge - retAge;
+    const outcomes = [];
+
+    for (let i = 0; i < sims; i++) {
+      // Accumulation phase
+      let p = S.portfolio;
+      for (let y = 0; y < yearsToFire; y++) {
+        const annualReturn = gaussianRandom(mean, std);
+        p = p * (1 + annualReturn) + S.savings * 12;
+      }
+      const atFire = p;
+      const withdrawal = atFire * wr;
+
+      // Distribution phase
+      let survived = true;
+      let p70 = null, p80 = null, p90fin = null;
+      for (let y = 0; y < yearsRetirement; y++) {
+        const annualReturn = gaussianRandom(mean * 0.7, std); // lower mean in retirement
+        p = p * (1 + annualReturn) - withdrawal * Math.pow(1 + 0.025, y); // inflation-adj withdrawal
+        const age = retAge + y;
+        if (age === 70) p70 = p;
+        if (age === 80) p80 = p;
+        if (p <= 0 && survived) { survived = false; }
+      }
+      p90fin = Math.max(0, p);
+      outcomes.push({ atFire, p70: Math.max(0, p70 || 0), p80: Math.max(0, p80 || 0), p90: p90fin, survived });
+    }
+
+    outcomes.sort((a, b) => a.p90 - b.p90);
+    const successRate = outcomes.filter(o => o.survived).length / sims;
+    const median      = outcomes[Math.floor(sims * 0.5)];
+    const p10         = outcomes[Math.floor(sims * 0.1)];
+    const p25         = outcomes[Math.floor(sims * 0.25)];
+    const p75         = outcomes[Math.floor(sims * 0.75)];
+    const p90         = outcomes[Math.floor(sims * 0.9)];
+    mcResults         = { successRate, median, p10, p25, p75, p90, outcomes, wr, retAge };
+
+    document.getElementById('mc-pct-success').textContent = Math.round(successRate * 100) + '%';
+    document.getElementById('mc-success-label').textContent =
+      successRate >= 0.9 ? 'Excellent — portfolio very likely to survive' :
+      successRate >= 0.75 ? 'Good — consider slight withdrawal reduction' :
+      'Concerning — adjust retirement age or spending';
+    document.getElementById('mc-median').textContent = fmt(median.p90);
+    document.getElementById('mc-p10').textContent    = fmt(p10.p90);
+
+    // Table
+    const tbody = document.getElementById('mc-tbody');
+    const rows  = [
+      { label:'10th (bad luck)',    d:p10,    tag:'tag-r' },
+      { label:'25th (below avg)',   d:p25,    tag:'tag-a' },
+      { label:'50th (median)',      d:median, tag:'tag-b' },
+      { label:'75th (above avg)',   d:p75,    tag:'tag-g' },
+      { label:'90th (great run)',   d:p90,    tag:'tag-g' },
+    ];
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td><span class="tag ${r.tag}">${r.label}</span></td>
+        <td style="font-family:var(--mono)">${fmt(r.d.atFire)}</td>
+        <td style="font-family:var(--mono)">${fmt(r.d.p70)}</td>
+        <td style="font-family:var(--mono)">${fmt(r.d.p80)}</td>
+        <td style="font-family:var(--mono)">${fmt(r.d.p90)}</td>
+        <td>${r.d.survived ? '<span class="tag tag-g">✓ Yes</span>' : '<span class="tag tag-r">✗ No</span>'}</td>
+      </tr>`).join('');
+
+    // Chart — histogram of p90 outcomes
+    const bins = 20;
+    const values = outcomes.map(o => o.p90).filter(v => v > 0);
+    const maxV   = Math.max(...values);
+    const binSize = maxV / bins;
+    const counts  = Array(bins).fill(0);
+    values.forEach(v => { const b = Math.min(bins-1, Math.floor(v/binSize)); counts[b]++; });
+    const labels  = counts.map((_, i) => fmt((i + 0.5) * binSize));
+
+    renderMCChart(labels, counts);
+    status.textContent = `✓ ${sims.toLocaleString()} scenarios complete`;
+  }, 50);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: AI ADVISOR
+// ═══════════════════════════════════════════════════════════════════
+function buildContext() {
+  const fire = findFireYear(S.target);
+  return `You are a personal financial advisor for Paul Luker. Here is his complete financial profile:
+
+AGE: ${S.age} (turns 49 July 17, 2026). Wife Savannah, 39. Sons: Dawson (10), Chip (6). Location: Ballwin, MO.
+
+INCOME: $373K gross salary (GDIT). $195K annual net take-home. Monthly savings: $${S.savings.toLocaleString()}. Savings rate: 37.3%.
+
+PORTFOLIO (June 2026): $${S.portfolio.toLocaleString()} total investable. Breakdown: 401k $765,711; Roth IRA $40,534; Savannah Rollover $22,639; Savannah Trad IRA $25,000; Joint brokerage $89,361; Individual $7,550; HYSA+cash $92,000.
+
+FIRE TARGETS: Lean $2.16M (age 53), Standard $2.7M (age 55), Fat $4.05M (age 58). Current gap: $${(S.target - S.portfolio).toLocaleString()}. Projected FIRE: age ${fire ? fire.age : '65+'} (${fire ? fire.year : '—'}).
+
+529s: Dawson $135K (target $200K, college 2034), Chip $87K (target $200K, college 2037). Contributing $9K/yr each.
+
+OPEN ITEMS: 1) Savannah's late 2024 Form 8606 unfiled ($2,016 tax exposure). 2) Savannah $25K Traditional IRA → Roth conversion pending. 3) Q3 estimated tax $1,793 due Sep 15.
+
+ASSUMPTIONS: ${(S.growth*100).toFixed(1)}% pre-FIRE return, ${(S.postGrowth*100).toFixed(1)}% post-FIRE, ${(S.inflation*100).toFixed(1)}% inflation.
+
+Answer questions concisely and specifically. Reference actual numbers from the profile. Be direct and actionable. Max 3 paragraphs.`;
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg   = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  addMsg(msg, 'user');
+
+  const apiKey = S.apiKey || localStorage.getItem('fire_os_state') && JSON.parse(localStorage.getItem('fire_os_state')).apiKey;
+  if (!apiKey) {
+    addMsg('Add your Anthropic API key in Settings to enable AI Advisor chat.', 'ai');
     return;
   }
 
-  const hit = findFireAge(s.target);
-  const income = s.target * s.withdrawalPct;
+  document.getElementById('typing').style.display = 'block';
+  scrollChat();
 
-  div.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:2px;">Target</div>
-        <div style="font-family:var(--mono);font-size:16px;color:var(--text)">${fmtFull(s.target)}</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:2px;">FIRE age</div>
-        <div style="font-family:var(--mono);font-size:16px;color:${hit?'var(--green)':'var(--red)'}">${hit ? hit.age : '65+'}</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:2px;">Year</div>
-        <div style="font-family:var(--mono);font-size:16px;color:var(--text)">${hit ? hit.year : '—'}</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:2px;">Annual income</div>
-        <div style="font-family:var(--mono);font-size:16px;color:var(--green)">${fmtFull(income)}</div>
-      </div>
-    </div>
-    <div style="font-size:11px;color:var(--muted);">Monthly withdrawal: <span style="color:var(--text);font-family:var(--mono)">${fmtFull(income/12)}</span></div>
-  `;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 600,
+        system: buildContext(),
+        messages: [{ role: 'user', content: msg }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Unable to get response. Check your API key.';
+    document.getElementById('typing').style.display = 'none';
+    addMsg(text, 'ai');
+  } catch(e) {
+    document.getElementById('typing').style.display = 'none';
+    addMsg('Error connecting to AI. Check your API key in Settings.', 'ai');
+  }
 }
 
-// ── Render income detail ──
-function renderIncome() {
-  const p55 = project(7).find(d => d.age === 55);
-  const p59 = project(11).find(d => d.age === 59);
-  const p63 = project(15).find(d => d.age === 63);
-  const div = document.getElementById('income-detail');
-  div.innerHTML = `
-    <table class="timeline">
-      <tr><th>Retire at</th><th>Portfolio</th><th>Annual</th><th>Monthly</th></tr>
-      ${[
-        { age: 53, label: 'Lean FIRE' },
-        { age: 55, label: 'Standard' },
-        { age: 58, label: 'Fat FIRE' },
-        { age: 63, label: 'Conservative' }
-      ].map(sc => {
-        const d = project(sc.age - STATE.currentAge);
-        const final = d[d.length - 1];
-        const ann = final.portfolio * 0.04;
-        return `<tr><td>${sc.age} <span style="color:var(--muted);font-size:10px;">${sc.label}</span></td><td style="font-family:var(--mono)">${fmt(final.portfolio)}</td><td style="font-family:var(--mono);color:var(--green)">${fmtFull(ann)}</td><td style="font-family:var(--mono);color:var(--muted)">${fmtFull(ann/12)}</td></tr>`;
-      }).join('')}
-    </table>
-    <div style="margin-top:10px;font-size:11px;color:var(--muted);">Social Security eligible at 62 — adds $2,800–$4,200/mo (not included above)</div>
-  `;
+function addMsg(text, role) {
+  const wrap = document.getElementById('chat-wrap');
+  const div  = document.createElement('div');
+  div.className = 'msg ' + role;
+  if (role === 'ai') div.innerHTML = '<div class="ai-label">FIRE Advisor</div>' + text.replace(/\n/g, '<br>');
+  else div.textContent = text;
+  wrap.appendChild(div);
+  scrollChat();
 }
 
-// ── Render hero metrics ──
-function renderMetrics() {
-  const p = STATE.portfolio;
-  const t = STATE.target;
-  const gap = Math.max(0, t - p);
-  const yearsToFire = (function() {
-    const data = project(35);
-    for (const d of data) { if (d.portfolio >= t) return d.age - STATE.currentAge; }
-    return null;
-  })();
-
-  document.getElementById('m-portfolio').textContent = fmtFull(p);
-  document.getElementById('m-target').textContent = fmtFull(t);
-  document.getElementById('m-gap').textContent = fmtFull(gap);
-  document.getElementById('m-gap-sub').textContent = yearsToFire ? `~${yearsToFire} years at current rate` : 'Adjust assumptions';
-  const pctDone = pct(p, t);
-  document.getElementById('m-pct').textContent = pctDone + '%';
-  document.getElementById('m-pct-sub').textContent = `${fmt(p)} of ${fmt(t)}`;
-
-  // Animate bars
-  setTimeout(() => {
-    document.getElementById('bar-portfolio').style.width = Math.min(100, pct(p, 2000000)) + '%';
-    document.getElementById('bar-fire').style.width = pctDone + '%';
-    document.getElementById('g-fire-bar').style.width = pct(p, 2700000) + '%';
-    document.getElementById('g-lean-bar').style.width = pct(p, 2160000) + '%';
-    document.getElementById('g-fire-pct').textContent = pct(p, 2700000) + '%';
-    document.getElementById('g-lean-pct').textContent = pct(p, 2160000) + '%';
-  }, 100);
-
-  // FIRE date badge
-  const fireAge = STATE.currentAge + (yearsToFire || 0);
-  const fireYear = STATE.birthYear + fireAge;
-  document.getElementById('fire-date-badge').textContent = yearsToFire ? `FIRE target: Age ${fireAge} · ${fireYear}` : 'Adjust assumptions';
+function scrollChat() {
+  const wrap = document.getElementById('chat-wrap');
+  setTimeout(() => wrap.scrollTop = wrap.scrollHeight, 50);
 }
 
-// ── Full render ──
-function render() {
-  renderMetrics();
-  renderTimeline();
-  renderScenario();
-  renderIncome();
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: RECOMMENDATIONS ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function generateRecommendations() {
+  const recs = [];
+  const fire = findFireYear(S.target);
+  const coast = coastNumber();
+
+  // Critical tax items
+  recs.push({
+    priority: 'CRITICAL', color: 'var(--red)', tagClass: 'tag-r',
+    title: "File Savannah's late Form 8606 for 2024",
+    body: "Savannah's 2024 nondeductible IRA contribution ($7,000) was never reported on Form 8606. Without it, her 2026 Roth conversion will be taxed as if the entire $25K is pre-tax, creating ~$2,016 in unnecessary federal+MO tax.",
+    action: "Mail Form 8606 to IRS Kansas City, MO 64999-0002. Include: Line 1 $7,000, Line 14 $7,000. Certified mail.",
+    actionColor: 'var(--red-bg)',
+    impact: '⚡ $2,016 tax savings — immediate action required'
+  });
+
+  recs.push({
+    priority: 'HIGH', color: 'var(--amber)', tagClass: 'tag-a',
+    title: "Execute Savannah's 2026 Roth conversion ($25,000)",
+    body: "Savannah has $25K in Traditional IRA (acct 245-599645) that should convert to Roth this year. After filing the late 2024 Form 8606, only ~$3,500 will be taxable (~$1,008 total tax). Every year you delay is a year of tax-free growth lost.",
+    action: "Fidelity: Liquidate to SPAXX → trustee-to-trustee conversion. Do NOT withdraw cash first.",
+    actionColor: 'var(--amber-bg)',
+    impact: `⚡ ~$1,008 total tax · Roth grows tax-free for ${S.fireAge - S.age}+ years`
+  });
+
+  // Portfolio allocation
+  const brokPct = Math.round(96911 / S.portfolio * 100);
+  if (brokPct < 15) {
+    recs.push({
+      priority: 'MEDIUM', color: 'var(--blue)', tagClass: 'tag-b',
+      title: "Increase taxable brokerage allocation",
+      body: `Only ${brokPct}% of your portfolio is in taxable accounts ($96,911). This creates a Roth conversion ladder constraint at FIRE — you'll need 5 years of living expenses accessible before 59½. Consider shifting some monthly surplus from 401k after-tax to brokerage.`,
+      action: "Target $200K+ in taxable by FIRE. Current gap: ~$103K. Add $1,000-1,500/mo to Joint brokerage.",
+      actionColor: 'var(--blue-bg)',
+      impact: '⚡ Improves pre-59½ access · Reduces sequence-of-returns risk'
+    });
+  }
+
+  // Coast FIRE status
+  if (S.portfolio >= coast * 0.9) {
+    recs.push({
+      priority: 'OPPORTUNITY', color: 'var(--green)', tagClass: 'tag-g',
+      title: `Coast FIRE: ${S.portfolio >= coast ? 'Achieved' : '90% there'} — contributions optional`,
+      body: `Coast FIRE number at your current growth rate: ${fmtF(Math.round(coast))}. ${S.portfolio >= coast ? 'You have crossed this threshold. Even with zero new contributions, your portfolio should grow to $2.7M by age ' + S.fireAge + ' at ' + (S.growth*100).toFixed(1) + '% annual return.' : `You're ${pct(S.portfolio, coast)}% to the point where contributions become optional.`}`,
+      action: S.portfolio >= coast ? "Optional: redirect some savings to shorter-term goals (extra 529, mortgage payoff, lifestyle)." : "On track — maintain current contributions.",
+      actionColor: 'var(--green-bg)',
+      impact: `⚡ FIRE projected at age ${fire ? fire.age : '55'} (${fire ? fire.year : '2033'})`
+    });
+  }
+
+  // Q3 estimated tax
+  recs.push({
+    priority: 'DATE', color: 'var(--amber)', tagClass: 'tag-a',
+    title: "Q3 2026 estimated tax payment due Sep 15",
+    body: "$1,793 federal estimated tax due September 15, 2026. Sized for repeat of 2025 income. If no stock sales or Roth conversions beyond Savannah's ~$3,500 this year, may be overstated — reassess after executing the Roth conversion.",
+    action: "Pay via IRS Direct Pay at irs.gov/payments before Sep 15.",
+    actionColor: 'var(--amber-bg)',
+    impact: '📅 Sep 15, 2026 · $1,793 · Q4 due Jan 15, 2027'
+  });
+
+  return recs;
 }
 
-// ── Scenario switcher ──
-window.setScenario = function(s) {
-  currentScenario = s;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  if (s !== 'coast') STATE.target = SCENARIOS[s].target;
-  else STATE.target = 2700000;
-  renderScenario();
-  renderMetrics();
-  renderTimeline();
+function renderAdvisor() {
+  const recs  = generateRecommendations();
+  const html  = recs.map(r => `
+    <div class="advice-card">
+      <div class="advice-priority"><span class="tag ${r.tagClass}">${r.priority}</span></div>
+      <div class="advice-title">${r.title}</div>
+      <div class="advice-body">${r.body}</div>
+      <div class="advice-action" style="background:${r.actionColor};color:${r.color};border:1px solid ${r.color}33">${r.action}</div>
+      <div style="font-size:11px;color:${r.color};margin-top:8px;font-weight:500">${r.impact}</div>
+    </div>`).join('');
+  document.getElementById('ai-recs').innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: NEXT BEST ACTIONS
+// ═══════════════════════════════════════════════════════════════════
+function renderNBA() {
+  const actions = [
+    { pri:'r', num:1, title:"File Savannah's late Form 8606 (2024)", desc:"Mail to IRS Kansas City · Line 1: $7,000 · Line 14: $7,000 · Certified mail with cover letter", impact:"Saves $2,016 in unnecessary tax on 2026 return" },
+    { pri:'r', num:2, title:"Amend Savannah's 2025 Form 8606", desc:"TurboTax → Amend → update Line 2 from $0 → $7,000 after Step 1 is confirmed mailed", impact:"Corrects cumulative basis to $14,500" },
+    { pri:'a', num:3, title:"Execute Savannah's $25K Roth conversion", desc:"Fidelity acct 245-599645 · Liquidate to SPAXX first · Trustee-to-trustee conversion · ~$1,008 total tax", impact:"Tax-free growth for ~${S.fireAge - S.age} years" },
+    { pri:'a', num:4, title:"Pay Q3 estimated tax — due Sep 15", desc:"$1,793 via IRS Direct Pay at irs.gov/payments · Q4 due Jan 15, 2027", impact:"Avoids underpayment penalty" },
+    { pri:'g', num:5, title:"Update GoalsTracker on fire.stluker.com", desc:"Navigate to fire.stluker.com → ✏️ Edit → update 529 balances ($135K Dawson, $87K Chip) and mortgage (~$307K)", impact:"Keeps FIRE Intel dashboard current" },
+    { pri:'g', num:6, title:"Review Missouri withholding", desc:"Consider +$52-83/paycheck MO W-4 adjustment or $335/quarter MO estimated payments to avoid 2026 MO balance due", impact:"Avoids $499+ MO balance due at filing" },
+    { pri:'g', num:7, title:"Increase taxable brokerage allocation", desc:"Shift some monthly surplus to joint brokerage (Z33-152454) — target $200K by FIRE for Roth ladder bridge", impact:"Improves pre-59½ access to funds" },
+  ];
+
+  document.getElementById('nba-list').innerHTML = actions.map(a => `
+    <div class="nba">
+      <div class="nba-num ${a.pri}">${a.num}</div>
+      <div class="nba-content">
+        <div class="nba-title">${a.title}</div>
+        <div class="nba-desc">${a.desc}</div>
+        <div class="nba-impact" style="color:${a.pri==='r'?'var(--red)':a.pri==='a'?'var(--amber)':'var(--green)'}">→ ${a.impact}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: SCENARIOS
+// ═══════════════════════════════════════════════════════════════════
+const SCEN_DEFS = {
+  standard:     { label:'Standard FIRE', target:2700000 },
+  lean:         { label:'Lean FIRE', target:2160000 },
+  fat:          { label:'Fat FIRE', target:4050000 },
+  coast:        { label:'Coast FIRE', target:null },
+  income_shock: { label:'Income Shock (−$60K at yr 3)', target:2700000 },
+  market_crash: { label:'Market Crash (−30% at yr 2)', target:2700000 },
+  early_55:     { label:'Age 55 Hard Stop', target:2700000 },
 };
 
-// ── Slider wiring ──
-function wire(id, key, labelId, fmt_fn) {
-  const el = document.getElementById(id);
-  const lbl = document.getElementById(labelId);
-  el.addEventListener('input', () => {
-    STATE[key] = parseFloat(el.value);
-    lbl.textContent = fmt_fn(STATE[key]);
-    render();
+let currentScen = 'standard';
+let scenChart   = null;
+
+function setScen(key, el) {
+  currentScen = key;
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  renderScenario();
+}
+
+function renderScenario() {
+  const def  = SCEN_DEFS[currentScen];
+  const div  = document.getElementById('scen-detail');
+
+  if (currentScen === 'coast') {
+    const cn = coastNumber();
+    const pctDone = pct(S.portfolio, cn);
+    div.innerHTML = `
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Coast FIRE analysis</div>
+          <div style="font-family:var(--mono);font-size:28px;color:${S.portfolio>=cn?'var(--green)':'var(--amber)'};">${S.portfolio >= cn ? '✓ Achieved' : pctDone + '%'}</div>
+          <div style="font-size:13px;color:var(--text2);margin:8px 0;">Coast number today: ${fmtF(Math.round(cn))}</div>
+          <div style="font-size:12px;color:var(--text2);">${S.portfolio >= cn ? 'Your portfolio will reach $'+Math.round(S.target/1e6*10)/10+'M by age '+S.fireAge+' at '+((S.growth)*100).toFixed(1)+'% annual return even with zero more contributions.' : 'Gap to coast: '+fmtF(Math.round(cn-S.portfolio))+' — contributions remain important.'}</div>
+        </div>
+        <div class="card">
+          <div class="card-title">What coast FIRE means</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7">If you stop all contributions today and let the portfolio grow at ${(S.growth*100).toFixed(1)}%, it ${S.portfolio>=cn?'will':'won\'t yet'} compound to your $${Math.round(S.target/1e6*10)/10}M Standard FIRE target by age ${S.fireAge}.<br><br>The coast number is the present-value equivalent of your FIRE target discounted at your growth rate.</div>
+        </div>
+      </div>`;
+    renderScenChart([project(S.fireAge - S.age, { savings: 0 })], ['Coast (no contributions)']);
+    return;
+  }
+
+  if (currentScen === 'income_shock') {
+    // Simulate salary drop at year 3
+    const baseData = project(20);
+    const shockData = [];
+    let p = S.portfolio;
+    const r = S.growth / 12;
+    shockData.push({ age: S.age, year: 1977 + S.age, portfolio: p });
+    for (let y = 1; y <= 20; y++) {
+      const monthlySav = y <= 3 ? S.savings : Math.max(0, S.savings - 5000); // −$60K/yr = −$5K/mo
+      for (let m = 0; m < 12; m++) p = (p + monthlySav) * (1 + r);
+      shockData.push({ age: S.age + y, year: 1977 + S.age + y, portfolio: p });
+    }
+    const fireBase = baseData.find(d => d.portfolio >= S.target);
+    const fireShock = shockData.find(d => d.portfolio >= S.target);
+    div.innerHTML = `<div class="g2">
+      <div class="card"><div class="card-title">Scenario: income drops $60K at year 3</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:12px">Simulates job change, reduction-in-force, or transition from GDIT to a $225K role. Monthly savings drop from $${S.savings.toLocaleString()} to $${(S.savings-5000).toLocaleString()}.</div>
+        <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Year</th><th>Delay</th></tr>
+          <tr><td>Base case</td><td style="font-family:var(--mono)">${fireBase?.age || '65+'}</td><td>${fireBase?.year || '—'}</td><td><span class="tag tag-g">—</span></td></tr>
+          <tr><td>Income shock</td><td style="font-family:var(--mono);color:var(--amber)">${fireShock?.age || '65+'}</td><td>${fireShock?.year || '—'}</td><td><span class="tag tag-a">+${fireShock && fireBase ? fireShock.age - fireBase.age : '?'} yrs</span></td></tr>
+        </table>
+      </div>
+      <div class="card"><div class="card-title">Mitigation strategies</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7">1. Maxing 401k regardless of salary change preserves $23.5K/yr compounding<br>2. Lean FIRE target ($2.16M) becomes achievable ${2 + (fireBase?.age || 55) - S.age > 0 ? 'earlier' : 'on same timeline'}<br>3. Coast FIRE status (${S.portfolio >= coastNumber() ? 'already achieved' : 'near'}) limits downside to timeline, not total</div>
+      </div></div>`;
+    renderScenChart([baseData, shockData], ['Base case', 'Income shock (−$60K yr 3)']);
+    return;
+  }
+
+  if (currentScen === 'market_crash') {
+    const crashData = [];
+    let p = S.portfolio;
+    const r = S.growth / 12;
+    crashData.push({ age: S.age, year: 1977 + S.age, portfolio: p });
+    for (let y = 1; y <= 20; y++) {
+      for (let m = 0; m < 12; m++) p = (p + S.savings) * (1 + r);
+      if (y === 2) p *= 0.70; // 30% crash
+      crashData.push({ age: S.age + y, year: 1977 + S.age + y, portfolio: p });
+    }
+    const baseData = project(20);
+    const fireBase = baseData.find(d => d.portfolio >= S.target);
+    const fireCrash = crashData.find(d => d.portfolio >= S.target);
+    div.innerHTML = `<div class="g2">
+      <div class="card"><div class="card-title">Scenario: 30% market crash at year 2</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:12px">Simulates a 2008-style drawdown (S&P fell 50%) or 2022-style correction (−20%). Models a 30% portfolio drop in year 2, with continued contributions through recovery.</div>
+        <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Year</th><th>Delay</th></tr>
+          <tr><td>Base case</td><td style="font-family:var(--mono)">${fireBase?.age || '65+'}</td><td>${fireBase?.year || '—'}</td><td><span class="tag tag-g">—</span></td></tr>
+          <tr><td>30% crash yr 2</td><td style="font-family:var(--mono);color:var(--red)">${fireCrash?.age || '65+'}</td><td>${fireCrash?.year || '—'}</td><td><span class="tag tag-r">+${fireCrash && fireBase ? fireCrash.age - fireBase.age : '?'} yrs</span></td></tr>
+        </table>
+      </div>
+      <div class="card"><div class="card-title">Historical context</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7">Continued $${S.savings.toLocaleString()}/mo contributions during a crash is a powerful accelerant. Dollar-cost averaging at depressed prices means more shares acquired. The market has recovered from every historical drawdown. Sequence of returns risk is most dangerous at the point of retirement, not during accumulation.</div>
+      </div></div>`;
+    renderScenChart([baseData, crashData], ['Base case', '30% crash at year 2']);
+    return;
+  }
+
+  if (currentScen === 'early_55') {
+    const hardStopData = [];
+    let p = S.portfolio;
+    const r = S.growth / 12;
+    hardStopData.push({ age: S.age, year: 1977 + S.age, portfolio: p });
+    for (let y = 1; y <= 20; y++) {
+      const yAge = S.age + y;
+      const monthlySav = yAge <= 55 ? S.savings : 0;
+      for (let m = 0; m < 12; m++) p = (p + monthlySav) * (1 + r * (yAge > 55 ? 0.71 : 1)); // post-FIRE 5% rate
+      hardStopData.push({ age: yAge, year: 1977 + yAge, portfolio: p });
+    }
+    const atAge55 = hardStopData.find(d => d.age === 55);
+    div.innerHTML = `<div class="g2">
+      <div class="card"><div class="card-title">Age 55 hard stop — retire no matter what</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Portfolio at age 55: <span style="font-family:var(--mono);color:${atAge55?.portfolio >= S.target ? 'var(--green)' : 'var(--amber)'}">${fmt(atAge55?.portfolio || 0)}</span> vs $2.7M target<br>
+        ${atAge55?.portfolio >= S.target ? '✓ Standard FIRE achieved at 55' : `Gap of ${fmt(S.target - (atAge55?.portfolio||0))} — consider Lean FIRE ($2.16M target, ${atAge55?.portfolio >= 2160000 ? '✓ achievable' : '✗ not yet'})`}</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7">Annual income at 55 withdrawal: <span style="font-family:var(--mono);color:var(--green)">${fmtF(Math.round((atAge55?.portfolio||0)*0.04))}</span>/yr (4% rule)<br>Monthly: <span style="font-family:var(--mono);color:var(--green)">${fmtF(Math.round((atAge55?.portfolio||0)*0.04/12))}</span></div>
+      </div>
+      <div class="card"><div class="card-title">Bridge strategy (age 55-59½)</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.7">Rule 72(t) / SEPP allows penalty-free 401k withdrawals before 59½. Taxable brokerage provides another bridge. Start Roth conversion ladder NOW — conversions take 5 years to access penalty-free. Current taxable: $97K — target $200K+ by 55.</div>
+      </div></div>`;
+    renderScenChart([project(20), hardStopData], ['Base case', 'Age 55 hard stop']);
+    return;
+  }
+
+  // Standard / lean / fat
+  const fire = findFireYear(def.target);
+  const baseData = project(20);
+  div.innerHTML = `<div class="g2">
+    <div class="card"><div class="card-title">${def.label}</div>
+      <table class="dt"><tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Target</td><td style="font-family:var(--mono)">${fmtF(def.target)}</td></tr>
+        <tr><td>Gap today</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(Math.max(0,def.target-S.portfolio))}</td></tr>
+        <tr><td>Projected FIRE age</td><td style="font-family:var(--mono);color:${fire?'var(--green)':'var(--red)'}">${fire?.age || '65+'}</td></tr>
+        <tr><td>FIRE year</td><td style="font-family:var(--mono)">${fire?.year || '—'}</td></tr>
+        <tr><td>Annual income (4%)</td><td style="font-family:var(--mono);color:var(--green)">${fmtF(def.target*0.04)}</td></tr>
+        <tr><td>Monthly income</td><td style="font-family:var(--mono);color:var(--green)">${fmtF(def.target*0.04/12)}</td></tr>
+      </table>
+    </div>
+    <div class="card"><div class="card-title">Progress</div>
+      <div style="font-family:var(--mono);font-size:36px;color:var(--green);margin-bottom:8px">${pct(S.portfolio,def.target)}%</div>
+      <div class="prog-bar" style="height:6px;margin-bottom:12px"><div class="prog-fill" style="width:${pct(S.portfolio,def.target)}%;background:var(--green)"></div></div>
+      <div style="font-size:12px;color:var(--text2)">${fmtF(S.portfolio)} of ${fmtF(def.target)}<br>${fire ? 'On track to FIRE in '+(fire.age-S.age)+' years' : 'Increase savings or extend timeline'}</div>
+    </div></div>`;
+  renderScenChart([baseData], [def.label]);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: CHARTS
+// ═══════════════════════════════════════════════════════════════════
+let trajectoryChart = null;
+let mcChart = null;
+
+function renderTrajectoryChart() {
+  const data   = project(20);
+  const labels = data.map(d => d.age);
+  const values = data.map(d => Math.round(d.portfolio / 1000));
+  const targets = data.map(() => Math.round(S.target / 1000));
+
+  const ctx = document.getElementById('chart-trajectory').getContext('2d');
+  if (trajectoryChart) trajectoryChart.destroy();
+  trajectoryChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Portfolio', data: values, borderColor: '#10d48e', backgroundColor: 'rgba(16,212,142,.08)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4 },
+        { label: 'FIRE Target', data: targets, borderColor: 'rgba(245,158,11,.5)', borderWidth: 1, borderDash: [6,3], pointRadius: 0, fill: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#475569', font: { size: 10 } }, grid: { color: '#1e2d45' } },
+        y: { ticks: { color: '#475569', font: { size: 10 }, callback: v => '$'+v+'K' }, grid: { color: '#1e2d45' } }
+      }
+    }
   });
 }
 
-wire('sl-portfolio', 'portfolio', 'lbl-portfolio', v => '$' + Math.round(v/1000) + 'K');
-wire('sl-savings',   'savings',   'lbl-savings',   v => '$' + Math.round(v).toLocaleString());
-wire('sl-growth',    'growth',    'lbl-growth',    v => v.toFixed(1) + '%');
-wire('sl-target',    'target',    'lbl-target',    v => '$' + Math.round(v/1000) + 'K');
-wire('sl-post',      'postGrowth','lbl-post',      v => v.toFixed(1) + '%');
-wire('sl-inflation', 'inflation', 'lbl-inflation', v => v.toFixed(2) + '%');
+function renderMCChart(labels, counts) {
+  const ctx = document.getElementById('chart-mc').getContext('2d');
+  if (mcChart) mcChart.destroy();
+  mcChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ label: 'Scenarios', data: counts, backgroundColor: 'rgba(99,102,241,.5)', borderColor: '#6366f1', borderWidth: 1 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#475569', font: { size: 9 }, maxRotation: 45 }, grid: { color: '#1e2d45' } },
+        y: { ticks: { color: '#475569', font: { size: 10 } }, grid: { color: '#1e2d45' } }
+      }
+    }
+  });
+}
 
-// Convert % sliders to decimals
-document.getElementById('sl-growth').addEventListener('input', function() {
-  STATE.growth = parseFloat(this.value) / 100;
-});
-document.getElementById('sl-post').addEventListener('input', function() {
-  STATE.postGrowth = parseFloat(this.value) / 100;
-});
-document.getElementById('sl-inflation').addEventListener('input', function() {
-  STATE.inflation = parseFloat(this.value) / 100;
+function renderScenChart(datasets, labels) {
+  const ctx = document.getElementById('chart-scen').getContext('2d');
+  if (scenChart) scenChart.destroy();
+  const colors = ['#10d48e', '#f59e0b', '#f43f5e', '#6366f1'];
+  const ages   = datasets[0].map(d => d.age);
+  scenChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ages,
+      datasets: datasets.map((d, i) => ({
+        label: labels[i],
+        data: d.map(p => Math.round(p.portfolio / 1000)),
+        borderColor: colors[i],
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.4
+      }))
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#475569', font: { size: 10 } }, grid: { color: '#1e2d45' } },
+        y: { ticks: { color: '#475569', font: { size: 10 }, callback: v => '$'+v+'K' }, grid: { color: '#1e2d45' } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: DASHBOARD RENDER
+// ═══════════════════════════════════════════════════════════════════
+function renderDashboard() {
+  const fire = findFireYear(S.target);
+  const gap  = Math.max(0, S.target - S.portfolio);
+
+  // KPI grid
+  document.getElementById('kpi-grid').innerHTML = [
+    { label:'Portfolio', val: fmtF(S.portfolio), cls:'g', sub:`${pct(S.portfolio,S.target)}% to FIRE`, bar: pct(S.portfolio,S.target), barColor:'var(--green)' },
+    { label:'FIRE Gap',  val: fmt(gap),           cls:'a', sub:`~${fire?fire.age-S.age:'?'} years at current rate` },
+    { label:'FIRE Age',  val: fire ? fire.age : '65+', cls: fire?.age <= S.fireAge ? 'g' : 'a', sub: fire ? 'Year '+fire.year : 'Adjust target' },
+    { label:'Monthly ↑', val: '$'+Math.round(S.savings).toLocaleString(), cls:'g', sub:'37.3% gross savings rate' },
+  ].map(k => `
+    <div class="kpi">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value ${k.cls}">${k.val}</div>
+      <div class="kpi-sub">${k.sub}</div>
+      ${k.bar ? `<div class="kpi-bar"><div class="kpi-fill" style="width:${k.bar}%;background:${k.barColor}"></div></div>` : ''}
+    </div>`).join('');
+
+  // Progress bars
+  const progItems = [
+    { label:'Standard FIRE ($2.7M)', val:S.portfolio, target:2700000, color:'var(--green)' },
+    { label:'Lean FIRE ($2.16M)',     val:S.portfolio, target:2160000, color:'var(--teal)' },
+    { label:'529 — Dawson ($200K)',   val:135000,      target:200000,  color:'var(--amber)' },
+    { label:'529 — Chip ($200K)',     val:87000,       target:200000,  color:'var(--amber)' },
+  ];
+  document.getElementById('dash-progress').innerHTML = progItems.map(p => `
+    <div class="prog">
+      <div class="prog-hd"><span>${p.label}</span><span>${pct(p.val,p.target)}%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct(p.val,p.target)}%;background:${p.color}"></div></div>
+    </div>`).join('');
+
+  // Income table
+  const incomeRows = [53,55,58,63].map(age => {
+    const data = project(age - S.age);
+    const p = data[data.length - 1].portfolio;
+    const ann = p * 0.04;
+    return `<tr><td>${age}</td><td style="font-family:var(--mono)">${fmt(p)}</td><td style="font-family:var(--mono);color:var(--green)">${fmtF(ann)}</td><td style="font-family:var(--mono);color:var(--text2)">${fmtF(ann/12)}</td></tr>`;
+  });
+  document.getElementById('dash-income').innerHTML = `
+    <table class="dt">
+      <thead><tr><th>Age</th><th>Portfolio</th><th>Annual</th><th>Monthly</th></tr></thead>
+      <tbody>${incomeRows.join('')}</tbody>
+    </table>`;
+
+  // Timeline
+  const data = project(20);
+  document.getElementById('timeline-body').innerHTML = data
+    .filter(d => d.age >= S.age && d.age <= 68)
+    .map(d => {
+      const inf = d.portfolio / Math.pow(1 + S.inflation, d.age - S.age);
+      const p = pct(d.portfolio, S.target);
+      const isFire = d.portfolio >= S.target;
+      const isLean = d.portfolio >= 2160000 && !isFire;
+      let tag = isFire ? '<span class="tag tag-g">FIRE ✓</span>' :
+                isLean ? '<span class="tag tag-b">Lean</span>' :
+                p >= 80 ? '<span class="tag tag-a">80%+</span>' : '';
+      return `<tr class="${isFire?'fire':d.age===S.fireAge?'hl':''}">
+        <td>${d.age}</td>
+        <td>${d.year}</td>
+        <td style="font-family:var(--mono)">${fmt(d.portfolio)}</td>
+        <td style="font-family:var(--mono);color:var(--text2)">${fmt(inf)}</td>
+        <td style="font-family:var(--mono);color:var(--text2)">${p}%</td>
+        <td style="font-family:var(--mono);color:var(--green)">${fmtF(d.portfolio * 0.04)}</td>
+        <td>${tag}</td>
+      </tr>`;
+    }).join('');
+
+  renderTrajectoryChart();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: NAV & PAGE ROUTING
+// ═══════════════════════════════════════════════════════════════════
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+
+  if (id === 'dashboard')   renderDashboard();
+  if (id === 'montecarlo')  {} // user clicks run
+  if (id === 'scenarios')   renderScenario();
+  if (id === 'advisor')     renderAdvisor();
+  if (id === 'actions')     renderNBA();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MODULE: FULL RENDER
+// ═══════════════════════════════════════════════════════════════════
+function renderAll() {
+  const active = document.querySelector('.page.active');
+  if (!active) return;
+  const id = active.id.replace('page-', '');
+  if (id === 'dashboard')  renderDashboard();
+  if (id === 'scenarios')  renderScenario();
+  if (id === 'advisor')    renderAdvisor();
+  if (id === 'actions')    renderNBA();
+}
+
+// ── Wire Monte Carlo sliders ──
+[
+  ['mc-mean', 'mc-mean-lbl', v => v.toFixed(1)+'%'],
+  ['mc-std',  'mc-std-lbl',  v => v+'%'],
+  ['mc-wr',   'mc-wr-lbl',   v => v.toFixed(1)+'%'],
+  ['mc-age',  'mc-age-lbl',  v => v],
+  ['mc-lon',  'mc-lon-lbl',  v => v],
+  ['mc-sims', 'mc-sims-lbl', v => v.toLocaleString()],
+].forEach(([id, lbl, fn]) => {
+  document.getElementById(id).addEventListener('input', function() {
+    document.getElementById(lbl).textContent = fn(+this.value);
+  });
 });
 
-render();
+// ── BOOT ──
+loadState();
+renderDashboard();
 </script>
 </body>
 </html>

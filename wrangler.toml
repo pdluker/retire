@@ -1,0 +1,8 @@
+name               = "retire"
+main               = "retire-worker.js"
+compatibility_date = "2025-05-12"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true

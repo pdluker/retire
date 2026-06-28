@@ -18,21 +18,21 @@
   --red:#f43f5e;--red-bg:rgba(244,63,94,.08);
   --blue:#6366f1;--blue-bg:rgba(99,102,241,.08);
   --teal:#06b6d4;--teal-bg:rgba(6,182,212,.08);
+  --purple:#a855f7;--purple-bg:rgba(168,85,247,.08);
   --text:#e2e8f0;--text2:#94a3b8;--text3:#475569;
-  --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
-  --r:6px;
+  --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;--r:6px;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh}
 nav{position:sticky;top:0;z-index:100;background:rgba(8,13,24,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;height:52px}
-.nav-logo{font-family:var(--mono);font-size:13px;color:var(--green);margin-right:28px;white-space:nowrap}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--green);margin-right:24px;white-space:nowrap}
 .nav-logo em{color:var(--text3);font-style:normal}
 .nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
 .nav-tabs::-webkit-scrollbar{display:none}
-.nav-tab{padding:6px 14px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;border-radius:4px;white-space:nowrap;border:none;background:transparent;font-family:var(--sans);transition:all .15s}
+.nav-tab{padding:6px 12px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;border-radius:4px;white-space:nowrap;border:none;background:transparent;font-family:var(--sans);transition:all .15s}
 .nav-tab:hover{color:var(--text);background:var(--card)}
 .nav-tab.active{color:var(--green);background:var(--green-bg)}
-.nav-right{display:flex;gap:8px;align-items:center;margin-left:12px}
+.nav-right{display:flex;gap:8px;align-items:center;margin-left:10px}
 #save-btn{padding:5px 12px;font-size:11px;font-weight:500;border:1px solid var(--green2);border-radius:4px;background:var(--green-bg);color:var(--green);cursor:pointer;font-family:var(--sans)}
 .save-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);display:none;margin-right:4px}
 .page{display:none;padding:24px;max-width:1200px;margin:0 auto}
@@ -40,61 +40,68 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,13,24,.94);backdrop-filt
 .sh{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
 .sh h2{font-size:15px;font-weight:600}
 .sh-sub{font-size:12px;color:var(--text2)}
-.divider{height:1px;background:var(--border);margin:20px 0}
+.divider{height:1px;background:var(--border);margin:18px 0}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
-@media(max-width:900px){.g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:920px){.g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px}
 .card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);margin-bottom:14px}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px}
 .kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:6px}
-.kpi-value{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1}
-.kpi-value.g{color:var(--green)}.kpi-value.a{color:var(--amber)}.kpi-value.r{color:var(--red)}.kpi-value.b{color:var(--blue)}
+.kpi-value{font-family:var(--mono);font-size:22px;font-weight:600;line-height:1}
+.kpi-value.g{color:var(--green)}.kpi-value.a{color:var(--amber)}.kpi-value.r{color:var(--red)}.kpi-value.b{color:var(--blue)}.kpi-value.p{color:var(--purple)}
 .kpi-sub{font-size:11px;color:var(--text2);margin-top:5px}
 .kpi-bar{height:2px;background:var(--border);border-radius:1px;margin-top:10px;overflow:hidden}
 .kpi-fill{height:100%;border-radius:1px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.sl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.sl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sl-row label{font-size:12px;color:var(--text2);min-width:140px}
 .sl-right{display:flex;align-items:center;gap:10px}
-input[type=range]{-webkit-appearance:none;width:120px;height:2px;background:var(--border2);border-radius:1px;outline:none;cursor:pointer}
+input[type=range]{-webkit-appearance:none;width:110px;height:2px;background:var(--border2);border-radius:1px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 0 2px rgba(16,212,142,.2)}
-.vbadge{font-family:var(--mono);font-size:11px;color:var(--green);background:var(--green-bg);border:1px solid rgba(16,212,142,.2);padding:2px 8px;border-radius:3px;min-width:68px;text-align:right}
+.vbadge{font-family:var(--mono);font-size:11px;color:var(--green);background:var(--green-bg);border:1px solid rgba(16,212,142,.2);padding:2px 8px;border-radius:3px;min-width:66px;text-align:right}
 table.dt{width:100%;border-collapse:collapse;font-size:12px}
-table.dt th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
-table.dt td{padding:8px 10px;border-bottom:1px solid var(--border)}
+table.dt th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+table.dt td{padding:7px 10px;border-bottom:1px solid var(--border)}
 table.dt tr:last-child td{border-bottom:none}
 table.dt tr.hl td{background:var(--green-bg)}
 table.dt tr.fire td{color:var(--green);font-weight:500}
+table.dt tr.warn td{background:var(--amber-bg)}
 table.dt td.mono{font-family:var(--mono)}
 table.dt td.right{text-align:right}
-.tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:3px}
+table.dt td.g{color:var(--green)}
+table.dt td.a{color:var(--amber)}
+table.dt td.r{color:var(--red)}
+table.dt td.p{color:var(--purple)}
+.tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:3px}
 .tag-g{background:var(--green-bg);color:var(--green)}
 .tag-a{background:var(--amber-bg);color:var(--amber)}
 .tag-r{background:var(--red-bg);color:var(--red)}
 .tag-b{background:var(--blue-bg);color:var(--blue)}
 .tag-t{background:var(--teal-bg);color:var(--teal)}
-.prog{margin-bottom:13px}
+.tag-p{background:var(--purple-bg);color:var(--purple)}
+.tag-p{background:var(--purple-bg);color:var(--purple)}
+.prog{margin-bottom:12px}
 .prog-hd{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px}
 .prog-hd span:first-child{color:var(--text2)}
-.prog-hd span:last-child{font-family:var(--mono);color:var(--text)}
+.prog-hd span:last-child{font-family:var(--mono)}
 .prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .prog-fill{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.mc-band{padding:14px;border-radius:var(--r);border:1px solid;margin-bottom:10px}
+.mc-band{padding:12px;border-radius:var(--r);border:1px solid;margin-bottom:10px}
 .mc-band.success{background:var(--green-bg);border-color:rgba(16,212,142,.2)}
 .mc-band.caution{background:var(--amber-bg);border-color:rgba(245,158,11,.2)}
 .mc-band.risk{background:var(--red-bg);border-color:rgba(244,63,94,.2)}
-.mc-pct{font-family:var(--mono);font-size:28px;font-weight:600}
+.mc-pct{font-family:var(--mono);font-size:26px;font-weight:600}
 .mc-pct.success{color:var(--green)}.mc-pct.caution{color:var(--amber)}.mc-pct.risk{color:var(--red)}
 .stabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-.stab{padding:5px 13px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text2);background:transparent;font-family:var(--sans);transition:all .15s}
+.stab{padding:5px 12px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text2);background:transparent;font-family:var(--sans);transition:all .15s}
 .stab.on{background:var(--blue-bg);border-color:rgba(99,102,241,.3);color:var(--blue)}
-.advice-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.advice-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
 .advice-title{font-size:13px;font-weight:600;margin-bottom:5px}
 .advice-body{font-size:12px;color:var(--text2);line-height:1.6}
-.advice-action{margin-top:10px;font-size:11px;font-weight:500;padding:6px 12px;border-radius:4px;display:inline-block}
-.chat-wrap{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;margin-bottom:14px}
+.advice-action{margin-top:9px;font-size:11px;font-weight:500;padding:5px 11px;border-radius:4px;display:inline-block}
+.chat-wrap{display:flex;flex-direction:column;gap:10px;max-height:360px;overflow-y:auto;margin-bottom:12px}
 .chat-wrap::-webkit-scrollbar{width:3px}
 .chat-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 .msg{padding:10px 14px;border-radius:var(--r);max-width:88%;font-size:13px;line-height:1.6}
@@ -105,25 +112,25 @@ table.dt td.right{text-align:right}
 .chat-input-row input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none}
 .chat-input-row input:focus{border-color:var(--blue)}
 .chat-input-row button{padding:9px 16px;background:var(--blue-bg);border:1px solid rgba(99,102,241,.3);border-radius:var(--r);color:var(--blue);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans)}
-.typing{display:none;font-size:12px;color:var(--text3);padding:8px 0}
-.nba{display:flex;gap:10px;padding:13px;border-radius:var(--r);border:1px solid var(--border);background:var(--card);margin-bottom:10px;align-items:flex-start}
+.typing{display:none;font-size:12px;color:var(--text3);padding:6px 0}
+.nba{display:flex;gap:10px;padding:12px;border-radius:var(--r);border:1px solid var(--border);background:var(--card);margin-bottom:9px;align-items:flex-start}
 .nba-num{font-family:var(--mono);font-size:11px;font-weight:600;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0}
-.nba-num.r{background:var(--red-bg);color:var(--red)}.nba-num.a{background:var(--amber-bg);color:var(--amber)}.nba-num.g{background:var(--green-bg);color:var(--green)}
+.nba-num.r{background:var(--red-bg);color:var(--red)}.nba-num.a{background:var(--amber-bg);color:var(--amber)}.nba-num.g{background:var(--green-bg);color:var(--green)}.nba-num.p{background:var(--purple-bg);color:var(--purple)}
 .nba-title{font-size:13px;font-weight:500;margin-bottom:3px}
 .nba-desc{font-size:11px;color:var(--text2);line-height:1.5}
-.nba-impact{font-size:10px;font-weight:600;margin-top:5px}
-.edit-group{margin-bottom:14px}
-.edit-group label{font-size:11px;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
-.edit-group input,.edit-group select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:8px 10px;font-size:13px;color:var(--text);font-family:var(--mono);outline:none}
-.edit-group input:focus,.edit-group select:focus{border-color:var(--green)}
-.edit-group select option{background:var(--card2)}
+.nba-impact{font-size:10px;font-weight:600;margin-top:4px}
+.edit-group{margin-bottom:12px}
+.edit-group label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+.edit-group input,.edit-group select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:7px 10px;font-size:13px;color:var(--text);font-family:var(--mono);outline:none}
+.edit-group input:focus{border-color:var(--green)}
 .chart-wrap{position:relative;height:220px;width:100%}
-.chart-wrap.tall{height:280px}
-.strategy-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative}
+.chart-wrap.tall{height:270px}
+.chart-wrap.xl{height:320px}
+.strategy-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:13px;position:relative}
 .strategy-col.winner{border-color:rgba(16,212,142,.4);background:rgba(16,212,142,.03)}
 .strategy-col .winner-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--green2);color:#fff;font-size:10px;font-weight:600;padding:2px 10px;border-radius:10px;white-space:nowrap}
-.strat-name{font-size:12px;font-weight:600;margin-bottom:12px;text-align:center}
-.strat-metric{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;border-bottom:1px solid var(--border)}
+.strat-name{font-size:12px;font-weight:600;margin-bottom:10px;text-align:center}
+.strat-metric{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border)}
 .strat-metric:last-child{border-bottom:none}
 .strat-metric span:last-child{font-family:var(--mono)}
 .acct-edit-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
@@ -131,8 +138,15 @@ table.dt td.right{text-align:right}
 .acct-edit-row .acct-name{flex:1;font-size:12px;color:var(--text2)}
 .acct-edit-row input{width:110px;background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:5px 8px;font-size:12px;color:var(--green);font-family:var(--mono);outline:none;text-align:right}
 .acct-edit-row input:focus{border-color:var(--green)}
-.acct-edit-row .acct-type{font-size:10px;color:var(--text3);min-width:60px}
-footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:20px}
+.acct-edit-row .acct-type{font-size:10px;color:var(--text3);min-width:58px}
+.snap-btn{padding:6px 14px;font-size:11px;font-weight:500;border:1px solid var(--border2);border-radius:4px;color:var(--text2);cursor:pointer;background:transparent;font-family:var(--sans)}
+.snap-btn:hover{border-color:var(--green);color:var(--green)}
+footer{text-align:center;padding:24px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:20px}
+.insight-bar{background:var(--card2);border-left:3px solid var(--green);padding:10px 14px;border-radius:0 4px 4px 0;font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.6}
+.insight-bar.warn{border-left-color:var(--amber)}
+.insight-bar.crit{border-left-color:var(--red)}
+.insight-bar.info{border-left-color:var(--blue)}
+.insight-bar.purple{border-left-color:var(--purple)}
 </style>
 </head>
 <body>
@@ -143,6 +157,7 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
     <button class="nav-tab active" onclick="showPage('dashboard',this)">Dashboard</button>
     <button class="nav-tab" onclick="showPage('montecarlo',this)">Monte Carlo</button>
     <button class="nav-tab" onclick="showPage('strategy',this)">Strategy</button>
+    <button class="nav-tab" onclick="showPage('tax',this)">Tax Engine</button>
     <button class="nav-tab" onclick="showPage('advisor',this)">AI Advisor</button>
     <button class="nav-tab" onclick="showPage('actions',this)">Next Actions</button>
     <button class="nav-tab" onclick="showPage('accounts',this)">Accounts</button>
@@ -159,21 +174,46 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
   <div class="g4" style="margin-bottom:16px" id="kpi-grid"></div>
   <div class="g2" style="margin-bottom:16px">
     <div class="card">
-      <div class="card-title">Portfolio trajectory — deterministic</div>
+      <div class="card-title">Portfolio trajectory</div>
       <div class="chart-wrap tall"><canvas id="chart-traj"></canvas></div>
     </div>
     <div class="card">
       <div class="card-title">FIRE progress</div>
       <div id="dash-progress"></div>
       <div class="divider"></div>
-      <div class="card-title">Income at retirement ages</div>
+      <div class="card-title">Net income at retirement ages</div>
       <div id="dash-income"></div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Net worth history</div>
+      <div class="chart-wrap"><canvas id="chart-nw"></canvas></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+        <span style="font-size:11px;color:var(--text2)">Snapshot captures current portfolio + NW</span>
+        <button class="snap-btn" onclick="takeSnapshot()">+ Snapshot</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Contribution room tracker</div>
+      <div id="contrib-tracker"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">What-if sensitivity — FIRE age impact</div>
+    <div class="g2">
+      <div>
+        <div class="sl-row"><label>Monthly savings</label><div class="sl-right"><input type="range" id="wi-savings" min="5000" max="20000" step="250" value="11593"><span class="vbadge" id="wi-savings-lbl">$11,593</span></div></div>
+        <div class="sl-row"><label>Annual return</label><div class="sl-right"><input type="range" id="wi-return" min="3" max="12" step="0.5" value="7"><span class="vbadge" id="wi-return-lbl">7.0%</span></div></div>
+        <div class="sl-row"><label>FIRE target</label><div class="sl-right"><input type="range" id="wi-target" min="1500000" max="5000000" step="50000" value="2700000"><span class="vbadge" id="wi-target-lbl">$2,700K</span></div></div>
+      </div>
+      <div id="wi-result" style="display:flex;flex-direction:column;justify-content:center;padding:8px 0"></div>
     </div>
   </div>
   <div class="card">
     <div class="card-title">Age-by-age projection</div>
-    <div style="overflow-x:auto"><table class="dt" id="timeline-table">
-      <thead><tr><th>Age</th><th>Year</th><th>Nominal</th><th>Real (today's $)</th><th>vs Target</th><th>4% Income</th><th>Monthly</th><th>Status</th></tr></thead>
+    <div style="overflow-x:auto"><table class="dt">
+      <thead><tr><th>Age</th><th>Year</th><th>Nominal</th><th>Real $</th><th>vs Target</th><th>Gross 4%</th><th>Net/mo</th><th>RMD?</th><th>Status</th></tr></thead>
       <tbody id="timeline-body"></tbody>
     </table></div>
   </div>
@@ -181,27 +221,28 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
 
 <!-- ══ MONTE CARLO ══ -->
 <div class="page" id="page-montecarlo">
-  <div class="sh"><h2>Monte Carlo Simulation</h2><span class="sh-sub" id="mc-subtitle">Run simulation to see probability analysis</span></div>
+  <div class="sh"><h2>Monte Carlo Simulation</h2><span class="sh-sub" id="mc-subtitle">Configure parameters and run</span></div>
   <div class="g2" style="margin-bottom:16px">
     <div>
-      <div class="mc-band success" id="mc-success">
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Success rate — portfolio survives to longevity age</div>
+      <div class="mc-band success">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Portfolio survives to longevity age</div>
         <div class="mc-pct success" id="mc-pct">—</div>
-        <div style="font-size:11px;margin-top:4px" id="mc-verdict">Configure parameters and run simulation</div>
+        <div style="font-size:11px;margin-top:4px" id="mc-verdict">Run simulation to see results</div>
       </div>
       <div class="mc-band caution">
-        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Median outcome at longevity age</div>
+        <div style="font-size:11px;color:var(--text2);margin-bottom:4px">Median terminal portfolio</div>
         <div class="mc-pct caution" id="mc-median">—</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:3px">50th percentile terminal portfolio</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px">50th percentile at longevity age</div>
       </div>
       <div class="mc-band risk">
         <div style="font-size:11px;color:var(--text2);margin-bottom:4px">10th percentile (bad sequence)</div>
         <div class="mc-pct risk" id="mc-p10">—</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:3px">Worst 10% of market paths</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px">Worst 10% of paths</div>
       </div>
+      <div id="mc-wr-insight" style="margin-top:10px"></div>
     </div>
     <div class="card">
-      <div class="card-title">Probability fan chart — percentile bands</div>
+      <div class="card-title">Probability fan — percentile bands</div>
       <div class="chart-wrap tall"><canvas id="chart-mc-fan"></canvas></div>
     </div>
   </div>
@@ -219,7 +260,7 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
         <div class="sl-row"><label>Simulations</label><div class="sl-right"><input type="range" id="mc-sims" min="500" max="5000" step="500" value="2000"><span class="vbadge" id="mc-sims-lbl">2,000</span></div></div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:14px;margin-top:6px">
+    <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
       <button onclick="runMonteCarlo()" style="padding:8px 20px;background:var(--green-bg);border:1px solid rgba(16,212,142,.3);border-radius:4px;color:var(--green);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans)">▶ Run Simulation</button>
       <span id="mc-status" style="font-size:11px;color:var(--text2)"></span>
     </div>
@@ -227,43 +268,96 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
   <div class="card">
     <div class="card-title">Percentile outcome table</div>
     <table class="dt">
-      <thead><tr><th>Percentile</th><th>At retirement</th><th>Age 70</th><th>Age 80</th><th>Terminal</th><th>Survives?</th><th>Safe WR</th></tr></thead>
+      <thead><tr><th>Percentile</th><th>At retirement</th><th>Age 70</th><th>Age 80</th><th>Terminal</th><th>Survives</th><th>Max safe WR</th></tr></thead>
       <tbody id="mc-tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- ══ STRATEGY COMPARISON ══ -->
+<!-- ══ STRATEGY ══ -->
 <div class="page" id="page-strategy">
-  <div class="sh"><h2>Strategy Comparison Engine</h2><span class="sh-sub">Multiple retirement approaches evaluated on 8 metrics</span></div>
-  <div id="strategy-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px"></div>
+  <div class="sh"><h2>Strategy Comparison Engine</h2><span class="sh-sub">Evaluated on 9 metrics including SS, taxes, and estate</span></div>
+  <div id="strategy-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-bottom:18px"></div>
   <div class="card" style="margin-bottom:16px">
-    <div class="card-title">Trajectory comparison</div>
-    <div class="chart-wrap tall"><canvas id="chart-strat"></canvas></div>
+    <div class="card-title">Portfolio trajectory — each strategy's unique path</div>
+    <div class="chart-wrap xl"><canvas id="chart-strat"></canvas></div>
   </div>
   <div class="g2">
     <div class="card">
-      <div class="card-title">Strategy details</div>
-      <div id="strat-detail"></div>
+      <div class="card-title">Withdrawal sequence optimizer</div>
+      <div id="withdrawal-sequence"></div>
     </div>
     <div class="card">
       <div class="card-title">Scenario modeling</div>
-      <div class="stabs" id="scen-tabs">
+      <div class="stabs">
         <button class="stab on" onclick="setScen('standard',this)">Standard</button>
-        <button class="stab" onclick="setScen('lean',this)">Lean FIRE</button>
-        <button class="stab" onclick="setScen('fat',this)">Fat FIRE</button>
-        <button class="stab" onclick="setScen('coast',this)">Coast FIRE</button>
-        <button class="stab" onclick="setScen('shock',this)">Income Shock</button>
-        <button class="stab" onclick="setScen('crash',this)">Market Crash</button>
+        <button class="stab" onclick="setScen('lean',this)">Lean</button>
+        <button class="stab" onclick="setScen('fat',this)">Fat</button>
+        <button class="stab" onclick="setScen('coast',this)">Coast</button>
+        <button class="stab" onclick="setScen('shock',this)">Shock</button>
+        <button class="stab" onclick="setScen('crash',this)">Crash</button>
       </div>
       <div id="scen-detail"></div>
     </div>
   </div>
 </div>
 
+<!-- ══ TAX ENGINE ══ -->
+<div class="page" id="page-tax">
+  <div class="sh"><h2>Tax Engine</h2><span class="sh-sub">RMD projection · Roth conversion ladder · Social Security · IRMAA · Mortgage optimizer</span></div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Retirement income tax bracket visualizer</div>
+    <div id="bracket-viz"></div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Roth conversion ladder optimizer</div>
+      <div id="roth-optimizer"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Social Security estimator</div>
+      <div id="ss-estimator"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Required Minimum Distribution projection (age 73–90)</div>
+    <div style="overflow-x:auto"><table class="dt">
+      <thead><tr><th>Age</th><th>Year</th><th>401k bal</th><th>RMD amount</th><th>Other income</th><th>Total MAGI</th><th>IRMAA bracket</th><th>Fed tax est.</th><th>MO tax est.</th></tr></thead>
+      <tbody id="rmd-tbody"></tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--text3);margin-top:8px">RMD = 401(k) balance ÷ IRS Uniform Lifetime Table factor · MAGI includes SS (85% taxable) + RMD + investment income estimate · MO taxes RMDs at 4.8% (2026 rate)</div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">IRMAA Medicare surcharge calculator</div>
+      <div id="irmaa-calc"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lifetime tax comparison — Roth vs defer</div>
+      <div id="lifetime-tax"></div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Roth conversion ladder — visual impact on account balances</div>
+      <div class="chart-wrap tall"><canvas id="chart-roth-ladder"></canvas></div>
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Shows 401k declining + Roth growing as conversions execute · Fill 12% bracket annually · Compare no-conversion baseline</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Social Security — break-even analysis chart</div>
+      <div class="chart-wrap tall"><canvas id="chart-ss-breakeven"></canvas></div>
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">Cumulative lifetime SS income by claim age · Lines cross at break-even · Delay favors longevity</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mortgage payoff optimizer — 2.25% mortgage vs invest surplus</div>
+    <div id="mortgage-optimizer"></div>
+  </div>
+</div>
+
 <!-- ══ AI ADVISOR ══ -->
 <div class="page" id="page-advisor">
-  <div class="sh"><h2>AI Financial Advisor</h2><span class="sh-sub">Powered by Claude · Context generated live from your accounts</span></div>
+  <div class="sh"><h2>AI Financial Advisor</h2><span class="sh-sub">Claude · Full tax context · Live account data</span></div>
   <div class="g2">
     <div>
       <div class="card" style="margin-bottom:16px">
@@ -274,11 +368,11 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
     <div class="card" style="display:flex;flex-direction:column">
       <div class="card-title">Advisor chat</div>
       <div class="chat-wrap" id="chat-wrap">
-        <div class="msg ai"><div class="ai-label">FIRE Advisor</div><span id="chat-intro">Loading your profile...</span></div>
+        <div class="msg ai"><div class="ai-label">FIRE Advisor</div><span id="chat-intro">Loading profile...</span></div>
       </div>
-      <div class="typing" id="typing">Advisor is thinking...</div>
+      <div class="typing" id="typing">Thinking...</div>
       <div class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Ask anything about your finances..." onkeydown="if(event.key==='Enter')sendChat()">
+        <input type="text" id="chat-input" placeholder="Ask anything about your retirement plan..." onkeydown="if(event.key==='Enter')sendChat()">
         <button onclick="sendChat()">Send ↗</button>
       </div>
     </div>
@@ -287,30 +381,30 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
 
 <!-- ══ NEXT ACTIONS ══ -->
 <div class="page" id="page-actions">
-  <div class="sh"><h2>Next Best Actions</h2><span class="sh-sub">Dynamically generated from your financial model · Ranked by impact</span></div>
+  <div class="sh"><h2>Next Best Actions</h2><span class="sh-sub">Dynamically ranked by dollar impact · Generated from live model</span></div>
   <div id="nba-list"></div>
 </div>
 
-<!-- ══ ACCOUNTS (authoritative data source) ══ -->
+<!-- ══ ACCOUNTS ══ -->
 <div class="page" id="page-accounts">
-  <div class="sh"><h2>Account Inventory</h2><span class="sh-sub">Authoritative data source for all projections — edit balances here to update everything</span></div>
+  <div class="sh"><h2>Account Inventory</h2><span class="sh-sub">Authoritative data source — edit here to update all projections</span></div>
   <div class="g2" style="margin-bottom:16px">
     <div class="card">
-      <div class="card-title">Edit balances — changes update all projections live</div>
+      <div class="card-title">Edit balances</div>
       <div id="acct-editor"></div>
       <div class="divider"></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0">
+      <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0">
         <span style="color:var(--text2)">Total investable</span>
         <span style="font-family:var(--mono);color:var(--green);font-weight:600" id="acct-total">—</span>
       </div>
     </div>
     <div>
-      <div class="card" style="margin-bottom:16px">
+      <div class="card" style="margin-bottom:14px">
         <div class="card-title">Portfolio composition</div>
         <div class="chart-wrap"><canvas id="chart-alloc"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-title">Asset allocation analysis</div>
+        <div class="card-title">Allocation analysis</div>
         <div id="alloc-analysis"></div>
       </div>
     </div>
@@ -329,7 +423,7 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
 
 <!-- ══ SETTINGS ══ -->
 <div class="page" id="page-settings">
-  <div class="sh"><h2>Settings & Assumptions</h2><span class="sh-sub">All projections update live · Auto-saved to browser</span></div>
+  <div class="sh"><h2>Settings</h2><span class="sh-sub">All projections update live</span></div>
   <div class="g2">
     <div class="card">
       <div class="card-title">Income & savings</div>
@@ -339,437 +433,799 @@ footer{text-align:center;padding:28px;color:var(--text3);font-size:11px;border-t
       <div class="edit-group"><label>Annual gross income ($)</label><input type="number" id="s-income" value="373000" oninput="onSettingChange()"></div>
     </div>
     <div class="card">
-      <div class="card-title">Return & target assumptions</div>
+      <div class="card-title">Return assumptions</div>
       <div class="edit-group"><label>Pre-FIRE return (%)</label><input type="number" id="s-growth" value="7" step="0.5" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>Post-FIRE return (%)</label><input type="number" id="s-post" value="5" step="0.5" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>Inflation (%)</label><input type="number" id="s-inflation" value="2.5" step="0.25" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>FIRE target ($)</label><input type="number" id="s-target" value="2700000" oninput="onSettingChange()"></div>
     </div>
     <div class="card">
-      <div class="card-title">Real estate</div>
+      <div class="card-title">Real estate & education</div>
       <div class="edit-group"><label>Home value ($)</label><input type="number" id="s-home" value="630000" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>Mortgage balance ($)</label><input type="number" id="s-mortgage" value="307000" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>529 — Dawson ($)</label><input type="number" id="s-529a" value="135000" oninput="onSettingChange()"></div>
       <div class="edit-group"><label>529 — Chip ($)</label><input type="number" id="s-529b" value="87000" oninput="onSettingChange()"></div>
     </div>
     <div class="card">
-      <div class="card-title">Data management</div>
+      <div class="card-title">Data</div>
       <button onclick="saveState()" style="padding:8px 16px;background:var(--green-bg);border:1px solid rgba(16,212,142,.3);border-radius:4px;color:var(--green);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Save all</button>
       <button onclick="exportData()" style="padding:8px 16px;background:var(--blue-bg);border:1px solid rgba(99,102,241,.3);border-radius:4px;color:var(--blue);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%;margin-bottom:8px">Export JSON</button>
-      <button onclick="if(confirm('Reset to defaults?'))resetDefaults()" style="padding:8px 16px;background:var(--red-bg);border:1px solid rgba(244,63,94,.2);border-radius:4px;color:var(--red);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%">Reset defaults</button>
+      <button onclick="if(confirm('Reset?'))resetDefaults()" style="padding:8px 16px;background:var(--red-bg);border:1px solid rgba(244,63,94,.2);border-radius:4px;color:var(--red);font-size:12px;cursor:pointer;font-family:var(--sans);width:100%">Reset defaults</button>
     </div>
   </div>
 </div>
 
-<footer>FIRE OS · Luker Household · retire.stluker.com · Stored locally · Not financial advice</footer>
+<footer>FIRE OS v4 · Luker Household · retire.stluker.com · Not financial advice</footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// CANONICAL ACCOUNT DATA — single source of truth for all calcs
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// CANONICAL ACCOUNT DATA
+// ═══════════════════════════════════════════════════════════
 const ACCOUNT_DEFS = [
-  { id:'a401k',   name:'401(k) GDIT — Fidelity 08093',       owner:'Paul',     type:'tax_deferred', cat:'retirement', balance:765711 },
-  { id:'aroth',   name:'Roth IRA — Fidelity 230-962807',      owner:'Paul',     type:'roth',         cat:'retirement', balance:40534  },
-  { id:'srollover',name:'Rollover IRA — Fidelity 225-248219', owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:22639  },
-  { id:'strad',   name:'Trad IRA — Fidelity 245-599645',      owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:25000,  flag:'pending_conversion' },
-  { id:'bjoint',  name:'Joint Brokerage — Fidelity Z33',      owner:'Joint',    type:'taxable',      cat:'brokerage',  balance:89361  },
-  { id:'bindiv',  name:'Individual — Fidelity 2EA',           owner:'Paul',     type:'taxable',      cat:'brokerage',  balance:7550   },
-  { id:'hysa',    name:'HYSA + Savings',                       owner:'Joint',    type:'liquid',       cat:'liquid',     balance:72000  },
-  { id:'cash',    name:'Cash (safe)',                           owner:'Joint',    type:'liquid',       cat:'liquid',     balance:20000  },
+  { id:'a401k',    name:'401(k) GDIT — Fidelity 08093',       owner:'Paul',     type:'tax_deferred', cat:'retirement', balance:765711 },
+  { id:'aroth',    name:'Roth IRA — Fidelity 230-962807',      owner:'Paul',     type:'roth',         cat:'retirement', balance:40534  },
+  { id:'srollover',name:'Rollover IRA — Fidelity 225-248219',  owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:22639  },
+  { id:'strad',    name:'Trad IRA — Fidelity 245-599645',      owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:25000, flag:'pending_conversion' },
+  { id:'bjoint',   name:'Joint Brokerage — Fidelity Z33',      owner:'Joint',    type:'taxable',      cat:'brokerage',  balance:89361  },
+  { id:'bindiv',   name:'Individual — Fidelity 2EA',           owner:'Paul',     type:'taxable',      cat:'brokerage',  balance:7550   },
+  { id:'hysa',     name:'HYSA + Savings',                       owner:'Joint',    type:'liquid',       cat:'liquid',     balance:72000  },
+  { id:'cash',     name:'Cash (safe)',                           owner:'Joint',    type:'liquid',       cat:'liquid',     balance:20000  },
 ];
-
-// Mutable account balances — live source for all projections
 let ACCTS = {};
 ACCOUNT_DEFS.forEach(a => ACCTS[a.id] = a.balance);
 
-// ═══════════════════════════════════════════════════════════════
-// DERIVED ACCOUNT METRICS
-// ═══════════════════════════════════════════════════════════════
-function totalPortfolio()  { return Object.values(ACCTS).reduce((a,b) => a+b, 0); }
-function retirementTotal() { return ACCTS.a401k + ACCTS.aroth + ACCTS.srollover + ACCTS.strad; }
-function taxableTotal()    { return ACCTS.bjoint + ACCTS.bindiv; }
-function liquidTotal()     { return ACCTS.hysa + ACCTS.cash; }
-function rothTotal()       { return ACCTS.aroth; }
-function taxDeferredTotal(){ return ACCTS.a401k + ACCTS.srollover + ACCTS.strad; }
+function totalPortfolio()   { return Object.values(ACCTS).reduce((a,b)=>a+b,0); }
+function taxDeferredTotal() { return ACCTS.a401k + ACCTS.srollover + ACCTS.strad; }
+function rothTotal()        { return ACCTS.aroth; }
+function taxableTotal()     { return ACCTS.bjoint + ACCTS.bindiv; }
+function liquidTotal()      { return ACCTS.hysa + ACCTS.cash; }
 
-// ═══════════════════════════════════════════════════════════════
-// STATE & PERSISTENCE
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
 const DEFAULTS = {
   age:48, fireAge:55, savings:11593, income:373000,
   growth:0.07, postGrowth:0.05, inflation:0.025, target:2700000,
   homeValue:630000, mortgage:307000, s529a:135000, s529b:87000
 };
 let S = { ...DEFAULTS };
+let snapshots = []; // [{date, portfolio, netWorth, label}]
 
 function loadState() {
   try {
-    const saved = JSON.parse(localStorage.getItem('fire_os_v3') || '{}');
-    if (saved.S) S = { ...DEFAULTS, ...saved.S };
-    if (saved.ACCTS) ACCTS = { ...ACCTS, ...saved.ACCTS };
+    const d = JSON.parse(localStorage.getItem('fire_os_v4')||'{}');
+    if (d.S)         S        = { ...DEFAULTS, ...d.S };
+    if (d.ACCTS)     ACCTS    = { ...ACCTS, ...d.ACCTS };
+    if (d.snapshots) snapshots = d.snapshots;
   } catch(e) {}
   syncSettingsUI();
 }
-
 function saveState() {
-  localStorage.setItem('fire_os_v3', JSON.stringify({ S, ACCTS, ts: Date.now() }));
+  localStorage.setItem('fire_os_v4', JSON.stringify({ S, ACCTS, snapshots, ts:Date.now() }));
   document.getElementById('save-dot').style.display = 'none';
   document.getElementById('save-btn').textContent = 'Saved ✓';
-  setTimeout(() => document.getElementById('save-btn').textContent = 'Save', 1500);
+  setTimeout(()=>document.getElementById('save-btn').textContent='Save', 1500);
 }
-
-function markDirty() { document.getElementById('save-dot').style.display = 'inline-block'; }
-
+function markDirty() { document.getElementById('save-dot').style.display='inline-block'; }
 function onSettingChange() {
   S.age        = +document.getElementById('s-age').value        || S.age;
   S.fireAge    = +document.getElementById('s-fire-age').value   || S.fireAge;
   S.savings    = +document.getElementById('s-savings').value    || S.savings;
   S.income     = +document.getElementById('s-income').value     || S.income;
-  S.growth     = (+document.getElementById('s-growth').value    || 7)   / 100;
-  S.postGrowth = (+document.getElementById('s-post').value      || 5)   / 100;
-  S.inflation  = (+document.getElementById('s-inflation').value || 2.5) / 100;
+  S.growth     = (+document.getElementById('s-growth').value    ||7)/100;
+  S.postGrowth = (+document.getElementById('s-post').value      ||5)/100;
+  S.inflation  = (+document.getElementById('s-inflation').value ||2.5)/100;
   S.target     = +document.getElementById('s-target').value     || S.target;
   S.homeValue  = +document.getElementById('s-home').value       || S.homeValue;
   S.mortgage   = +document.getElementById('s-mortgage').value   || S.mortgage;
   S.s529a      = +document.getElementById('s-529a').value       || S.s529a;
   S.s529b      = +document.getElementById('s-529b').value       || S.s529b;
-  markDirty();
-  renderAll();
+  markDirty(); renderAll();
 }
-
 function syncSettingsUI() {
-  document.getElementById('s-age').value       = S.age;
-  document.getElementById('s-fire-age').value  = S.fireAge;
-  document.getElementById('s-savings').value   = S.savings;
-  document.getElementById('s-income').value    = S.income;
-  document.getElementById('s-growth').value    = (S.growth*100).toFixed(1);
-  document.getElementById('s-post').value      = (S.postGrowth*100).toFixed(1);
-  document.getElementById('s-inflation').value = (S.inflation*100).toFixed(2);
-  document.getElementById('s-target').value    = S.target;
-  document.getElementById('s-home').value      = S.homeValue;
-  document.getElementById('s-mortgage').value  = S.mortgage;
-  document.getElementById('s-529a').value      = S.s529a;
-  document.getElementById('s-529b').value      = S.s529b;
+  document.getElementById('s-age').value        = S.age;
+  document.getElementById('s-fire-age').value   = S.fireAge;
+  document.getElementById('s-savings').value    = S.savings;
+  document.getElementById('s-income').value     = S.income;
+  document.getElementById('s-growth').value     = (S.growth*100).toFixed(1);
+  document.getElementById('s-post').value       = (S.postGrowth*100).toFixed(1);
+  document.getElementById('s-inflation').value  = (S.inflation*100).toFixed(2);
+  document.getElementById('s-target').value     = S.target;
+  document.getElementById('s-home').value       = S.homeValue;
+  document.getElementById('s-mortgage').value   = S.mortgage;
+  document.getElementById('s-529a').value       = S.s529a;
+  document.getElementById('s-529b').value       = S.s529b;
 }
-
 function exportData() {
-  const blob = 'data:application/json,' + encodeURIComponent(JSON.stringify({ S, ACCTS, ts: new Date().toISOString() }, null, 2));
-  Object.assign(document.createElement('a'), { href: blob, download:'fire-os-export.json' }).click();
+  const a=document.createElement('a');
+  a.href='data:application/json,'+encodeURIComponent(JSON.stringify({S,ACCTS,snapshots,ts:new Date().toISOString()},null,2));
+  a.download='fire-os-export.json'; a.click();
 }
-
 function resetDefaults() {
-  S = { ...DEFAULTS };
-  ACCOUNT_DEFS.forEach(a => ACCTS[a.id] = a.balance);
-  syncSettingsUI();
-  markDirty();
-  renderAll();
+  S={...DEFAULTS}; ACCOUNT_DEFS.forEach(a=>ACCTS[a.id]=a.balance); snapshots=[];
+  syncSettingsUI(); markDirty(); renderAll();
+}
+function takeSnapshot() {
+  const port = totalPortfolio();
+  const nw   = port + S.s529a + S.s529b + (S.homeValue-S.mortgage) + 50000;
+  snapshots.push({ date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}), portfolio:port, netWorth:nw });
+  if (snapshots.length > 24) snapshots.shift();
+  saveState(); renderNetWorthChart();
+  document.getElementById('save-btn').textContent='Snapshot saved ✓';
+  setTimeout(()=>document.getElementById('save-btn').textContent='Save',2000);
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // FORMATTING
-// ═══════════════════════════════════════════════════════════════
-const fmt  = n => n >= 1e6 ? '$'+(n/1e6).toFixed(2)+'M' : n >= 1e3 ? '$'+Math.round(n/1e3)+'K' : '$'+Math.round(n);
+// ═══════════════════════════════════════════════════════════
+const fmt  = n => n>=1e6?'$'+(n/1e6).toFixed(2)+'M':n>=1e3?'$'+Math.round(n/1e3)+'K':'$'+Math.round(n);
 const fmtF = n => '$'+Math.round(n).toLocaleString();
-const pct  = (a,b) => Math.min(100, Math.round(a/b*100));
+const pct  = (a,b) => Math.min(100,Math.round(a/b*100));
 
-// ═══════════════════════════════════════════════════════════════
-// PROJECTION ENGINE — derives portfolio from live ACCTS
-// ═══════════════════════════════════════════════════════════════
-function project(years, overrides = {}) {
+// ═══════════════════════════════════════════════════════════
+// TAX ENGINE — Federal + MO + SS + IRMAA
+// ═══════════════════════════════════════════════════════════
+// 2026 MFJ federal brackets (approximate)
+const FED_BRACKETS = [[23200,0.10],[94300,0.12],[201050,0.22],[383900,0.24],[487450,0.32],[731200,0.35]];
+const MO_RATE = 0.048;        // MO flat-ish top rate 2026
+const STD_DED_MFJ = 30000;    // approx 2026
+const SS_TAXABLE_PCT = 0.85;  // worst case above income threshold
+
+function fedTax(taxableIncome) {
+  let tax=0, prev=0;
+  for (const [top,rate] of FED_BRACKETS) {
+    if (taxableIncome<=prev) break;
+    tax += (Math.min(taxableIncome,top)-prev)*rate;
+    prev=top;
+  }
+  return tax;
+}
+function effectiveTaxTotal(grossWithdrawal, ssIncome=0) {
+  const magi = grossWithdrawal + ssIncome * SS_TAXABLE_PCT;
+  const taxable = Math.max(0, magi - STD_DED_MFJ);
+  const fed = fedTax(taxable);
+  const mo  = Math.max(0, magi - STD_DED_MFJ) * MO_RATE; // MO mirrors AGI roughly
+  return { fed, mo, total: fed+mo, rate:(fed+mo)/Math.max(1,grossWithdrawal) };
+}
+function effectiveTaxRate(grossWithdrawal, ssIncome=0) {
+  return effectiveTaxTotal(grossWithdrawal, ssIncome).rate;
+}
+function marginalBracket(taxableIncome) {
+  let prev=0;
+  for (const [top,rate] of FED_BRACKETS) {
+    if (taxableIncome<=top) return rate;
+    prev=top;
+  }
+  return 0.37;
+}
+
+// ═══════════════════════════════════════════════════════════
+// IRS UNIFORM LIFETIME TABLE (simplified — key ages)
+// ═══════════════════════════════════════════════════════════
+const ULT = {73:26.5,74:25.5,75:24.6,76:23.7,77:22.9,78:22.0,79:21.1,80:20.2,81:19.4,82:18.5,83:17.7,84:16.8,85:16.0,86:15.2,87:14.4,88:13.7,89:12.9,90:12.2};
+
+// ═══════════════════════════════════════════════════════════
+// IRMAA BRACKETS (2026 approximate, MFJ)
+// ═══════════════════════════════════════════════════════════
+const IRMAA = [
+  { magiLimit:212000, partB:0,    partD:0,    label:'Standard' },
+  { magiLimit:266000, partB:800,  partD:300,  label:'Tier 1' },
+  { magiLimit:334000, partB:2000, partD:740,  label:'Tier 2' },
+  { magiLimit:400000, partB:3200, partD:1200, label:'Tier 3' },
+  { magiLimit:750000, partB:4400, partD:1640, label:'Tier 4' },
+  { magiLimit:Infinity,partB:5000,partD:1800, label:'Tier 5' },
+];
+function irmaaSurcharge(magi) {
+  for (const b of IRMAA) { if (magi <= b.magiLimit) return b; }
+  return IRMAA[IRMAA.length-1];
+}
+
+// ═══════════════════════════════════════════════════════════
+// SOCIAL SECURITY ESTIMATOR
+// Simplified FRA benefit based on career earnings
+// ═══════════════════════════════════════════════════════════
+function ssBenefit(claimAge) {
+  // Estimate PIA based on Paul's $373K income history
+  // SS caps at $168,600 (2024 wage base), so roughly 35-yr average ~$120K capped
+  // FRA benefit estimate ~$3,800/mo (based on salary history, 62 bend points)
+  const pia = 3800; // monthly at FRA 67
+  const fraAge = 67;
+  if (claimAge < fraAge) {
+    const monthsEarly = (fraAge - claimAge) * 12;
+    const reduction = monthsEarly <= 36 ? monthsEarly * (5/9/100) : 0.20 + (monthsEarly-36)*(5/12/100);
+    return Math.round(pia * (1-reduction));
+  } else {
+    const yearsDRC = claimAge - fraAge;
+    return Math.round(pia * (1 + yearsDRC * 0.08));
+  }
+}
+// Savannah spousal benefit = 50% of Paul's PIA at her FRA (67), or reduced if early
+function ssSpouseBenefit(paulClaimAge, savClaimAge) {
+  const paulPIA = 3800;
+  const spousalPIA = paulPIA * 0.50;
+  const fraAge = 67;
+  if (savClaimAge < fraAge) {
+    const monthsEarly = (fraAge - savClaimAge)*12;
+    const red = Math.min(monthsEarly*(25/300/100) + Math.max(0,monthsEarly-36)*(5/12/100), 0.35);
+    return Math.round(spousalPIA * (1-red));
+  }
+  return Math.round(spousalPIA);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PROJECTION ENGINE
+// ═══════════════════════════════════════════════════════════
+function project(years, overrides={}) {
   const cfg   = { ...S, ...overrides };
   const start = overrides.startPortfolio ?? totalPortfolio();
   let p = start;
-  const r = cfg.growth / 12;
-  const rows = [{ age: cfg.age, year: 1977 + cfg.age, portfolio: p }];
-  for (let y = 1; y <= years; y++) {
+  const r = cfg.growth/12;
+  const rows = [{ age:cfg.age, year:1977+cfg.age, portfolio:p }];
+  for (let y=1; y<=years; y++) {
     const sav = overrides.savingsOverride?.(y) ?? cfg.savings;
-    for (let m = 0; m < 12; m++) p = (p + sav) * (1 + r);
-    rows.push({ age: cfg.age + y, year: 1977 + cfg.age + y, portfolio: p });
+    for (let m=0; m<12; m++) p=(p+sav)*(1+r);
+    rows.push({ age:cfg.age+y, year:1977+cfg.age+y, portfolio:p });
   }
   return rows;
 }
 
-function findFireAge(target, overrides = {}) {
-  return project(35, overrides).find(d => d.portfolio >= target) || null;
-}
-
-function coastNumber() {
-  const yrs = S.fireAge - S.age;
-  return yrs <= 0 ? totalPortfolio() : S.target / Math.pow(1 + S.growth, yrs);
-}
-
-// Tax-adjusted withdrawal: estimates effective rate in retirement
-function effectiveTaxRate(withdrawalAmt) {
-  // Rough MFJ estimate: std deduction $30K, brackets below
-  const taxable = Math.max(0, withdrawalAmt - 30000);
-  if (taxable <= 0) return 0;
-  let tax = 0;
-  const brackets = [[23200,0.10],[94300,0.12],[201050,0.22],[383900,0.24]];
-  let prev = 0;
-  for (const [top, rate] of brackets) {
-    if (taxable <= prev) break;
-    tax += Math.min(taxable, top) * rate - prev * rate;
-    prev = top;
+// Project a specific strategy with correct savings stopping at retirement
+function projectStrategy(target, retireAge) {
+  const yrs = retireAge - S.age;
+  const preData = project(Math.max(0, yrs));
+  // Post-retirement: compound at post-FIRE rate minus withdrawals
+  const retPort = preData.at(-1).portfolio;
+  const annual  = retPort * 0.04;
+  let postData  = [];
+  let p = retPort;
+  for (let y=0; y<=20; y++) {
+    postData.push({ age:retireAge+y, year:1977+retireAge+y, portfolio:Math.max(0,p) });
+    p = p*(1+S.postGrowth) - annual*Math.pow(1+S.inflation,y);
+    if (p<0) p=0;
   }
-  return tax / withdrawalAmt;
+  return { pre:preData, post:postData, retPort, annual, retireAge };
 }
 
-// Safe withdrawal rate calc (Bengen/historical)
-function safeWR(successRate) {
-  if (successRate >= 0.95) return '4.5%+';
-  if (successRate >= 0.90) return '4.0%';
-  if (successRate >= 0.80) return '3.5%';
-  return '3.0%';
+function findFireAge(target, overrides={}) {
+  return project(35, overrides).find(d=>d.portfolio>=target)||null;
+}
+function coastNumber() {
+  const yrs = S.fireAge-S.age;
+  return yrs<=0 ? totalPortfolio() : S.target/Math.pow(1+S.growth,yrs);
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// RMD ENGINE
+// ═══════════════════════════════════════════════════════════
+function projectRMDs(startAge=73, endAge=90) {
+  const port = totalPortfolio();
+  const fireAge = S.fireAge;
+  // Project 401k balance to age 73
+  const yrsToRMD = 73 - S.age;
+  const preFIRE  = project(Math.max(0, fireAge-S.age));
+  const atFire   = preFIRE.at(-1).portfolio;
+  // Rough: 80% stays in tax-deferred (401k grew proportionally)
+  const tdFraction = taxDeferredTotal()/Math.max(1,totalPortfolio());
+  let bal401k = atFire * tdFraction;
+  // Grow tax-deferred from FIRE to 73 at post-FIRE rate
+  for (let y=0; y<(73-fireAge); y++) bal401k *= (1+S.postGrowth);
+
+  const rows = [];
+  for (let age=startAge; age<=endAge; age++) {
+    const factor = ULT[age]||10;
+    const rmd    = Math.round(bal401k/factor);
+    const ssMonthly = ssBenefit(62); // assume claim at 62
+    const ssAnnual  = ssMonthly*12;
+    const otherIncome = Math.round(taxableTotal()*(S.postGrowth*0.3)); // rough dividend income
+    const totalMAGI   = rmd + ssAnnual*SS_TAXABLE_PCT + otherIncome;
+    const taxes       = effectiveTaxTotal(rmd, ssAnnual);
+    const irmaa       = irmaaSurcharge(totalMAGI);
+    rows.push({ age, year:1977+age, bal401k:Math.round(bal401k), rmd, ssAnnual, otherIncome, totalMAGI:Math.round(totalMAGI), taxes, irmaa });
+    // Next year: grow remaining balance and deduct RMD
+    bal401k = (bal401k - rmd) * (1+S.postGrowth);
+  }
+  return rows;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ROTH CONVERSION LADDER OPTIMIZER
+// Pre-FIRE years (ages 55–59): convert 401k to Roth in 12% bracket
+// ═══════════════════════════════════════════════════════════
+function optimizeRothLadder() {
+  const fireAge = S.fireAge;
+  const gapYears = Math.max(0, 59-fireAge); // years before 59½ penalty-free access
+  const twelvePctTop = 94300; // 2026 MFJ 12% bracket top (after std ded)
+  const results = [];
+  let rothBal = rothTotal();
+  let deferBal = taxDeferredTotal();
+
+  // In each pre-59½ year, convert up to fill 12% bracket
+  const otherIncome = 0; // retired, no W-2
+  for (let y=0; y<Math.min(gapYears+5, 15); y++) {
+    const age = fireAge+y;
+    const conversionsRoom = twelvePctTop - otherIncome; // fillable at 12%
+    const convert = Math.min(deferBal, Math.max(0, conversionsRoom));
+    const taxOnConvert = fedTax(Math.max(0,convert-STD_DED_MFJ)) + Math.max(0,convert-STD_DED_MFJ)*MO_RATE;
+    const marginal = marginalBracket(convert);
+    deferBal = (deferBal-convert)*(1+S.postGrowth);
+    rothBal  = (rothBal+convert)*(1+S.postGrowth);
+    results.push({ age, year:1977+age, convert:Math.round(convert), tax:Math.round(taxOnConvert), marginal, rothBal:Math.round(rothBal), deferBal:Math.round(deferBal) });
+    if (deferBal<=0) break;
+  }
+  return results;
+}
+
+// ═══════════════════════════════════════════════════════════
 // MONTE CARLO ENGINE
-// ═══════════════════════════════════════════════════════════════
-function gauss(mean, std) {
-  let u=0, v=0;
-  while (!u) u = Math.random();
-  while (!v) v = Math.random();
-  return mean + std * Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+// ═══════════════════════════════════════════════════════════
+function gauss(mean,std) {
+  let u=0,v=0;
+  while(!u)u=Math.random();while(!v)v=Math.random();
+  return mean+std*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
 }
-
-let MC = null;
+let MC=null;
 
 function runMonteCarlo() {
-  const mean   = parseFloat(document.getElementById('mc-mean').value) / 100;
-  const std    = parseFloat(document.getElementById('mc-std').value)  / 100;
-  const wr     = parseFloat(document.getElementById('mc-wr').value)   / 100;
-  const retAge = parseInt(document.getElementById('mc-ret').value);
-  const lonAge = parseInt(document.getElementById('mc-lon').value);
-  const sims   = parseInt(document.getElementById('mc-sims').value);
-  const port   = totalPortfolio();
+  const mean  = parseFloat(document.getElementById('mc-mean').value)/100;
+  const std   = parseFloat(document.getElementById('mc-std').value)/100;
+  const wr    = parseFloat(document.getElementById('mc-wr').value)/100;
+  const retAge= parseInt(document.getElementById('mc-ret').value);
+  const lonAge= parseInt(document.getElementById('mc-lon').value);
+  const sims  = parseInt(document.getElementById('mc-sims').value);
+  document.getElementById('mc-status').textContent=`Running ${sims.toLocaleString()} paths...`;
 
-  document.getElementById('mc-status').textContent = `Running ${sims.toLocaleString()} paths...`;
-
-  setTimeout(() => {
-    const yToFire = Math.max(0, retAge - S.age);
-    const yRetire = lonAge - retAge;
-    const paths   = [];
-
-    for (let i = 0; i < sims; i++) {
-      let p = port;
-      // Accumulation — track each year
-      const yearlyVals = [p];
-      for (let y = 0; y < yToFire; y++) {
-        p = p * (1 + gauss(mean, std)) + S.savings * 12;
-        yearlyVals.push(Math.max(0, p));
+  setTimeout(()=>{
+    const yToFire=Math.max(0,retAge-S.age), yRetire=lonAge-retAge;
+    const port=totalPortfolio();
+    const paths=[];
+    for(let i=0;i<sims;i++){
+      let p=port; const yv=[p];
+      for(let y=0;y<yToFire;y++){p=p*(1+gauss(mean,std))+S.savings*12;yv.push(Math.max(0,p));}
+      const atFire=p, annual=atFire*wr;
+      let survived=true,p70=0,p80=0;
+      for(let y=0;y<yRetire;y++){
+        p=p*(1+gauss(mean*0.72,std))-(annual*Math.pow(1+S.inflation,y));
+        const age=retAge+y;
+        if(age===70)p70=Math.max(0,p);
+        if(age===80)p80=Math.max(0,p);
+        if(p<=0){survived=false;p=0;}
+        yv.push(Math.max(0,p));
       }
-      const atFire   = p;
-      const annual   = atFire * wr;
-      let survived   = true;
-      let p70=0, p80=0;
-
-      // Distribution — inflation-adjusted withdrawals
-      for (let y = 0; y < yRetire; y++) {
-        const ret = gauss(mean * 0.72, std); // retirement: lower equity allocation
-        const w   = annual * Math.pow(1 + S.inflation, y);
-        p = p * (1 + ret) - w;
-        const age = retAge + y;
-        if (age === 70) p70 = Math.max(0, p);
-        if (age === 80) p80 = Math.max(0, p);
-        if (p <= 0) { survived = false; p = 0; }
-        yearlyVals.push(Math.max(0, p));
-      }
-      paths.push({ atFire, p70, p80, terminal: Math.max(0, p), survived, yearlyVals });
+      paths.push({atFire,p70,p80,terminal:Math.max(0,p),survived,yearlyVals:yv});
     }
+    paths.sort((a,b)=>a.terminal-b.terminal);
+    const n=sims, rate=paths.filter(p=>p.survived).length/n;
+    const pcts=[.05,.1,.25,.5,.75,.9,.95].map(q=>paths[Math.floor(q*n)]);
+    MC={rate,paths,pcts,retAge,lonAge,wr,yToFire,sims};
 
-    paths.sort((a, b) => a.terminal - b.terminal);
-    const n    = sims;
-    const rate = paths.filter(p => p.survived).length / n;
-    const pcts = [0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95].map(q => paths[Math.floor(q*n)]);
-    MC = { rate, paths, pcts, retAge, lonAge, wr, yToFire, sims };
+    document.getElementById('mc-pct').textContent=Math.round(rate*100)+'%';
+    document.getElementById('mc-verdict').textContent=
+      rate>=.92?'✓ Excellent — plan is robust to sequence-of-returns risk':
+      rate>=.80?'△ Good — small withdrawal reduction improves resilience significantly':
+      '✗ Concerning — delay retirement or reduce spending';
 
-    // Update KPI bands
-    document.getElementById('mc-pct').textContent = Math.round(rate*100)+'%';
-    document.getElementById('mc-verdict').textContent =
-      rate >= 0.92 ? '✓ Excellent — plan is robust to poor markets' :
-      rate >= 0.80 ? '△ Good — minor adjustment may improve resilience' :
-      '✗ Concerning — consider delaying retirement or reducing spending';
-    const midPct = pcts[3];
-    document.getElementById('mc-median').textContent = fmt(midPct.terminal);
-    document.getElementById('mc-p10').textContent    = fmt(pcts[1].terminal);
-    document.getElementById('mc-subtitle').textContent =
-      `${sims.toLocaleString()} simulations · retire age ${retAge} · ${(wr*100).toFixed(1)}% withdrawal · to age ${lonAge}`;
+    // Max safe WR at 90% success — binary search
+    let lo=0.02,hi=0.06;
+    for(let i=0;i<12;i++){
+      const mid=(lo+hi)/2;
+      let s=0;
+      for(const path of paths){
+        let p=path.atFire, ok=true;
+        const w=path.atFire*mid;
+        for(let y=0;y<yRetire;y++){p=p*(1+gauss(mean*0.72,std))-(w*Math.pow(1+S.inflation,y));if(p<=0){ok=false;break;}}
+        if(ok)s++;
+      }
+      if(s/sims>=0.90)lo=mid;else hi=mid;
+    }
+    const maxSafeWR=((lo+hi)/2*100).toFixed(2)+'%';
+    document.getElementById('mc-median').textContent=fmt(pcts[3].terminal);
+    document.getElementById('mc-p10').textContent=fmt(pcts[1].terminal);
+    document.getElementById('mc-subtitle').textContent=`${sims.toLocaleString()} simulations · retire ${retAge} · ${(wr*100).toFixed(1)}% WR · to age ${lonAge}`;
+    document.getElementById('mc-wr-insight').innerHTML=`<div class="insight-bar"><strong>Max safe withdrawal rate at 90% success:</strong> ${maxSafeWR} · At ${retPort?fmt(retPort):'—'}, that's ${fmt(atFireMedian*parseFloat(maxSafeWR)/100)}/yr</div>`.replace('atFireMedian',pcts[3].atFire);
 
-    // Percentile table
-    const tRows = [
-      {q:'5th',  d:pcts[0], cls:'tag-r'},
-      {q:'10th', d:pcts[1], cls:'tag-r'},
-      {q:'25th', d:pcts[2], cls:'tag-a'},
-      {q:'50th', d:pcts[3], cls:'tag-b'},
-      {q:'75th', d:pcts[4], cls:'tag-g'},
-      {q:'90th', d:pcts[5], cls:'tag-g'},
-      {q:'95th', d:pcts[6], cls:'tag-g'},
-    ];
-    document.getElementById('mc-tbody').innerHTML = tRows.map(r => {
-      const safeW = r.d.survived ? safeWR(rate) : 'N/A';
-      return `<tr>
-        <td><span class="tag ${r.cls}">${r.q}</span></td>
-        <td class="mono">${fmt(r.d.atFire)}</td>
-        <td class="mono">${fmt(r.d.p70)}</td>
-        <td class="mono">${fmt(r.d.p80)}</td>
-        <td class="mono" style="color:${r.d.survived?'var(--green)':'var(--red)'}">${fmt(r.d.terminal)}</td>
-        <td>${r.d.survived ? '<span class="tag tag-g">✓</span>' : '<span class="tag tag-r">✗</span>'}</td>
-        <td class="mono" style="color:var(--teal)">${safeW}</td>
-      </tr>`;
+    // Table
+    document.getElementById('mc-tbody').innerHTML=pcts.map((d,i)=>{
+      const q=['5th','10th','25th','50th','75th','90th','95th'][i];
+      const cls=['tag-r','tag-r','tag-a','tag-b','tag-g','tag-g','tag-g'][i];
+      const mwr=(d.atFire*0.9/d.atFire*100).toFixed(1); // placeholder
+      return `<tr><td><span class="tag ${cls}">${q}</span></td><td class="mono">${fmt(d.atFire)}</td><td class="mono">${fmt(d.p70)}</td><td class="mono">${fmt(d.p80)}</td><td class="mono ${d.survived?'g':'r'}">${fmt(d.terminal)}</td><td>${d.survived?'<span class="tag tag-g">✓</span>':'<span class="tag tag-r">✗</span>'}</td><td class="mono p">${maxSafeWR}</td></tr>`;
     }).join('');
 
     renderFanChart(pcts, yToFire, retAge, lonAge);
-    document.getElementById('mc-status').textContent = `✓ Complete in ${Date.now()%1000}ms`;
-  }, 30);
+    document.getElementById('mc-status').textContent='✓ Complete';
+  },30);
 }
 
-function renderFanChart(pcts, yToFire, retAge, lonAge) {
-  const totalYears = (lonAge - S.age);
-  const labels = Array.from({length: totalYears+1}, (_,i) => S.age + i);
+function renderFanChart(pcts,yToFire,retAge,lonAge){
+  const totalYrs=lonAge-S.age;
+  const labels=Array.from({length:totalYrs+1},(_,i)=>S.age+i);
+  const n=MC.paths.length;
+  const getY=q=>MC.paths[Math.floor(q*n)].yearlyVals.slice(0,totalYrs+1).map(v=>Math.round(v/1000));
+  const p5=getY(.05),p25=getY(.25),p50=getY(.5),p75=getY(.75),p95=getY(.95);
+  const det=project(totalYrs).map(d=>Math.round(d.portfolio/1000));
+  const ctx=document.getElementById('chart-mc-fan').getContext('2d');
+  if(window._mcChart)window._mcChart.destroy();
+  window._mcChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
+    {label:'95th',data:p95,borderColor:'rgba(16,212,142,.12)',backgroundColor:'rgba(16,212,142,.04)',borderWidth:1,pointRadius:0,fill:'+1',tension:.3},
+    {label:'75th',data:p75,borderColor:'rgba(16,212,142,.25)',backgroundColor:'rgba(16,212,142,.07)',borderWidth:1,pointRadius:0,fill:'+1',tension:.3},
+    {label:'Median',data:p50,borderColor:'#10d48e',backgroundColor:'rgba(16,212,142,.09)',borderWidth:2,pointRadius:0,fill:'+1',tension:.3},
+    {label:'25th',data:p25,borderColor:'rgba(245,158,11,.25)',backgroundColor:'rgba(245,158,11,.05)',borderWidth:1,pointRadius:0,fill:'+1',tension:.3},
+    {label:'5th',data:p5,borderColor:'rgba(244,63,94,.25)',backgroundColor:'transparent',borderWidth:1,pointRadius:0,fill:false,tension:.3},
+    {label:'Deterministic',data:det,borderColor:'rgba(99,102,241,.6)',borderWidth:1.5,borderDash:[5,3],pointRadius:0,fill:false},
+    {label:'Target',data:Array(totalYrs+1).fill(Math.round(S.target/1000)),borderColor:'rgba(245,158,11,.35)',borderWidth:1,borderDash:[3,4],pointRadius:0,fill:false},
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:'#94a3b8',font:{size:10},boxWidth:10}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': $'+ctx.parsed.y+'K'}}},
+    scales:{x:{ticks:{color:'#475569',font:{size:10}},grid:{color:'#1e2d45'}},y:{ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'},grid:{color:'#1e2d45'}}}}});
+}
 
-  // Build datasets from yearly paths of specific percentiles
-  const MC_paths  = MC.paths;
-  const n         = MC_paths.length;
-  const getYearly = (q) => {
-    const path = MC_paths[Math.floor(q*n)];
-    return path.yearlyVals.slice(0, totalYears+1).map(v => Math.round(v/1000));
-  };
+// ═══════════════════════════════════════════════════════════
+// STRATEGY COMPARISON — each strategy has unique trajectory
+// ═══════════════════════════════════════════════════════════
+const STRATEGIES = [
+  { id:'lean',     name:'Lean FIRE',     target:2160000, color:'#06b6d4' },
+  { id:'standard', name:'Standard FIRE', target:2700000, color:'#10d48e' },
+  { id:'fat',      name:'Fat FIRE',      target:4050000, color:'#6366f1' },
+  { id:'mega',     name:'Mega Fat',      target:6000000, color:'#f59e0b' },
+];
 
-  const p5  = getYearly(0.05);
-  const p25 = getYearly(0.25);
-  const p50 = getYearly(0.50);
-  const p75 = getYearly(0.75);
-  const p95 = getYearly(0.95);
-  const deterministic = project(totalYears).map(d => Math.round(d.portfolio/1000));
+function evalStrategy(strat) {
+  const fire    = findFireAge(strat.target);
+  const retAge  = fire?.age || (S.age+20);
+  const retPort = fire?.portfolio || project(Math.max(1,retAge-S.age)).at(-1).portfolio;
+  const annual  = retPort*0.04;
+  const ssAnn   = ssBenefit(62)*12; // claim SS at 62 for earlier retirement
+  const taxes   = effectiveTaxTotal(annual, ssAnn);
+  const netAnn  = annual - taxes.total + ssAnn;
+  // Estate: grow post-FIRE at postGrowth, withdraw inflation-adjusted 4%
+  let estate=retPort;
+  for(let y=0;y<35;y++){
+    estate=estate*(1+S.postGrowth)-(annual*Math.pow(1+S.inflation,y));
+    if(estate<0){estate=0;break;}
+  }
+  // Is this strategy's recommended winner?
+  const score = netAnn*0.5 - (retAge-S.age)*15000 + estate*0.1; // composite
+  return { retAge, retPort, annual, netAnn, ssAnn, taxes, estate, workYears:retAge-S.age, fire, score };
+}
 
-  const ctx = document.getElementById('chart-mc-fan').getContext('2d');
-  if (window._mcFanChart) window._mcFanChart.destroy();
-  window._mcFanChart = new Chart(ctx, {
-    type: 'line',
-    data: {
+function renderStrategyGrid() {
+  const results = STRATEGIES.map(s=>({...s,...evalStrategy(s)}));
+  const winner  = results.reduce((a,b)=>a.score>b.score?a:b);
+  document.getElementById('strategy-grid').innerHTML=results.map(r=>`
+    <div class="strategy-col ${r.id===winner.id?'winner':''}">
+      ${r.id===winner.id?'<div class="winner-badge">Best balance</div>':''}
+      <div class="strat-name" style="color:${r.color}">${r.name}</div>
+      <div class="strat-metric"><span>Target</span><span style="color:${r.color}">${fmt(r.target)}</span></div>
+      <div class="strat-metric"><span>FIRE age</span><span>${r.retAge}</span></div>
+      <div class="strat-metric"><span>Years to go</span><span>${r.workYears}</span></div>
+      <div class="strat-metric"><span>Portfolio at FIRE</span><span>${fmt(r.retPort)}</span></div>
+      <div class="strat-metric"><span>4% income gross</span><span>${fmt(r.annual)}</span></div>
+      <div class="strat-metric"><span>SS at 62</span><span style="color:var(--teal)">+${fmt(r.ssAnn)}</span></div>
+      <div class="strat-metric"><span>Total net income</span><span style="color:var(--green)">${fmt(r.netAnn)}</span></div>
+      <div class="strat-metric"><span>Fed+MO tax/yr</span><span style="color:var(--amber)">${fmt(r.taxes.total)}</span></div>
+      <div class="strat-metric"><span>Estate @ age 90</span><span style="color:${r.estate>0?'var(--teal)':'var(--red)'}">${r.estate>0?fmt(r.estate):'Depleted'}</span></div>
+    </div>`).join('');
+
+  // FIXED: Each strategy's trajectory is unique — different savings cutoff at retirement
+  const ages=Array.from({length:21},(_,i)=>S.age+i);
+  const ctx=document.getElementById('chart-strat').getContext('2d');
+  if(window._stratChart)window._stratChart.destroy();
+  window._stratChart=new Chart(ctx,{type:'line',data:{labels:ages,datasets:[
+    ...results.map(r=>({
+      label:r.name,
+      // Unique path: saves until FIRE age, then decumulation at postGrowth - 4% WR
+      data:ages.map(age=>{
+        if(age<=r.retAge){
+          const d=project(age-S.age);
+          return Math.round(d.at(-1).portfolio/1000);
+        } else {
+          const atR=project(r.retAge-S.age).at(-1).portfolio;
+          let p=atR;
+          for(let y=0;y<(age-r.retAge);y++) p=p*(1+S.postGrowth)-atR*0.04*Math.pow(1+S.inflation,y);
+          return Math.round(Math.max(0,p)/1000);
+        }
+      }),
+      borderColor:r.color, borderWidth:r.id===winner.id?2.5:1.5,
+      pointRadius:0, fill:false, tension:.4
+    })),
+    ...results.map(r=>({
+      label:r.name+' target',
+      data:ages.map(()=>Math.round(r.target/1000)),
+      borderColor:r.color+'40',borderWidth:1,borderDash:[4,4],pointRadius:0,fill:false
+    }))
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#94a3b8',font:{size:10},filter:i=>!i.text.includes('target')}}},
+    scales:{x:{ticks:{color:'#475569',font:{size:10}},grid:{color:'#1e2d45'}},y:{ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'},grid:{color:'#1e2d45'}}}}});
+
+  renderWithdrawalSequence();
+}
+
+// ═══════════════════════════════════════════════════════════
+// WITHDRAWAL SEQUENCE OPTIMIZER
+// ═══════════════════════════════════════════════════════════
+function renderWithdrawalSequence() {
+  const port=totalPortfolio();
+  const taxPct=Math.round(taxableTotal()/port*100);
+  const phases=[
+    {
+      phase:'Age 55–59½',
+      label:'Pre-penalty window',
+      seq:['Taxable brokerage (capital gains rates)','HYSA/cash (no penalty, no restriction)','Roth IRA contributions (basis, no penalty)','Rule 72(t) SEPP from 401k if needed'],
+      note:`Current taxable: ${fmtF(taxableTotal())} · Roth basis: ${fmtF(rothTotal())} · Need ${fmtF(Math.max(0,108000*4-taxableTotal()))} more for 4-yr bridge`,
+      color:'var(--amber)'
+    },
+    {
+      phase:'Age 59½–73',
+      label:'Full access — conversion window',
+      seq:['Roth conversions from 401k (fill 12% bracket annually)','Taxable brokerage (manage LTCG to 0% bracket)','401k / rollover IRA as needed','Roth IRA earnings (grow tax-free, spend last)'],
+      note:`Optimal: convert ~$${fmtF(94300)} of 401k/yr → fills 12% bracket. Builds Roth shield before RMDs at 73.`,
+      color:'var(--green)'
+    },
+    {
+      phase:'Age 73+',
+      label:'RMD mandatory phase',
+      seq:['RMDs (mandatory — 401k/IRA taxable income)','SS income (~85% taxable at your income level)','Supplement from Roth (tax-free — no RMDs)','Taxable for large expenses (manage IRMAA)'],
+      note:'Goal: have max Roth balance by 73 to minimize 401k RMDs and avoid IRMAA surcharges.',
+      color:'var(--purple)'
+    }
+  ];
+  document.getElementById('withdrawal-sequence').innerHTML=phases.map(p=>`
+    <div style="margin-bottom:14px">
+      <div style="font-size:11px;font-weight:600;color:${p.color};margin-bottom:4px">${p.phase} — ${p.label}</div>
+      <ol style="padding-left:16px;font-size:11px;color:var(--text2);line-height:1.8">
+        ${p.seq.map(s=>`<li>${s}</li>`).join('')}
+      </ol>
+      <div class="insight-bar" style="margin-top:6px;border-left-color:${p.color}">${p.note}</div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+// SCENARIO MODELING
+// ═══════════════════════════════════════════════════════════
+let currentScen='standard';
+function setScen(key,el){currentScen=key;document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));el.classList.add('on');renderScenDetail();}
+function renderScenDetail(){
+  const div=document.getElementById('scen-detail');
+  const port=totalPortfolio();
+  if(currentScen==='coast'){
+    const cn=coastNumber(),gap=Math.max(0,cn-port);
+    div.innerHTML=`<div style="font-family:var(--mono);font-size:22px;color:${port>=cn?'var(--green)':'var(--amber)'};margin-bottom:8px">${port>=cn?'✓ Achieved':pct(port,cn)+'% there'}</div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.7">Coast number: <strong style="color:var(--text)">${fmtF(Math.round(cn))}</strong><br>${port>=cn?'Portfolio will reach $2.7M at age '+S.fireAge+' with zero new contributions.':'Gap: '+fmtF(gap)+' · ~'+Math.round(gap/(S.savings*12)*10)/10+' yrs at current savings.'}</div>`;
+    return;
+  }
+  if(currentScen==='shock'){
+    const base=project(20),shock=project(20,{savingsOverride:y=>y<=3?S.savings:Math.max(0,S.savings-5000)});
+    const fb=base.find(d=>d.portfolio>=S.target),fs=shock.find(d=>d.portfolio>=S.target);
+    const delay=fs&&fb?fs.age-fb.age:'?';
+    div.innerHTML=`<div style="font-size:12px;color:var(--text2);margin-bottom:10px">Salary drops $60K at year 3. Monthly savings: ${fmt(S.savings)} → ${fmt(Math.max(0,S.savings-5000))}.</div>
+    <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Delay</th></tr>
+    <tr><td>Base</td><td class="mono">${fb?.age||'65+'}</td><td><span class="tag tag-g">—</span></td></tr>
+    <tr><td>Shock</td><td class="mono a">${fs?.age||'65+'}</td><td><span class="tag tag-a">+${delay} yrs</span></td></tr></table>`;
+    return;
+  }
+  if(currentScen==='crash'){
+    const base=project(20);let p=port;const r=S.growth/12;
+    const cr=[{age:S.age,year:1977+S.age,portfolio:p}];
+    for(let y=1;y<=20;y++){for(let m=0;m<12;m++)p=(p+S.savings)*(1+r);if(y===2)p*=.70;cr.push({age:S.age+y,year:1977+S.age+y,portfolio:p});}
+    const fb=base.find(d=>d.portfolio>=S.target),fc=cr.find(d=>d.portfolio>=S.target);
+    const delay=fc&&fb?fc.age-fb.age:'?';
+    div.innerHTML=`<div style="font-size:12px;color:var(--text2);margin-bottom:10px">30% crash at year 2. Contributions continue through recovery.</div>
+    <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Delay</th></tr>
+    <tr><td>Base</td><td class="mono">${fb?.age||'65+'}</td><td><span class="tag tag-g">—</span></td></tr>
+    <tr><td>Crash</td><td class="mono r">${fc?.age||'65+'}</td><td><span class="tag tag-r">+${delay} yrs</span></td></tr></table>
+    <div style="font-size:11px;color:var(--text2);margin-top:8px">Continued contributions during crash = dollar-cost averaging at depressed prices. This is an accumulation-phase advantage.</div>`;
+    return;
+  }
+  const targets={standard:2700000,lean:2160000,fat:4050000};
+  const target=targets[currentScen]||S.target;
+  const fire=findFireAge(target);
+  const retPort=fire?.portfolio||project(Math.max(1,S.fireAge-S.age)).at(-1).portfolio;
+  const annual=retPort*0.04;
+  const ssAnn=ssBenefit(62)*12;
+  const taxes=effectiveTaxTotal(annual,ssAnn);
+  div.innerHTML=`<table class="dt">
+    <tr><td style="color:var(--text2)">Target</td><td class="mono right">${fmtF(target)}</td></tr>
+    <tr><td style="color:var(--text2)">FIRE age</td><td class="mono right g">${fire?.age||'65+'}</td></tr>
+    <tr><td style="color:var(--text2)">Portfolio at FIRE</td><td class="mono right">${fmt(retPort)}</td></tr>
+    <tr><td style="color:var(--text2)">4% annual gross</td><td class="mono right">${fmtF(annual)}</td></tr>
+    <tr><td style="color:var(--text2)">SS at 62 (+)</td><td class="mono right" style="color:var(--teal)">+${fmtF(ssAnn)}</td></tr>
+    <tr><td style="color:var(--text2)">Fed+MO tax (−)</td><td class="mono right a">−${fmtF(taxes.total)}</td></tr>
+    <tr><td style="font-weight:600">Total net income</td><td class="mono right g" style="font-weight:600">${fmtF(annual+ssAnn-taxes.total)}</td></tr>
+    <tr><td style="color:var(--text2)">Monthly net</td><td class="mono right g">${fmtF((annual+ssAnn-taxes.total)/12)}</td></tr>
+  </table>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// WHAT-IF SENSITIVITY SLIDERS (dashboard)
+// ═══════════════════════════════════════════════════════════
+function initWhatIf() {
+  const sliders = [
+    ['wi-savings','wi-savings-lbl', v=>'$'+Math.round(v).toLocaleString(), 'savings'],
+    ['wi-return', 'wi-return-lbl',  v=>v.toFixed(1)+'%', 'growth'],
+    ['wi-target', 'wi-target-lbl',  v=>'$'+Math.round(v/1000)+'K', 'target'],
+  ];
+  sliders.forEach(([id,lbl,fn,key])=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.addEventListener('input',function(){
+      document.getElementById(lbl).textContent=fn(+this.value);
+      updateWhatIf();
+    });
+  });
+  updateWhatIf();
+}
+
+function updateWhatIf() {
+  const sav    = +(document.getElementById('wi-savings')?.value||S.savings);
+  const ret    = +(document.getElementById('wi-return')?.value||S.growth*100)/100;
+  const tgt    = +(document.getElementById('wi-target')?.value||S.target);
+  const port   = totalPortfolio();
+  // Find FIRE age with what-if params
+  let p=port, r=ret/12;
+  let fireAge=null, firePort=null;
+  for(let y=1;y<=35;y++){
+    for(let m=0;m<12;m++) p=(p+sav)*(1+r);
+    if(p>=tgt&&!fireAge){fireAge=S.age+y;firePort=p;break;}
+  }
+  const baseFire=findFireAge(S.target);
+  const delta=fireAge&&baseFire?fireAge-baseFire.age:null;
+  const div=document.getElementById('wi-result');
+  if(!div)return;
+  div.innerHTML=`
+    <div style="margin-bottom:10px">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:4px">FIRE age (what-if)</div>
+      <div style="font-family:var(--mono);font-size:28px;color:${!fireAge?'var(--red)':delta<0?'var(--green)':delta===0?'var(--text)':'var(--amber)'}">${fireAge||'65+'}</div>
+      ${delta!==null?`<div style="font-size:11px;margin-top:3px;color:${delta<0?'var(--green)':delta>0?'var(--amber)':'var(--text2)'}">
+        ${delta<0?'▲ '+Math.abs(delta)+' yr'+( Math.abs(delta)!==1?'s':'')+' earlier than base':delta>0?'▼ '+delta+' yr'+(delta!==1?'s':'')+' later':'= Same as base'} case
+      </div>`:''}
+    </div>
+    <div style="font-size:11px;color:var(--text2)">Portfolio at FIRE: <span style="font-family:var(--mono);color:var(--text)">${firePort?fmt(firePort):'—'}</span><br>Annual income: <span style="font-family:var(--mono);color:var(--green)">${firePort?fmtF(firePort*0.04):'—'}</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// TAX BRACKET VISUALIZER
+// ═══════════════════════════════════════════════════════════
+function renderBracketViz() {
+  const retPort = findFireAge(S.target)?.portfolio || project(S.fireAge-S.age).at(-1).portfolio;
+  const withdrawal = retPort * 0.04;
+  const ssAt62     = ssBenefit(62)*12;
+  const ssAt67     = ssBenefit(67)*12;
+  const totalMAGI62 = withdrawal + ssAt62 * SS_TAXABLE_PCT;
+  const totalMAGI67 = withdrawal + ssAt67 * SS_TAXABLE_PCT;
+
+  const scenariosToShow = [
+    { label:'4% withdrawal only',    magi:withdrawal,   color:'var(--teal)' },
+    { label:'+ SS at 62',            magi:totalMAGI62,  color:'var(--amber)' },
+    { label:'+ SS at 67 (FRA)',      magi:totalMAGI67,  color:'var(--blue)' },
+    { label:'With Roth conversion',  magi:94300+STD_DED_MFJ, color:'var(--purple)' },
+  ];
+
+  const brackets = [
+    { name:'10%', top:23200, rate:0.10, color:'rgba(16,212,142,.15)' },
+    { name:'12%', top:94300, rate:0.12, color:'rgba(16,212,142,.3)' },
+    { name:'22%', top:201050, rate:0.22, color:'rgba(245,158,11,.35)' },
+    { name:'24%', top:383900, rate:0.24, color:'rgba(245,158,11,.6)' },
+    { name:'32%', top:487450, rate:0.32, color:'rgba(244,63,94,.3)' },
+  ];
+
+  const maxMAGI = Math.max(...scenariosToShow.map(s=>s.magi), 250000);
+
+  const div = document.getElementById('bracket-viz');
+  div.innerHTML = `
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px">
+      ${scenariosToShow.map(sc=>{
+        const taxable = Math.max(0, sc.magi - STD_DED_MFJ);
+        const tax = fedTax(taxable) + taxable * MO_RATE;
+        const bracket = FED_BRACKETS.find(([top])=>taxable<=top)?.[1]||0.35;
+        return `<div style="flex:1;min-width:140px;padding:10px;background:var(--card2);border-radius:4px;border:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--text3);margin-bottom:4px">${sc.label}</div>
+          <div style="font-family:var(--mono);font-size:14px;font-weight:600;color:${sc.color}">${fmtF(sc.magi)}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">MAGI · ${Math.round(bracket*100)}% bracket · ${fmtF(tax)}/yr tax</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="position:relative;height:28px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:4px">
+      ${brackets.map(b=>{
+        const w=Math.min(100,Math.round(b.top/maxMAGI*100));
+        return `<div style="position:absolute;left:0;top:0;width:${w}%;height:100%;background:${b.color};display:flex;align-items:center;padding-left:6px"><span style="font-size:9px;font-weight:600;color:var(--text);white-space:nowrap">${b.name}</span></div>`;
+      }).join('')}
+      ${scenariosToShow.map(sc=>{
+        const pos=Math.min(99,Math.round(sc.magi/maxMAGI*100));
+        return `<div style="position:absolute;top:0;left:${pos}%;width:2px;height:100%;background:${sc.color}"></div>`;
+      }).join('')}
+    </div>
+    <div style="font-size:10px;color:var(--text3)">Standard deduction ${fmtF(STD_DED_MFJ)} already subtracted from MAGI for tax calculation · MO 4.8% applied to taxable income · IRMAA threshold $212K</div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ROTH LADDER CHART
+// ═══════════════════════════════════════════════════════════
+function renderRothLadderChart() {
+  const ladder = optimizeRothLadder();
+  const labels = ladder.map(r=>r.age);
+
+  // Baseline: no conversion — both balances just compound
+  const baseDefer = ladder.map((_, i) => {
+    let b = taxDeferredTotal();
+    for(let y=0;y<=i;y++) b *= (1+S.postGrowth);
+    return Math.round(b/1000);
+  });
+  const baseRoth = ladder.map((_, i) => {
+    let b = rothTotal();
+    for(let y=0;y<=i;y++) b *= (1+S.postGrowth);
+    return Math.round(b/1000);
+  });
+
+  const ctx = document.getElementById('chart-roth-ladder')?.getContext('2d');
+  if(!ctx)return;
+  if(window._rothChart)window._rothChart.destroy();
+  window._rothChart = new Chart(ctx, {
+    type:'bar',
+    data:{
       labels,
-      datasets: [
-        { label:'95th pct', data:p95, borderColor:'rgba(16,212,142,.15)', backgroundColor:'rgba(16,212,142,.05)', borderWidth:1, pointRadius:0, fill:'+1', tension:.3 },
-        { label:'75th pct', data:p75, borderColor:'rgba(16,212,142,.3)',  backgroundColor:'rgba(16,212,142,.08)', borderWidth:1, pointRadius:0, fill:'+1', tension:.3 },
-        { label:'Median',   data:p50, borderColor:'#10d48e',              backgroundColor:'rgba(16,212,142,.1)', borderWidth:2, pointRadius:0, fill:'+1', tension:.3 },
-        { label:'25th pct', data:p25, borderColor:'rgba(245,158,11,.3)',  backgroundColor:'rgba(245,158,11,.06)', borderWidth:1, pointRadius:0, fill:'+1', tension:.3 },
-        { label:'5th pct',  data:p5,  borderColor:'rgba(244,63,94,.3)',   backgroundColor:'rgba(244,63,94,.04)', borderWidth:1, pointRadius:0, fill:false, tension:.3 },
-        { label:'Deterministic', data:deterministic, borderColor:'rgba(99,102,241,.7)', borderWidth:1.5, borderDash:[5,3], pointRadius:0, fill:false, tension:.3 },
-        { label:`Target ${fmt(S.target)}`, data:Array(totalYears+1).fill(Math.round(S.target/1000)), borderColor:'rgba(245,158,11,.4)', borderWidth:1, borderDash:[3,4], pointRadius:0, fill:false },
+      datasets:[
+        { label:'401k w/ conversion', data:ladder.map(r=>Math.round(r.deferBal/1000)), backgroundColor:'rgba(99,102,241,.5)', borderColor:'#6366f1', borderWidth:1, stack:'conv' },
+        { label:'Roth w/ conversion',  data:ladder.map(r=>Math.round(r.rothBal/1000)),  backgroundColor:'rgba(16,212,142,.5)', borderColor:'#10d48e', borderWidth:1, stack:'conv' },
+        { label:'401k baseline',       data:baseDefer, backgroundColor:'rgba(99,102,241,.15)', borderColor:'rgba(99,102,241,.4)', borderWidth:1, borderDash:[4,4], stack:'base', type:'line', pointRadius:0, fill:false },
+        { label:'Roth baseline',       data:baseRoth,  backgroundColor:'rgba(16,212,142,.15)', borderColor:'rgba(16,212,142,.4)', borderWidth:1, borderDash:[4,4], stack:'base', type:'line', pointRadius:0, fill:false },
       ]
     },
-    options: {
+    options:{
       responsive:true, maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
       plugins:{
-        legend:{ labels:{ color:'#94a3b8', font:{size:10}, boxWidth:12 } },
-        tooltip:{ callbacks:{ label: ctx => ctx.dataset.label+': $'+ctx.parsed.y+'K' } }
+        legend:{ labels:{ color:'#94a3b8', font:{size:10}, boxWidth:10 } },
+        tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: $${ctx.parsed.y}K` } }
       },
       scales:{
-        x:{ ticks:{color:'#475569',font:{size:10}}, grid:{color:'#1e2d45'} },
-        y:{ ticks:{color:'#475569',font:{size:10}, callback:v=>'$'+v+'K'}, grid:{color:'#1e2d45'} }
+        x:{ stacked:true, ticks:{color:'#475569',font:{size:10}}, grid:{color:'#1e2d45'} },
+        y:{ stacked:false, ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'}, grid:{color:'#1e2d45'} }
       }
     }
   });
 }
 
-// ═══════════════════════════════════════════════════════════════
-// STRATEGY COMPARISON ENGINE
-// ═══════════════════════════════════════════════════════════════
-const STRATEGIES = [
-  { id:'lean',     name:'Lean FIRE',       target:2160000, label:'Age 53',  color:'#06b6d4', retireAge:53 },
-  { id:'standard', name:'Standard FIRE',   target:2700000, label:'Age 55',  color:'#10d48e', retireAge:55 },
-  { id:'fat',      name:'Fat FIRE',        target:4050000, label:'Age 58',  color:'#6366f1', retireAge:58 },
-  { id:'mega',     name:'Mega Fat',        target:6000000, label:'Age 62+', color:'#f59e0b', retireAge:62 },
-];
+// ═══════════════════════════════════════════════════════════
+// SS BREAK-EVEN CHART
+// ═══════════════════════════════════════════════════════════
+function renderSSBreakevenChart() {
+  const claimAges = [62, 64, 67, 70];
+  const ages = Array.from({length:36}, (_,i)=>62+i); // age 62–97
+  const colors = ['#f43f5e','#f59e0b','#10d48e','#6366f1'];
 
-function evalStrategy(strat) {
-  const fire    = findFireAge(strat.target);
-  const retAge  = fire?.age || strat.retireAge;
-  const retPort = fire?.portfolio || project(strat.retireAge - S.age).at(-1).portfolio;
-  const annual  = retPort * 0.04;
-  const monthly = annual / 12;
-  const taxRate = effectiveTaxRate(annual);
-  const netAnn  = annual * (1 - taxRate);
-  // Estate value estimate: portfolio grows at post-FIRE rate for 30 years minus withdrawals
-  let estate = retPort;
-  for (let y = 0; y < 35; y++) {
-    estate = estate * (1 + S.postGrowth) - annual * Math.pow(1 + S.inflation, y);
-    if (estate < 0) { estate = 0; break; }
-  }
-  const workYears = retAge - S.age;
-  const coastReached = totalPortfolio() >= coastNumber() * (strat.target / S.target);
-  return { retAge, retPort, annual, monthly, netAnn, taxRate, estate, workYears, coastReached, fire };
-}
+  const ctx = document.getElementById('chart-ss-breakeven')?.getContext('2d');
+  if(!ctx)return;
+  if(window._ssChart)window._ssChart.destroy();
 
-function renderStrategyGrid() {
-  const results = STRATEGIES.map(s => ({ ...s, ...evalStrategy(s) }));
-  // Find best on key metrics
-  const bestFire    = results.reduce((a,b) => a.retAge < b.retAge ? a : b);
-  const bestEstate  = results.reduce((a,b) => a.estate > b.estate ? a : b);
-  const bestIncome  = results.reduce((a,b) => a.netAnn > b.netAnn ? a : b);
-
-  document.getElementById('strategy-grid').innerHTML = results.map(r => {
-    const isWinner = r.id === 'standard'; // balanced pick
-    return `
-      <div class="strategy-col ${isWinner ? 'winner' : ''}">
-        ${isWinner ? '<div class="winner-badge">Recommended</div>' : ''}
-        <div class="strat-name" style="color:${r.color}">${r.name}</div>
-        <div class="strat-metric"><span>Target</span><span style="color:${r.color}">${fmt(r.target)}</span></div>
-        <div class="strat-metric"><span>FIRE age</span><span>${r.retAge}</span></div>
-        <div class="strat-metric"><span>FIRE year</span><span>${r.fire?.year || 1977+r.retAge}</span></div>
-        <div class="strat-metric"><span>Years left</span><span>${r.workYears}</span></div>
-        <div class="strat-metric"><span>Annual (gross)</span><span>${fmt(r.annual)}</span></div>
-        <div class="strat-metric"><span>Annual (net)</span><span style="color:var(--green)">${fmt(r.netAnn)}</span></div>
-        <div class="strat-metric"><span>Monthly net</span><span style="color:var(--green)">${fmt(r.netAnn/12)}</span></div>
-        <div class="strat-metric"><span>Est. tax rate</span><span>${Math.round(r.taxRate*100)}%</span></div>
-        <div class="strat-metric"><span>Estate @ 90</span><span style="color:${r.estate>0?'var(--teal)':'var(--red)'}">${r.estate > 0 ? fmt(r.estate) : 'Depleted'}</span></div>
-      </div>`;
-  }).join('');
-
-  // Strategy detail
-  document.getElementById('strat-detail').innerHTML = results.map(r => `
-    <div style="padding:10px 0;border-bottom:1px solid var(--border)">
-      <div style="font-size:12px;font-weight:600;color:${r.color};margin-bottom:4px">${r.name}</div>
-      <div style="font-size:11px;color:var(--text2);line-height:1.7">
-        Retire at ${r.retAge} with ${fmt(r.retPort)} · ${fmt(r.netAnn)}/yr net after ~${Math.round(r.taxRate*100)}% effective tax
-        · Estate of ${r.estate > 0 ? fmt(r.estate) : 'zero'} at age 90
-        ${r.coast ? ' · Coast FIRE active' : ''}
-      </div>
-    </div>`).join('');
-
-  // Trajectory chart
-  const ages = Array.from({length:21}, (_,i) => S.age+i);
-  const ctx  = document.getElementById('chart-strat').getContext('2d');
-  if (window._stratChart) window._stratChart.destroy();
-  window._stratChart = new Chart(ctx, {
+  window._ssChart = new Chart(ctx, {
     type:'line',
     data:{
       labels: ages,
-      datasets: [
-        ...STRATEGIES.map(s => ({
-          label: s.name,
-          data: project(20).map(d => Math.round(d.portfolio/1000)),
-          borderColor: s.color,
-          borderWidth: s.id==='standard' ? 2.5 : 1.5,
-          pointRadius: 0,
-          fill: false,
-          tension: .4
-        })),
-        ...STRATEGIES.map(s => ({
-          label: s.name+' target',
-          data: ages.map(() => Math.round(s.target/1000)),
-          borderColor: s.color + '40',
-          borderWidth: 1,
-          borderDash: [4,4],
-          pointRadius: 0,
-          fill: false
-        }))
-      ]
+      datasets: claimAges.map((claimAge, i)=>({
+        label:`Claim at ${claimAge}`,
+        data: ages.map(age=>{
+          if(age < claimAge) return null;
+          // Cumulative SS received (Paul only, monthly × months received)
+          const monthly = ssBenefit(claimAge);
+          const months  = (age - claimAge) * 12;
+          const ss      = ssSpouseBenefit(claimAge, Math.min(age, 62+i));
+          return Math.round((monthly + ssBenefit(claimAge)*0.5) * months / 1000);
+        }),
+        borderColor: colors[i],
+        backgroundColor: 'transparent',
+        borderWidth: claimAge===67 ? 2.5 : 1.5,
+        pointRadius: 0,
+        tension: .2,
+        spanGaps: true,
+      }))
     },
     options:{
       responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ labels:{ color:'#94a3b8', font:{size:10}, filter: item => !item.text.includes('target') } } },
+      interaction:{ mode:'index', intersect:false },
+      plugins:{
+        legend:{ labels:{ color:'#94a3b8', font:{size:10}, boxWidth:10 } },
+        tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: $${ctx.parsed.y}K cumulative` } }
+      },
       scales:{
         x:{ ticks:{color:'#475569',font:{size:10}}, grid:{color:'#1e2d45'} },
         y:{ ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'}, grid:{color:'#1e2d45'} }
@@ -778,537 +1234,598 @@ function renderStrategyGrid() {
   });
 }
 
-let currentScen = 'standard';
+// ═══════════════════════════════════════════════════════════
+// MORTGAGE PAYOFF OPTIMIZER
+// ═══════════════════════════════════════════════════════════
+function renderMortgageOptimizer() {
+  const div = document.getElementById('mortgage-optimizer');
+  if(!div)return;
 
-function setScen(key, el) {
-  currentScen = key;
-  document.querySelectorAll('.stab').forEach(t => t.classList.remove('on'));
-  el.classList.add('on');
-  renderScenDetail();
-}
+  const mortgageBal  = S.mortgage;
+  const mortgageRate = 0.0225; // 2.25%
+  const investReturn = S.growth; // 7% assumption
+  const extraMonthly = 750; // Paul's current extra principal payment
+  const years        = 30;
 
-function renderScenDetail() {
-  const div = document.getElementById('scen-detail');
-  const port = totalPortfolio();
+  // Scenario A: pay down mortgage aggressively (extra $750/mo to principal)
+  // Scenario B: invest that $750/mo instead at 7%
+  // Scenario C: lump-sum payoff now vs invest
 
-  if (currentScen === 'coast') {
-    const cn = coastNumber();
-    const gap = Math.max(0, cn - port);
-    div.innerHTML = `
-      <div style="font-family:var(--mono);font-size:24px;color:${port>=cn?'var(--green)':'var(--amber)'};margin-bottom:8px">
-        ${port>=cn ? '✓ Achieved' : pct(port,cn)+'% there'}
-      </div>
-      <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px">
-        Coast FIRE number: <strong style="color:var(--text)">${fmtF(Math.round(cn))}</strong><br>
-        ${port>=cn
-          ? 'Your '+fmt(port)+' portfolio will compound to $2.7M by age '+S.fireAge+' at '+(S.growth*100).toFixed(1)+'% without another dollar saved.'
-          : 'Gap: '+fmtF(gap)+' · ~'+Math.round(gap/(S.savings*12)*10)/10+' years at current savings pace.'}
-      </div>
-      <div style="padding:10px;background:${port>=cn?'var(--green-bg)':'var(--amber-bg)'};border-radius:4px;font-size:11px;color:var(--text2)">
-        At coast: redirect contributions to shorter-term goals (mortgage payoff, 529s, lifestyle buffer)
-      </div>`;
-    return;
+  // Monthly mortgage math
+  const monthlyRate  = mortgageRate / 12;
+  const n            = years * 12;
+
+  // A: extra payment — how many months to payoff?
+  const basePayment  = 3000; // Paul's stated payment
+  let balA = mortgageBal, monthsA = 0;
+  while(balA > 0 && monthsA < n) {
+    balA = balA * (1 + monthlyRate) - basePayment;
+    monthsA++;
   }
+  const yearsToPayoffA = Math.round(monthsA/12*10)/10;
 
-  if (currentScen === 'shock') {
-    const shockData = project(20, { savingsOverride: y => y <= 3 ? S.savings : Math.max(0, S.savings - 5000) });
-    const baseData  = project(20);
-    const fireBase  = baseData.find(d => d.portfolio >= S.target);
-    const fireShock = shockData.find(d => d.portfolio >= S.target);
-    const delay     = fireShock && fireBase ? fireShock.age - fireBase.age : '?';
-    div.innerHTML = `
-      <div style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.7">
-        Salary drops $60K at year 3 (e.g. role transition). Monthly savings fall ${fmt(S.savings)} → ${fmt(Math.max(0,S.savings-5000))}.
-      </div>
-      <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Delay</th></tr>
-        <tr><td>Base case</td><td class="mono">${fireBase?.age||'65+'}</td><td><span class="tag tag-g">—</span></td></tr>
-        <tr><td>Income shock</td><td class="mono" style="color:var(--amber)">${fireShock?.age||'65+'}</td><td><span class="tag tag-a">+${delay} yr${delay!==1?'s':''}</span></td></tr>
-      </table>
-      <div style="margin-top:10px;font-size:11px;color:var(--text2)">Lean FIRE target ($2.16M) remains achievable at ${findFireAge(2160000,{savingsOverride:y=>y<=3?S.savings:S.savings-5000})?.age||'?'} in this scenario.</div>`;
-    return;
-  }
+  // B: invest $750/mo instead — value at payoff point
+  const ir = investReturn / 12;
+  let investB = 0;
+  for(let m=0;m<monthsA;m++) investB = (investB + extraMonthly) * (1+ir);
 
-  if (currentScen === 'crash') {
-    const crashData = project(20, { savingsOverride: y => { return S.savings; } });
-    // Apply 30% crash at year 2 manually
-    let p = port; const r = S.growth/12;
-    const crashRows = [{ age:S.age, year:1977+S.age, portfolio:p }];
-    for (let y=1; y<=20; y++) {
-      for (let m=0; m<12; m++) p=(p+S.savings)*(1+r);
-      if (y===2) p *= 0.70;
-      crashRows.push({ age:S.age+y, year:1977+S.age+y, portfolio:p });
-    }
-    const baseData = project(20);
-    const fireBase  = baseData.find(d=>d.portfolio>=S.target);
-    const fireCrash = crashRows.find(d=>d.portfolio>=S.target);
-    const delay     = fireCrash && fireBase ? fireCrash.age - fireBase.age : '?';
-    div.innerHTML = `
-      <div style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.7">
-        30% drawdown in year 2 (2008-magnitude). Contributions continue through recovery — a major advantage in accumulation phase.
-      </div>
-      <table class="dt"><tr><th>Scenario</th><th>FIRE age</th><th>Delay</th></tr>
-        <tr><td>Base case</td><td class="mono">${fireBase?.age||'65+'}</td><td><span class="tag tag-g">—</span></td></tr>
-        <tr><td>30% crash yr 2</td><td class="mono" style="color:var(--red)">${fireCrash?.age||'65+'}</td><td><span class="tag tag-r">+${delay} yr${delay!==1?'s':''}</span></td></tr>
-      </table>
-      <div style="margin-top:10px;font-size:11px;color:var(--text2)">Continued $${Math.round(S.savings).toLocaleString()}/mo contributions during crash buys more shares at depressed prices — accelerates recovery vs stopping contributions.</div>`;
-    return;
-  }
+  // Interest saved by paying down vs investing
+  const interestSavedA = extraMonthly * monthsA - (mortgageBal - Math.max(0, balA));
+  const opportunityCostA = investB; // what investing those payments would have grown to
 
-  // Standard / lean / fat
-  const targets = { standard:2700000, lean:2160000, fat:4050000 };
-  const target  = targets[currentScen];
-  const fire    = findFireAge(target);
-  const retPort = fire?.portfolio || project(Math.max(1,S.fireAge-S.age)).at(-1).portfolio;
-  const annual  = retPort * 0.04;
-  const taxRate = effectiveTaxRate(annual);
+  // C: lump-sum payoff ($307K from portfolio)
+  const lumpSum = mortgageBal;
+  // Cost: lose $307K of compounding for mortgage.payoffYears years
+  const lumpSumOpCost = lumpSum * Math.pow(1+investReturn, yearsToPayoffA) - lumpSum;
+  // Benefit: no more mortgage interest = rough ~ mortgageRate * bal * 0.5 * years
+  const lumpSumIntSaved = mortgageBal * mortgageRate * yearsToPayoffA * 0.5;
+  const lumpSumNetBenefit = lumpSumIntSaved - lumpSumOpCost;
+
+  const recommendation = investReturn > mortgageRate * 1.5
+    ? `At ${(investReturn*100).toFixed(0)}% expected return vs ${(mortgageRate*100).toFixed(2)}% mortgage rate, every dollar invested beats every dollar of extra mortgage paydown by ${fmt((investReturn-mortgageRate)*lumpSum*5)} over 5 years. The math strongly favors investing.`
+    : `With rates converging, the risk-adjusted case for paydown improves. Consider splitting: invest 70%, pay down 30%.`;
+
   div.innerHTML = `
-    <table class="dt">
-      <tr><td style="color:var(--text2)">FIRE target</td><td class="mono right">${fmtF(target)}</td></tr>
-      <tr><td style="color:var(--text2)">Gap today</td><td class="mono right" style="color:var(--amber)">${fmt(Math.max(0,target-port))}</td></tr>
-      <tr><td style="color:var(--text2)">Progress</td><td class="mono right">${pct(port,target)}%</td></tr>
-      <tr><td style="color:var(--text2)">FIRE age</td><td class="mono right" style="color:var(--green)">${fire?.age||'65+'}</td></tr>
-      <tr><td style="color:var(--text2)">Annual gross (4%)</td><td class="mono right">${fmtF(annual)}</td></tr>
-      <tr><td style="color:var(--text2)">Effective tax rate</td><td class="mono right">${Math.round(taxRate*100)}%</td></tr>
-      <tr><td style="color:var(--text2)">Annual net</td><td class="mono right" style="color:var(--green)">${fmtF(annual*(1-taxRate))}</td></tr>
-      <tr><td style="color:var(--text2)">Monthly net</td><td class="mono right" style="color:var(--green)">${fmtF(annual*(1-taxRate)/12)}</td></tr>
-    </table>`;
+    <div class="insight-bar" style="margin-bottom:14px">${recommendation}</div>
+    <div class="g3">
+      <div style="padding:12px;background:var(--card2);border:1px solid var(--border);border-radius:4px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:6px">Current path</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.8">
+          Balance: <span style="font-family:var(--mono);color:var(--text)">${fmtF(mortgageBal)}</span><br>
+          Rate: <span style="font-family:var(--mono);color:var(--text)">${(mortgageRate*100).toFixed(2)}%</span><br>
+          Extra/mo: <span style="font-family:var(--mono);color:var(--amber)">${fmtF(extraMonthly)}</span><br>
+          Payoff in: <span style="font-family:var(--mono);color:var(--green)">${yearsToPayoffA} yrs</span>
+        </div>
+      </div>
+      <div style="padding:12px;background:var(--card2);border:1px solid var(--border);border-radius:4px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:6px">Invest $750/mo instead</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.8">
+          At ${(investReturn*100).toFixed(0)}% over same period<br>
+          Investment grows to: <span style="font-family:var(--mono);color:var(--green)">${fmt(investB)}</span><br>
+          vs interest saved: <span style="font-family:var(--mono);color:var(--amber)">${fmt(extraMonthly*monthsA*mortgageRate*0.5)}</span><br>
+          <strong style="color:var(--green)">Invest wins by ${fmt(investB - extraMonthly*monthsA*mortgageRate*0.5)}</strong>
+        </div>
+      </div>
+      <div style="padding:12px;background:var(--card2);border:1px solid var(--border);border-radius:4px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:6px">Lump-sum payoff now</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.8">
+          Pull ${fmtF(lumpSum)} from portfolio<br>
+          Opportunity cost: <span style="font-family:var(--mono);color:var(--red)">${fmt(lumpSumOpCost)}</span><br>
+          Interest avoided: <span style="font-family:var(--mono);color:var(--green)">${fmt(lumpSumIntSaved)}</span><br>
+          <strong style="${lumpSumNetBenefit>0?'color:var(--green)':'color:var(--red)'}">Net: ${lumpSumNetBenefit>0?'+':''}${fmt(lumpSumNetBenefit)}</strong>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--text3);margin-top:10px">2.25% mortgage is among the lowest rates in history. This rate is below long-run equity returns by ~4.75%. The psychological value of a paid-off home is real but not modeled here. Your planned payoff target: age 60 (youngest HS graduation).</div>
+  `;
 }
 
-// ═══════════════════════════════════════════════════════════════
-// AI ADVISOR
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// TAX ENGINE PAGE — orchestrator
+// ═══════════════════════════════════════════════════════════
+function renderTaxEngine() {
+  renderBracketViz();
+  renderRothOptimizer();
+  renderSSEstimator();
+  renderRMDTable();
+  renderIRMAA();
+  renderLifetimeTax();
+  renderRothLadderChart();
+  renderSSBreakevenChart();
+  renderMortgageOptimizer();
+}
+
+function renderRothOptimizer() {
+  const ladder=optimizeRothLadder();
+  const totalTax=ladder.reduce((a,b)=>a+b.tax,0);
+  const totalConverted=ladder.reduce((a,b)=>a+b.convert,0);
+  const div=document.getElementById('roth-optimizer');
+  div.innerHTML=`<div class="insight-bar purple" style="margin-bottom:12px">
+    Converting ${fmtF(totalConverted)} over ${ladder.length} years · Est. total tax: ${fmtF(totalTax)} · Strategy: fill 12% bracket annually pre-59½ to eliminate future RMDs
+  </div>
+  <table class="dt"><thead><tr><th>Age</th><th>Convert amt</th><th>Tax (fed+MO)</th><th>Marginal</th><th>New Roth bal</th><th>Defer bal</th></tr></thead>
+  <tbody>${ladder.map(r=>`<tr>
+    <td>${r.age}</td>
+    <td class="mono g">${fmtF(r.convert)}</td>
+    <td class="mono a">${fmtF(r.tax)}</td>
+    <td class="mono">${Math.round(r.marginal*100)}%</td>
+    <td class="mono p">${fmt(r.rothBal)}</td>
+    <td class="mono">${fmt(r.deferBal)}</td>
+  </tr>`).join('')}</tbody></table>
+  <div style="font-size:10px;color:var(--text3);margin-top:8px">Converts annual amount up to fill 12% federal bracket ($94,300 MFJ after std deduction) · Assumes no other income post-FIRE until SS at 62</div>`;
+}
+
+function renderSSEstimator() {
+  const scenarios=[
+    { paulAge:62, savAge:62, label:'Both claim at 62' },
+    { paulAge:67, savAge:62, label:'Paul 67, Savannah 62' },
+    { paulAge:70, savAge:62, label:'Paul 70 (max), Savannah 62' },
+    { paulAge:67, savAge:67, label:'Both at FRA (67)' },
+  ];
+  const div=document.getElementById('ss-estimator');
+  const paulFRA=ssBenefit(67)*12;
+  div.innerHTML=`<div class="insight-bar" style="margin-bottom:10px">
+    Paul's estimated FRA benefit: <strong>${fmtF(paulFRA)}/yr</strong> at age 67. Each year of delay beyond 67 adds 8%. Savannah gets spousal = 50% of Paul's PIA.
+  </div>
+  <table class="dt"><thead><tr><th>Scenario</th><th>Paul/mo</th><th>Savannah/mo</th><th>Combined/yr</th><th>Break-even vs age 62</th></tr></thead>
+  <tbody>${scenarios.map(sc=>{
+    const pm=ssBenefit(sc.paulAge);
+    const sm=ssSpouseBenefit(sc.paulAge,sc.savAge);
+    const annual=(pm+sm)*12;
+    const base62=(ssBenefit(62)+ssSpouseBenefit(62,62))*12;
+    const breakEven=sc.paulAge===62&&sc.savAge===62?'—':Math.round((annual-base62)>0?(annual-base62):0)+' yrs';
+    return `<tr class="${sc.paulAge===70?'hl':''}">
+      <td>${sc.label}</td>
+      <td class="mono">${fmtF(pm*12/12)}/mo</td>
+      <td class="mono">${fmtF(sm*12/12)}/mo</td>
+      <td class="mono g">${fmtF(annual)}</td>
+      <td class="mono" style="color:var(--text2)">${breakEven}</td>
+    </tr>`;
+  }).join('')}</tbody></table>
+  <div style="font-size:10px;color:var(--text3);margin-top:8px">Survivorship: Savannah receives Paul's full benefit as survivor after Paul's death. Max survivor = Paul's age-70 benefit. This is the primary reason to delay Paul's claim.</div>`;
+}
+
+function renderRMDTable() {
+  const rows=projectRMDs(73,90);
+  document.getElementById('rmd-tbody').innerHTML=rows.map((r,i)=>{
+    const isHigh=r.irmaa.label!=='Standard';
+    return `<tr class="${isHigh?'warn':''}">
+      <td>${r.age}</td>
+      <td>${r.year}</td>
+      <td class="mono">${fmt(r.bal401k)}</td>
+      <td class="mono a">${fmtF(r.rmd)}</td>
+      <td class="mono">${fmtF(r.otherIncome)}</td>
+      <td class="mono">${fmt(r.totalMAGI)}</td>
+      <td>${isHigh?`<span class="tag tag-a">${r.irmaa.label}</span>`:'<span class="tag tag-g">Standard</span>'}</td>
+      <td class="mono r">${fmtF(r.taxes.fed)}</td>
+      <td class="mono a">${fmtF(r.taxes.mo)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderIRMAA() {
+  const div=document.getElementById('irmaa-calc');
+  div.innerHTML=`<div style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.7">
+    IRMAA = Income-Related Monthly Adjustment Amount. Medicare Part B+D surcharges triggered by MAGI 2 years prior.
+    Based on your 401k RMDs + SS, you may hit IRMAA tiers in your 70s.
+  </div>
+  <table class="dt"><thead><tr><th>MAGI threshold (MFJ)</th><th>Part B surcharge/yr</th><th>Part D surcharge/yr</th><th>Total/yr</th></tr></thead>
+  <tbody>${IRMAA.map(b=>`<tr>
+    <td>${b.magiLimit===Infinity?'$750K+':'≤'+fmtF(b.magiLimit)} <span class="tag tag-${b.partB===0?'g':'a'}">${b.label}</span></td>
+    <td class="mono ${b.partB>0?'a':''}">${fmtF(b.partB)}</td>
+    <td class="mono ${b.partD>0?'a':''}">${fmtF(b.partD)}</td>
+    <td class="mono ${b.partB+b.partD>0?'r':''}">${fmtF(b.partB+b.partD)}</td>
+  </tr>`).join('')}</tbody></table>
+  <div class="insight-bar warn" style="margin-top:10px">Roth conversion ladder (age 55–72) reduces 401k balance before RMDs, potentially keeping MAGI below IRMAA tiers and saving $800–4,400/yr in Medicare surcharges.</div>`;
+}
+
+function renderLifetimeTax() {
+  // Compare: full defer vs Roth conversion strategy
+  const ladder=optimizeRothLadder();
+  const convTax=ladder.reduce((a,b)=>a+b.tax,0);
+  const rmdRows=projectRMDs(73,90);
+  const noConvRMDTax=rmdRows.reduce((a,b)=>a+b.taxes.total,0);
+
+  // With conversion: smaller 401k means smaller RMDs → estimate 60% of original RMD tax
+  const withConvRMDTax=noConvRMDTax*0.4;
+  const totalNoConv=noConvRMDTax;
+  const totalWithConv=convTax+withConvRMDTax;
+  const savings=Math.max(0,totalNoConv-totalWithConv);
+
+  document.getElementById('lifetime-tax').innerHTML=`
+  <table class="dt" style="margin-bottom:10px">
+    <thead><tr><th>Strategy</th><th>Conversion tax</th><th>RMD tax (73–90)</th><th>Lifetime total</th></tr></thead>
+    <tbody>
+      <tr><td>No Roth conversion</td><td class="mono">$0</td><td class="mono r">${fmtF(noConvRMDTax)}</td><td class="mono r">${fmtF(totalNoConv)}</td></tr>
+      <tr class="hl"><td><strong>Roth ladder (optimal)</strong></td><td class="mono a">${fmtF(convTax)}</td><td class="mono">${fmtF(Math.round(withConvRMDTax))}</td><td class="mono g"><strong>${fmtF(totalWithConv)}</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="insight-bar" style="border-left-color:var(--green)">
+    <strong>Estimated lifetime tax savings from Roth conversion strategy: ${fmtF(Math.round(savings))}</strong><br>
+    Pay ${fmtF(convTax)} in tax now at 12% marginal · avoid ${fmtF(noConvRMDTax)} in RMD tax later at 22–32%
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// CONTRIBUTION ROOM TRACKER
+// ═══════════════════════════════════════════════════════════
+function renderContribTracker() {
+  const items=[
+    { label:'401(k) traditional/Roth', limit:23500, used:22631+869, note:'Maxed ✓' },
+    { label:'401(k) after-tax (mega backdoor)', limit:46000, used:0, note:'Unused — GDIT plan allows' },
+    { label:'HSA (family)', limit:8300, used:8550, note:'Maxed via employer ✓' },
+    { label:'Backdoor Roth — Paul', limit:7500, used:7000, note:'$500 remaining' },
+    { label:'Backdoor Roth — Savannah', limit:7500, used:7500, note:'Maxed ✓ (pending conversion)' },
+    { label:'529 — Dawson (MO deductible)', limit:16000, used:9000, note:'$7K room · $768 MO savings if used' },
+    { label:'529 — Chip (MO deductible)', limit:16000, used:9000, note:'$7K room · $768 MO savings if used' },
+  ];
+  const totalRoom=items.reduce((a,b)=>a+Math.max(0,b.limit-b.used),0);
+  document.getElementById('contrib-tracker').innerHTML=`
+    <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Total unused tax-advantaged room: <span style="font-family:var(--mono);color:var(--amber)">${fmtF(totalRoom)}</span></div>
+    ${items.map(it=>{
+      const used=Math.min(it.used,it.limit),pctUsed=Math.round(used/it.limit*100);
+      const over=it.used>it.limit;
+      return `<div class="prog">
+        <div class="prog-hd"><span>${it.label}</span><span>${fmtF(it.used)} / ${fmtF(it.limit)}</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${Math.min(100,pctUsed)}%;background:${pctUsed>=100?'var(--green)':pctUsed>60?'var(--amber)':'var(--blue)'}"></div></div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">${it.note}</div>
+      </div>`;
+    }).join('')}`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// AI ADVISOR — full tax context injected
+// ═══════════════════════════════════════════════════════════
 function buildContext() {
-  const port = totalPortfolio();
-  const fire = findFireAge(S.target);
-  const coast = coastNumber();
-  const taxTotal = taxableTotal();
-  const rothPct = Math.round(rothTotal()/port*100);
-  const deferPct = Math.round(taxDeferredTotal()/port*100);
-  const taxPct = Math.round(taxTotal/port*100);
+  const port=totalPortfolio(), fire=findFireAge(S.target), coast=coastNumber();
+  const rmdRows=projectRMDs(73,78);
+  const firstRMD=rmdRows[0];
+  const ladder=optimizeRothLadder();
+  const totalConvTax=ladder.reduce((a,b)=>a+b.tax,0);
+  const ssAt67=ssBenefit(67)*12, ssAt62=ssBenefit(62)*12;
+  const taxRate=effectiveTaxRate(S.target*0.04, ssAt62);
+  return `You are Paul Luker's personal financial advisor with complete access to his financial model.
 
-  return `You are a precise personal financial advisor for Paul Luker, age ${S.age}, targeting FIRE at ${S.fireAge}.
+PORTFOLIO (live): ${fmtF(port)} total
+  401(k): ${fmtF(ACCTS.a401k)} | Paul Roth: ${fmtF(ACCTS.aroth)} | Savannah Rollover: ${fmtF(ACCTS.srollover)} | Savannah Trad IRA: ${fmtF(ACCTS.strad)} (PENDING Roth conversion)
+  Joint Brokerage: ${fmtF(ACCTS.bjoint)} | Individual: ${fmtF(ACCTS.bindiv)} | HYSA: ${fmtF(ACCTS.hysa)} | Cash: ${fmtF(ACCTS.cash)}
+  Allocation: ${Math.round(taxDeferredTotal()/port*100)}% tax-deferred · ${Math.round(rothTotal()/port*100)}% Roth · ${Math.round(taxableTotal()/port*100)}% taxable · ${Math.round(liquidTotal()/port*100)}% liquid
 
-LIVE PORTFOLIO: ${fmtF(port)} total
-  401(k): ${fmtF(ACCTS.a401k)} | Roth IRA: ${fmtF(ACCTS.aroth)} | Savannah Rollover: ${fmtF(ACCTS.srollover)} | Savannah Trad IRA: ${fmtF(ACCTS.strad)} (pending Roth conversion)
-  Joint Brokerage: ${fmtF(ACCTS.bjoint)} | Individual: ${fmtF(ACCTS.bindiv)} | HYSA+Savings: ${fmtF(ACCTS.hysa)} | Cash: ${fmtF(ACCTS.cash)}
-  Allocation: ${deferPct}% tax-deferred · ${rothPct}% Roth · ${taxPct}% taxable · ${Math.round((ACCTS.hysa+ACCTS.cash)/port*100)}% liquid
+FIRE: Target ${fmtF(S.target)} · Progress ${pct(port,S.target)}% · FIRE age ${fire?.age||'?'} · Coast: ${port>=coast?'ACHIEVED':'gap '+fmtF(Math.round(coast-port))}
+INCOME: $${S.income.toLocaleString()} gross · $${S.savings.toLocaleString()}/mo savings · ${Math.round(S.savings*12/S.income*100)}% rate
 
-FIRE MATH: Target ${fmtF(S.target)} · Gap ${fmtF(Math.max(0,S.target-port))} · Progress ${pct(port,S.target)}% · Projected FIRE age ${fire?.age||'65+'} (${fire?.year||'—'})
-  Coast FIRE number: ${fmtF(Math.round(coast))} · Status: ${port>=coast?'ACHIEVED — contributions optional':'gap of '+fmtF(Math.round(coast-port))}
+TAX SITUATION:
+  Effective retirement tax rate (4% WR + SS): ~${Math.round(taxRate*100)}%
+  Roth conversion ladder (ages ${S.fireAge}-59): convert ~$94K/yr at 12% · total tax ${fmtF(totalConvTax)} · saves ~${fmtF(Math.round(rmdRows.reduce((a,b)=>a+b.taxes.total,0)*0.6))} in lifetime RMD tax
+  SS: Paul FRA benefit ${fmtF(ssAt67)}/yr · at 62: ${fmtF(ssAt62)}/yr · Savannah spousal: ~${fmtF(ssBenefit(67)*12*0.5)}/yr
+  First RMD at 73: ${fmtF(firstRMD?.rmd||0)} from ${fmtF(firstRMD?.bal401k||0)} balance · IRMAA risk: ${firstRMD?.irmaa.label||'unknown'}
   
-INCOME: Gross $${S.income.toLocaleString()} · Monthly savings $${S.savings.toLocaleString()} · Savings rate ${Math.round(S.savings*12/S.income*100)}%
-RETURNS: ${(S.growth*100).toFixed(1)}% pre-FIRE · ${(S.postGrowth*100).toFixed(1)}% post-FIRE · ${(S.inflation*100).toFixed(1)}% inflation
-529s: Dawson ${fmtF(S.s529a)}/target $200K · Chip ${fmtF(S.s529b)}/target $200K · Combined gap ${fmtF(Math.max(0,400000-S.s529a-S.s529b))}
-REAL ESTATE: Home ${fmtF(S.homeValue)} · Mortgage ${fmtF(S.mortgage)} · Equity ${fmtF(S.homeValue-S.mortgage)}
-CRITICAL OPEN ITEMS: (1) Savannah 2024 Form 8606 unfiled — $2,016 tax exposure (2) Savannah $${fmtF(ACCTS.strad)} Trad IRA → Roth conversion pending (3) Q3 est tax $1,793 due Sep 15
+CRITICAL OPEN ITEMS:
+  1. Savannah 2024 Form 8606 UNFILED — $2,016 avoidable tax
+  2. Savannah $${fmtF(ACCTS.strad)} Trad IRA Roth conversion PENDING
+  3. Q3 estimated tax $1,793 due Sep 15
+  4. Pre-59½ bridge: taxable accounts only ${fmtF(taxableTotal())} vs ~${fmtF((59-S.fireAge)*108000)} needed
 
-Respond concisely with specific numbers. Reference live portfolio values. Max 3 paragraphs.`;
+Be direct. Reference exact numbers. Max 3 focused paragraphs.`;
 }
 
-function initChatGreeting() {
-  const port  = totalPortfolio();
-  const fire  = findFireAge(S.target);
-  const coast = coastNumber();
-  document.getElementById('chat-intro').innerHTML =
-    `Hello Paul. Portfolio loaded: <strong>${fmtF(port)}</strong> across ${Object.keys(ACCTS).length} accounts. ` +
-    `You're <strong>${pct(port,S.target)}%</strong> to Standard FIRE — projected age <strong>${fire?.age||'?'}</strong>. ` +
-    `Coast FIRE is <strong>${port>=coast?'✓ achieved — contributions optional':''+pct(port,coast)+'% there'}</strong>. ` +
-    `What would you like to explore?`;
+let chatHistory=[];
+function initChatGreeting(){
+  const port=totalPortfolio(),fire=findFireAge(S.target),coast=coastNumber();
+  document.getElementById('chat-intro').innerHTML=
+    `Portfolio: <strong>${fmtF(port)}</strong> · FIRE ${pct(port,S.target)}% · Age <strong>${fire?.age||'?'}</strong> · Coast: <strong>${port>=coast?'✓ Achieved':pct(port,coast)+'%'}</strong>. Tax engine loaded — RMDs, Roth ladder, SS all modeled. What do you want to explore?`;
 }
-
-async function sendChat() {
-  const input = document.getElementById('chat-input');
-  const msg   = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  addMsg(msg, 'user');
-  document.getElementById('typing').style.display = 'block';
+async function sendChat(){
+  const input=document.getElementById('chat-input');
+  const msg=input.value.trim(); if(!msg)return;
+  input.value='';
+  chatHistory.push({role:'user',content:msg});
+  addMsg(msg,'user');
+  document.getElementById('typing').style.display='block';
   scrollChat();
-  try {
-    const res  = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:600, system:buildContext(), messages:[{role:'user',content:msg}] }) });
-    const data = await res.json();
-    document.getElementById('typing').style.display = 'none';
-    addMsg(data.content?.[0]?.text || data.error || 'No response.', 'ai');
-  } catch(e) {
-    document.getElementById('typing').style.display = 'none';
-    addMsg('Connection error. Try again.', 'ai');
-  }
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:700,system:buildContext(),messages:chatHistory.slice(-10)})});
+    const data=await res.json();
+    const text=data.content?.[0]?.text||data.error||'No response.';
+    chatHistory.push({role:'assistant',content:text});
+    document.getElementById('typing').style.display='none';
+    addMsg(text,'ai');
+  }catch(e){document.getElementById('typing').style.display='none';addMsg('Error. Try again.','ai');}
 }
-
-function addMsg(text, role) {
-  const wrap = document.getElementById('chat-wrap');
-  const div  = document.createElement('div');
-  div.className = 'msg '+role;
-  if (role==='ai') div.innerHTML = '<div class="ai-label">FIRE Advisor</div>'+text.replace(/\n/g,'<br>');
-  else div.textContent = text;
-  wrap.appendChild(div);
-  scrollChat();
+function addMsg(text,role){
+  const wrap=document.getElementById('chat-wrap');
+  const div=document.createElement('div');div.className='msg '+role;
+  if(role==='ai')div.innerHTML='<div class="ai-label">FIRE Advisor</div>'+text.replace(/\n/g,'<br>');
+  else div.textContent=text;
+  wrap.appendChild(div);scrollChat();
 }
+function scrollChat(){const w=document.getElementById('chat-wrap');setTimeout(()=>w.scrollTop=w.scrollHeight,50);}
 
-function scrollChat() { const w=document.getElementById('chat-wrap'); setTimeout(()=>w.scrollTop=w.scrollHeight,50); }
+// ═══════════════════════════════════════════════════════════
+// RECOMMENDATIONS ENGINE — fully calculated
+// ═══════════════════════════════════════════════════════════
+function generateRecommendations(){
+  const port=totalPortfolio(),fire=findFireAge(S.target),coast=coastNumber();
+  const taxGap=Math.max(0,200000-taxableTotal());
+  const recs=[];
 
-// ═══════════════════════════════════════════════════════════════
-// RECOMMENDATIONS ENGINE — fully calculated, no hardcoded text
-// ═══════════════════════════════════════════════════════════════
-function generateRecommendations() {
-  const port    = totalPortfolio();
-  const fire    = findFireAge(S.target);
-  const coast   = coastNumber();
-  const taxPct  = Math.round(taxableTotal()/port*100);
-  const recs    = [];
-  const yrsToFire = (fire?.age||S.fireAge) - S.age;
-
-  // Unfiled 8606 — always critical
-  recs.push({
-    pri:'CRITICAL', cls:'tag-r', col:'var(--red)',
-    title:"File Savannah's late Form 8606 for 2024",
-    body:`Without the 2024 Form 8606 on record, Savannah's 2026 Roth conversion of ${fmtF(ACCTS.strad)} will be treated as fully pre-tax — creating ~$2,016 in avoidable federal+MO tax. The fix is a single form, mailed certified.`,
+  recs.push({pri:'CRITICAL',cls:'tag-r',col:'var(--red)',
+    title:"File Savannah's late 2024 Form 8606",
+    body:`The 2024 nondeductible IRA contribution of $7,000 was never reported. Without it, the pending ${fmtF(ACCTS.strad)} Roth conversion will be taxed as fully pre-tax — creating $2,016 in avoidable federal+MO tax. One form fixes this permanently.`,
     action:'Form 8606: Line 1 $7,000 · Line 14 $7,000 · IRS Kansas City MO 64999-0002 · certified mail',
-    impact:'Saves $2,016 immediately · unlocks clean Roth conversion'
-  });
+    impact:'Saves $2,016 on 2026 return'});
 
-  // Pending Roth conversion — amount is live from ACCTS
-  if (ACCTS.strad > 0) recs.push({
-    pri:'HIGH', cls:'tag-a', col:'var(--amber)',
-    title:`Execute Savannah's ${fmtF(ACCTS.strad)} Roth conversion`,
-    body:`Tax-deferred funds in a pre-tax IRA have no place in a FIRE plan when you're in the 32% bracket. Converting now at ~${Math.round(effectiveTaxRate(ACCTS.strad)*100)}% effective rate beats future RMDs at likely-higher rates. ${yrsToFire} years of tax-free Roth growth at stake.`,
-    action:'Fidelity acct 245-599645 → liquidate to SPAXX → trustee-to-trustee conversion → file 8606 on 2026 return',
-    impact:`~$1,008 total tax · ${yrsToFire} yrs tax-free growth · eliminates future RMD obligation`
-  });
+  if(ACCTS.strad>0) recs.push({pri:'HIGH',cls:'tag-a',col:'var(--amber)',
+    title:`Convert Savannah's ${fmtF(ACCTS.strad)} Trad IRA to Roth`,
+    body:`After filing the 2024 8606, only ~$3,500 of this conversion will be taxable (~$1,008 total tax). The pre-tax balance currently faces RMD risk and grows toward mandatory taxable income. ${S.fireAge-S.age} years of tax-free Roth compounding at stake.`,
+    action:'Fidelity 245-599645 → liquidate to SPAXX → trustee-to-trustee conversion → file 8606 on 2026 return',
+    impact:`~$1,008 tax now · eliminates RMD from this account · ${S.fireAge-S.age}yr tax-free growth`});
 
-  // Taxable brokerage gap — calculated from live ACCTS
-  const taxGap = 200000 - taxableTotal();
-  if (taxGap > 0) recs.push({
-    pri:'MEDIUM', cls:'tag-b', col:'var(--blue)',
-    title:'Build taxable bridge for pre-59½ access',
-    body:`Only ${taxPct}% of your portfolio (${fmtF(taxableTotal())}) is in taxable accounts. Retiring at ${S.fireAge} means ${59-S.fireAge} years before penalty-free 401k access. You need a ${fmtF(Math.min(taxGap, (59-S.fireAge)*108000))} Roth conversion ladder or taxable bridge. Current gap to $200K taxable target: ${fmtF(taxGap)}.`,
-    action:`Redirect ~$1,000-1,500/mo to joint brokerage (Z33-152454) alongside 401k contributions`,
-    impact:`${fmtF(taxGap)} gap · ${59-S.fireAge} years to build bridge before 59½`
-  });
+  recs.push({pri:'HIGH',cls:'tag-p',col:'var(--purple)',
+    title:'Execute Roth conversion ladder at FIRE (ages 55–59)',
+    body:`With ${fmtF(taxDeferredTotal())} in tax-deferred accounts, RMDs at 73 will generate $60–100K/yr in mandatory taxable income at 22%+ rates. Converting ~$94K/yr in the 12% bracket between ages ${S.fireAge}–59 reduces 401k balance before RMDs and could save ${fmtF(Math.round(projectRMDs().reduce((a,b)=>a+b.taxes.total,0)*0.6))} in lifetime tax.`,
+    action:'See Tax Engine tab → Roth Conversion Ladder for year-by-year breakdown',
+    impact:`Estimated lifetime tax savings: ${fmtF(Math.round(projectRMDs().reduce((a,b)=>a+b.taxes.total,0)*0.6))}`});
 
-  // Coast FIRE — calculated
-  if (port >= coast * 0.85 && port < coast) recs.push({
-    pri:'OPPORTUNITY', cls:'tag-g', col:'var(--green)',
-    title:`Coast FIRE: ${pct(port,coast)}% — ${fmtF(Math.round(coast-port))} gap`,
-    body:`Coast FIRE number is ${fmtF(Math.round(coast))}. At ${pct(port,coast)}% of the way there, you're close enough that a market year of ${(S.growth*100).toFixed(0)}%+ could get you across without new contributions. Once crossed, all monthly savings become optional.`,
-    action:'Continue current contributions — coast threshold likely crossed within 1-2 years at current trajectory',
-    impact:`When crossed: monthly savings become discretionary · focus surplus on mortgage/529/lifestyle`
-  });
+  if(taxGap>0) recs.push({pri:'MEDIUM',cls:'tag-b',col:'var(--blue)',
+    title:`Build taxable bridge — ${fmtF(taxGap)} gap to $200K`,
+    body:`Retiring at ${S.fireAge} means ${59-S.fireAge} years before penalty-free 401k access. Current taxable: ${fmtF(taxableTotal())}. At $108K/yr expenses, you need ${fmtF((59-S.fireAge)*108000)} accessible without penalty. The shortfall is ${fmtF(Math.max(0,(59-S.fireAge)*108000-taxableTotal()))}.`,
+    action:`Redirect $1,000–1,500/mo to joint brokerage Z33-152454 alongside 401k contributions`,
+    impact:`${59-S.fireAge}-yr pre-59½ gap · need ${fmtF(Math.max(0,(59-S.fireAge)*108000-taxableTotal()))} more in taxable`});
 
-  if (port >= coast) recs.push({
-    pri:'ACHIEVED', cls:'tag-g', col:'var(--green)',
-    title:'✓ Coast FIRE achieved — contributions are optional',
-    body:`Your ${fmtF(port)} portfolio will compound to ${fmtF(S.target)} by age ${S.fireAge} at ${(S.growth*100).toFixed(1)}% without another dollar saved. Every dollar you continue investing accelerates FIRE by months, not years.`,
-    action:'Optional: redirect $1,000-2,000/mo surplus to mortgage payoff acceleration (saves interest on 2.25% rate) or 529 top-up',
-    impact:`FIRE gap ${fmtF(Math.max(0,S.target-port))} · projected FIRE age ${fire?.age||'?'}`
-  });
+  recs.push({pri:'PLAN',cls:'tag-t',col:'var(--teal)',
+    title:`Social Security: delay Paul to 70, claim Savannah at 62`,
+    body:`Paul's benefit at 70 (${fmtF(ssBenefit(70)*12)}/yr) vs 62 (${fmtF(ssBenefit(62)*12)}/yr) — difference of ${fmtF((ssBenefit(70)-ssBenefit(62))*12)}/yr for life. More importantly, Savannah's survivor benefit = Paul's full age-70 benefit. The spousal/survivor optimization alone could add ${fmtF((ssBenefit(70)-ssBenefit(62))*12*15)}-${fmtF((ssBenefit(70)-ssBenefit(62))*12*25)} over a 15-25yr period.`,
+    action:'See Tax Engine tab → Social Security Estimator for break-even analysis by scenario',
+    impact:`${fmtF((ssBenefit(70)-ssBenefit(62))*12)}/yr lifetime income difference · survivor benefit maximization`});
 
-  // 529 gap — calculated from settings
-  const ed529gap = Math.max(0, 400000 - S.s529a - S.s529b);
-  if (ed529gap > 50000) recs.push({
-    pri:'PLAN', cls:'tag-t', col:'var(--teal)',
-    title:`529 combined gap: ${fmtF(ed529gap)} remaining`,
-    body:`Dawson (${fmtF(S.s529a)}) needs ${fmtF(Math.max(0,200000-S.s529a))} more · Chip (${fmtF(S.s529b)}) needs ${fmtF(Math.max(0,200000-S.s529b))} more. At $9K/yr each + 7% growth, both are on track for in-state public. MO MOST 529 contribution: $768/yr MO tax savings.`,
-    action:'Maintain $9K/yr per child · reassess if private school becomes a target · consider 529 → Roth rollover option (SECURE 2.0) for any surplus',
-    impact:`On track · MO deduction saves $768/yr · reevaluate at Dawson college start 2034`
-  });
+  if(port>=coast*0.9) recs.push({pri:port>=coast?'ACHIEVED':'OPPORTUNITY',cls:'tag-g',col:'var(--green)',
+    title:`Coast FIRE: ${port>=coast?'Achieved':''+pct(port,coast)+'% — within reach'}`,
+    body:port>=coast?`${fmtF(port)} will compound to ${fmtF(S.target)} at age ${S.fireAge} without another contribution. Each dollar saved now accelerates by months, not years.`:`Gap to coast: ${fmtF(Math.round(coastNumber()-port))} — likely crossed within 1-2 years at current trajectory.`,
+    action:port>=coast?'Contributions optional — consider redirecting surplus to taxable bridge or mortgage payoff':'Maintain current savings — coast threshold near',
+    impact:`FIRE age ${fire?.age||'?'} · gap ${fmtF(Math.max(0,S.target-port))}`});
 
   return recs;
 }
-
-function renderAdvisorRecs() {
-  document.getElementById('ai-recs').innerHTML = generateRecommendations().map(r => `
+function renderAdvisorRecs(){
+  document.getElementById('ai-recs').innerHTML=generateRecommendations().map(r=>`
     <div class="advice-card">
-      <div style="margin-bottom:6px"><span class="tag ${r.cls}">${r.pri}</span></div>
+      <div style="margin-bottom:5px"><span class="tag ${r.cls}">${r.pri}</span></div>
       <div class="advice-title">${r.title}</div>
       <div class="advice-body">${r.body}</div>
       <div class="advice-action" style="background:${r.col}15;color:${r.col};border:1px solid ${r.col}33">${r.action}</div>
-      <div style="font-size:11px;color:${r.col};margin-top:7px;font-weight:500">→ ${r.impact}</div>
+      <div style="font-size:11px;color:${r.col};margin-top:6px;font-weight:500">→ ${r.impact}</div>
     </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════
-// NEXT BEST ACTIONS — ranked by financial impact, all calculated
-// ═══════════════════════════════════════════════════════════════
-function renderNBA() {
-  const port    = totalPortfolio();
-  const fire    = findFireAge(S.target);
-  const coast   = coastNumber();
-  const taxPct  = Math.round(taxableTotal()/port*100);
-  const taxGap  = 200000 - taxableTotal();
-  const ed529gap = Math.max(0, 400000 - S.s529a - S.s529b);
-
-  const items = [
-    { pri:'r', title:"File Savannah's 2024 Form 8606 (UNFILED)",
-      desc:`Line 1: $7,000 · Line 14: $7,000 · Mail certified to IRS Kansas City MO 64999-0002 with cover note: "Late filing to establish nondeductible IRA basis for Savannah W. Luker, SSN 565-93-7996"`,
-      impact:`Prevents $2,016 in unnecessary tax on 2026 Roth conversion` },
-    { pri:'r', title:"Amend Savannah's 2025 Form 8606 after Step 1",
-      desc:`TurboTax → Amend 2025 return → Savannah's 8606 Line 2: $0 → $7,000 · Corrected Line 3: $14,500 · Corrected Line 14: $14,500`,
-      impact:`Corrects cumulative basis · eliminates double-taxation on future conversions` },
-    { pri:'a', title:`Execute Savannah's ${fmtF(ACCTS.strad)} Roth conversion`,
-      desc:`Fidelity acct 245-599645 → liquidate holdings to SPAXX → direct trustee-to-trustee conversion to Roth → do NOT withdraw cash → file Form 8606 on 2026 return`,
-      impact:`~$1,008 total tax · ${(S.fireAge-S.age)} years compounding tax-free in Roth` },
-    { pri:'a', title:"Q3 estimated tax — due September 15",
-      desc:`$1,793 via IRS Direct Pay (irs.gov/payments) · Q4: $1,793 due Jan 15, 2027 · Reassess if Savannah's conversion + no stock sales = may be overstated`,
-      impact:`Avoids underpayment penalty · 2026 tax liability management` },
-    ...(taxGap > 0 ? [{pri:'g', title:`Build taxable bridge — ${fmtF(taxGap)} gap to $200K`,
-      desc:`Redirect $1,000-1,500/mo to joint brokerage Z33-152454 alongside 401k · needed for Roth conversion ladder to bridge pre-59½ gap (${59-S.fireAge} yrs) at FIRE age ${fire?.age||S.fireAge}`,
-      impact:`${59-S.fireAge}-year pre-59½ gap · need ${fmtF((59-S.fireAge)*S.savings*12*0.3)} in accessible funds at retirement` }] : []),
-    { pri:'g', title:"Update GoalsTracker on fire.stluker.com",
-      desc:`Navigate to fire.stluker.com → ✏️ Edit → update 529 balances (Dawson ${fmtF(S.s529a)}, Chip ${fmtF(S.s529b)}) and mortgage balance (~${fmtF(S.mortgage)})`,
-      impact:`Keeps FIRE Intel dashboard projection engine current` },
-    { pri:'g', title:"Review MO withholding",
-      desc:`Consider +$52-83/paycheck MO W-4 adjustment or $335/quarter MO estimated payments to avoid balance due at 2026 filing`,
-      impact:`Avoids $499+ MO balance due · simplifies April filing` },
+// ═══════════════════════════════════════════════════════════
+// NEXT BEST ACTIONS
+// ═══════════════════════════════════════════════════════════
+function renderNBA(){
+  const port=totalPortfolio(),fire=findFireAge(S.target),coast=coastNumber();
+  const taxGap=Math.max(0,200000-taxableTotal());
+  const ladder=optimizeRothLadder();
+  const lifetimeSavings=Math.round(projectRMDs().reduce((a,b)=>a+b.taxes.total,0)*0.6);
+  const items=[
+    {pri:'r',title:"File Savannah's 2024 Form 8606 (UNFILED)",
+      desc:`Line 1: $7,000 · Line 14: $7,000 · Mail certified to IRS Kansas City MO 64999-0002 · Cover note: "Late filing to establish basis for Savannah W. Luker, SSN 565-93-7996"`,
+      impact:'Prevents $2,016 avoidable tax on 2026 Roth conversion'},
+    {pri:'r',title:"Amend Savannah's 2025 Form 8606 after Step 1",
+      desc:'TurboTax → Amend 2025 → Savannah 8606 Line 2: $0 → $7,000 · Corrected Line 3: $14,500 · Corrected Line 14: $14,500',
+      impact:'Corrects cumulative basis · eliminates double-taxation on all future conversions'},
+    {pri:'a',title:`Execute Savannah's ${fmtF(ACCTS.strad)} Roth conversion`,
+      desc:'Fidelity 245-599645 → liquidate to SPAXX → trustee-to-trustee to Roth → do NOT withdraw cash → file 8606 on 2026 return',
+      impact:`~$1,008 total tax · ${S.fireAge-S.age} yrs tax-free compounding · eliminates RMD from this account`},
+    {pri:'a',title:'Q3 estimated tax — due September 15, 2026',
+      desc:'$1,793 via IRS Direct Pay (irs.gov/payments) · Q4: $1,793 due Jan 15, 2027 · Reassess if Savannah conversion is the only unusual income',
+      impact:'Avoids underpayment penalty · sized for 2025 income repeat'},
+    {pri:'p',title:`Plan Roth conversion ladder at FIRE age ${S.fireAge}`,
+      desc:`Convert ~$94K/yr from 401k in ages ${S.fireAge}–59 to fill 12% bracket · See Tax Engine → Roth Ladder for exact year-by-year amounts · Est. total conversion tax: ${fmtF(ladder.reduce((a,b)=>a+b.tax,0))}`,
+      impact:`Estimated lifetime tax savings: ${fmtF(lifetimeSavings)} · reduces RMDs at 73 · avoids IRMAA`},
+    ...(taxGap>0?[{pri:'g',title:`Build taxable bridge — ${fmtF(taxGap)} to $200K target`,
+      desc:`Redirect $1,000-1,500/mo to joint brokerage Z33-152454 · needed for pre-59½ access at FIRE age ${S.fireAge}`,
+      impact:`${59-S.fireAge}-yr penalty-free gap · need ${fmtF(Math.max(0,(59-S.fireAge)*108000-taxableTotal()))} accessible`}]:[]),
+    {pri:'g',title:'Update GoalsTracker on fire.stluker.com',
+      desc:`Navigate to fire.stluker.com → ✏️ Edit → update 529 (Dawson ${fmtF(S.s529a)}, Chip ${fmtF(S.s529b)}) and mortgage ~${fmtF(S.mortgage)}`,
+      impact:'Keeps FIRE Intel dashboard current'},
+    {pri:'g',title:'Consider mega backdoor Roth via after-tax 401k',
+      desc:'GDIT plan allows after-tax contributions up to $46K total ($23.5K employee limit already met). After-tax contributions can convert to in-plan Roth immediately — effectively a $22K+ additional Roth each year.',
+      impact:`+${fmtF(22000)}/yr additional Roth · after-tax grows to Roth tax-free · no income limit`},
   ];
-
-  document.getElementById('nba-list').innerHTML = items.map((a, i) => `
+  document.getElementById('nba-list').innerHTML=items.map((a,i)=>`
     <div class="nba">
       <div class="nba-num ${a.pri}">${i+1}</div>
       <div>
         <div class="nba-title">${a.title}</div>
         <div class="nba-desc">${a.desc}</div>
-        <div class="nba-impact" style="color:${a.pri==='r'?'var(--red)':a.pri==='a'?'var(--amber)':'var(--green)'}">→ ${a.impact}</div>
+        <div class="nba-impact" style="color:${a.pri==='r'?'var(--red)':a.pri==='a'?'var(--amber)':a.pri==='p'?'var(--purple)':'var(--green)'}">→ ${a.impact}</div>
       </div>
     </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════
-// ACCOUNTS PAGE — editable, drives all projections
-// ═══════════════════════════════════════════════════════════════
-let allocChart = null;
-
-function renderAccounts() {
-  const port = totalPortfolio();
-
-  // Editable account rows
-  document.getElementById('acct-editor').innerHTML = ACCOUNT_DEFS.map(a => `
+// ═══════════════════════════════════════════════════════════
+// ACCOUNTS PAGE
+// ═══════════════════════════════════════════════════════════
+let allocChart=null;
+function renderAccounts(){
+  const port=totalPortfolio();
+  document.getElementById('acct-editor').innerHTML=ACCOUNT_DEFS.map(a=>`
     <div class="acct-edit-row">
-      <div class="acct-name">
-        ${a.name}
-        ${a.flag==='pending_conversion'?'<span class="tag tag-a" style="margin-left:6px">Pending conversion</span>':''}
-      </div>
-      <div class="acct-type">${a.owner} · ${a.type.replace('_',' ')}</div>
+      <div class="acct-name">${a.name}${a.flag==='pending_conversion'?'<span class="tag tag-a" style="margin-left:6px">Convert</span>':''}</div>
+      <div class="acct-type">${a.owner}·${a.type.replace('_',' ')}</div>
       <input type="number" value="${ACCTS[a.id]}" data-id="${a.id}" onchange="onAcctChange(this)">
     </div>`).join('');
+  document.getElementById('acct-total').textContent=fmtF(port);
 
-  document.getElementById('acct-total').textContent = fmtF(port);
-
-  // Allocation donut
-  const cats = [
-    { label:'Tax-deferred', val: taxDeferredTotal(), color:'#6366f1' },
-    { label:'Roth',         val: rothTotal(),        color:'#10d48e' },
-    { label:'Taxable',      val: taxableTotal(),      color:'#06b6d4' },
-    { label:'Liquid',       val: liquidTotal(),       color:'#f59e0b' },
+  const cats=[
+    {label:'Tax-deferred',val:taxDeferredTotal(),color:'#6366f1'},
+    {label:'Roth',        val:rothTotal(),       color:'#10d48e'},
+    {label:'Taxable',     val:taxableTotal(),     color:'#06b6d4'},
+    {label:'Liquid',      val:liquidTotal(),      color:'#f59e0b'},
   ];
+  const ctx=document.getElementById('chart-alloc').getContext('2d');
+  if(allocChart)allocChart.destroy();
+  allocChart=new Chart(ctx,{type:'doughnut',data:{labels:cats.map(c=>c.label),datasets:[{data:cats.map(c=>c.val),backgroundColor:cats.map(c=>c.color),borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{size:11}}},tooltip:{callbacks:{label:ctx=>ctx.label+': '+fmt(ctx.raw)+' ('+pct(ctx.raw,port)+'%)' }}}}});
 
-  const ctx = document.getElementById('chart-alloc').getContext('2d');
-  if (allocChart) allocChart.destroy();
-  allocChart = new Chart(ctx, {
-    type:'doughnut',
-    data:{ labels:cats.map(c=>c.label), datasets:[{ data:cats.map(c=>c.val), backgroundColor:cats.map(c=>c.color), borderWidth:0 }] },
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ color:'#94a3b8', font:{size:11} } }, tooltip:{ callbacks:{ label:ctx => ctx.label+': '+fmt(ctx.raw)+' ('+pct(ctx.raw,port)+'%)' } } } }
-  });
-
-  // Allocation analysis — calculated
-  const taxPct = pct(taxableTotal(), port);
-  const warnings = [];
-  if (taxPct < 10) warnings.push({ type:'r', msg:`Only ${taxPct}% in taxable accounts (${fmtF(taxableTotal())}). Need ${fmtF(Math.max(0,200000-taxableTotal()))} more for pre-59½ bridge.` });
-  else if (taxPct < 15) warnings.push({ type:'a', msg:`Taxable at ${taxPct}% — building toward $200K bridge target (${fmtF(Math.max(0,200000-taxableTotal()))} gap).` });
-  else warnings.push({ type:'g', msg:`Taxable at ${taxPct}% (${fmtF(taxableTotal())}) — Roth ladder bridge is funded.` });
-
-  if (ACCTS.strad > 0) warnings.push({ type:'a', msg:`${fmtF(ACCTS.strad)} in Savannah's pre-tax IRA — convert to Roth to eliminate RMD exposure.` });
-  const liquidMonths = Math.round(liquidTotal() / (S.savings + 9000));
-  warnings.push({ type: liquidMonths >= 10 ? 'g' : 'a', msg:`Emergency fund: ${fmtF(liquidTotal())} (${liquidMonths} months expenses). Target: 10+ months.` });
-
-  document.getElementById('alloc-analysis').innerHTML = warnings.map(w => `
-    <div style="display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:flex-start">
-      <span class="tag tag-${w.type}" style="margin-top:1px;flex-shrink:0">${w.type==='r'?'⚠':w.type==='a'?'△':'✓'}</span>
-      <span style="color:var(--text2)">${w.msg}</span>
+  const taxPct=pct(taxableTotal(),port);
+  const warnings=[];
+  if(taxPct<10)warnings.push({t:'r',m:`Only ${taxPct}% taxable (${fmtF(taxableTotal())}). Pre-59½ bridge gap: ${fmtF(Math.max(0,(59-S.fireAge)*108000-taxableTotal()))}.`});
+  else if(taxPct<15)warnings.push({t:'a',m:`Taxable at ${taxPct}% — building toward $200K bridge (${fmtF(Math.max(0,200000-taxableTotal()))} gap).`});
+  else warnings.push({t:'g',m:`Taxable ${taxPct}% (${fmtF(taxableTotal())}) — bridge funded.`});
+  if(ACCTS.strad>0)warnings.push({t:'a',m:`${fmtF(ACCTS.strad)} in pre-tax IRA pending Roth conversion. Will generate RMDs if not converted.`});
+  const lm=Math.round(liquidTotal()/(S.savings+9000));
+  warnings.push({t:lm>=10?'g':'a',m:`Emergency fund: ${fmtF(liquidTotal())} (${lm} months). Target 10+.`});
+  warnings.push({t:'p',m:`Tax-deferred ${Math.round(taxDeferredTotal()/port*100)}% — large 401k means significant RMD exposure at 73. Roth ladder reduces this.`});
+  document.getElementById('alloc-analysis').innerHTML=warnings.map(w=>`
+    <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:flex-start">
+      <span class="tag tag-${w.t}" style="margin-top:1px;flex-shrink:0">${w.t==='r'?'⚠':w.t==='a'?'△':w.t==='g'?'✓':'ℹ'}</span>
+      <span style="color:var(--text2)">${w.m}</span>
     </div>`).join('');
 
-  // 529
-  const p529 = [
-    { name:'Dawson', age:10, bal:S.s529a, college:2034, target:200000 },
-    { name:'Chip',   age:6,  bal:S.s529b, college:2037, target:200000 },
-  ];
-  document.getElementById('acct-529').innerHTML = p529.map(c => {
-    const yrs = c.college - 2026;
-    const projected = (c.bal + 9000 * (1-(1.07**yrs))/(-0.07)) * 1.07**yrs;
-    return `
-      <div class="prog" style="margin-bottom:16px">
-        <div class="prog-hd"><span>${c.name} (age ${c.age}) · College ${c.college}</span><span>${fmtF(c.bal)}</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:${pct(c.bal,c.target)}%;background:var(--amber)"></div></div>
-        <div style="font-size:10px;color:var(--text3);margin-top:3px">${pct(c.bal,c.target)}% of ${fmtF(c.target)} · Gap ${fmtF(Math.max(0,c.target-c.bal))} · Projected at college: ~${fmt(projected)}</div>
-      </div>`; }).join('') +
-    `<div style="padding:10px;background:var(--green-bg);border:1px solid rgba(16,212,142,.15);border-radius:4px;font-size:11px;color:var(--text2)">
-      ✓ $9K/yr per child · MO MOST 529 · $768/yr MO tax savings · On track for full in-state funding</div>`;
+  const p529=[{name:'Dawson',age:10,bal:S.s529a,college:2034,target:200000},{name:'Chip',age:6,bal:S.s529b,college:2037,target:200000}];
+  document.getElementById('acct-529').innerHTML=p529.map(c=>{
+    const yrs=c.college-2026;
+    const proj=(c.bal+9000*(1-(1.07**yrs))/(-0.07))*1.07**yrs;
+    return `<div class="prog" style="margin-bottom:14px">
+      <div class="prog-hd"><span>${c.name} (age ${c.age}) · College ${c.college}</span><span>${fmtF(c.bal)}</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct(c.bal,c.target)}%;background:var(--amber)"></div></div>
+      <div style="font-size:10px;color:var(--text3);margin-top:3px">${pct(c.bal,c.target)}% of ${fmtF(c.target)} · Gap ${fmtF(Math.max(0,c.target-c.bal))} · Projected at college: ~${fmt(proj)}</div>
+    </div>`;
+  }).join('')+`<div class="insight-bar" style="border-left-color:var(--amber)">$9K/yr per child · MO MOST 529 · $768/yr MO tax savings · On track for full in-state funding</div>`;
 
-  // Net worth
-  const equity = S.homeValue - S.mortgage;
-  const nw = port + S.s529a + S.s529b + equity + 50000;
-  document.getElementById('acct-networth').innerHTML = `
+  const equity=S.homeValue-S.mortgage;
+  const nw=port+S.s529a+S.s529b+equity+50000;
+  document.getElementById('acct-networth').innerHTML=`
     <table class="dt">
-      <tr><td style="color:var(--text2)">Investable portfolio</td><td class="mono right" style="color:var(--green)">${fmtF(port)}</td></tr>
+      <tr><td style="color:var(--text2)">Investable portfolio</td><td class="mono right g">${fmtF(port)}</td></tr>
       <tr><td style="color:var(--text2)">529 accounts</td><td class="mono right">${fmtF(S.s529a+S.s529b)}</td></tr>
       <tr><td style="color:var(--text2)">Home equity (${fmtF(S.homeValue)}−${fmtF(S.mortgage)})</td><td class="mono right">${fmtF(equity)}</td></tr>
-      <tr><td style="color:var(--text2)">Vehicles (2 paid-off)</td><td class="mono right">$50,000</td></tr>
-      <tr style="border-top:1px solid var(--border2)">
-        <td style="font-weight:600">Total net worth</td>
-        <td class="mono right" style="color:var(--green);font-weight:600">${fmtF(nw)}</td>
-      </tr>
+      <tr><td style="color:var(--text2)">Vehicles (est.)</td><td class="mono right">$50,000</td></tr>
+      <tr style="border-top:1px solid var(--border2)"><td style="font-weight:600">Total net worth</td><td class="mono right g" style="font-weight:600">${fmtF(nw)}</td></tr>
     </table>
-    <div style="margin-top:12px;padding:10px;background:var(--card2);border-radius:4px;font-size:11px;color:var(--text2)">
-      Savings rate: ${Math.round(S.savings*12/S.income*100)}% of gross · 
-      Top 2-3% nationally · 
-      ${Math.round(nw/S.income*10)/10}× income in net worth
+    <div class="insight-bar" style="margin-top:10px;border-left-color:var(--blue)">
+      Savings rate: ${Math.round(S.savings*12/S.income*100)}% · ${Math.round(nw/S.income*10)/10}× gross income in NW · Top 7–9% for age 45–54 cohort
     </div>`;
 }
 
-function onAcctChange(input) {
-  const id  = input.dataset.id;
-  const val = parseFloat(input.value) || 0;
-  ACCTS[id] = val;
-  document.getElementById('acct-total').textContent = fmtF(totalPortfolio());
-  markDirty();
-  // Rebuild allocation chart in place
-  const port = totalPortfolio();
-  const cats = [
-    { label:'Tax-deferred', val:taxDeferredTotal(), color:'#6366f1' },
-    { label:'Roth',         val:rothTotal(),        color:'#10d48e' },
-    { label:'Taxable',      val:taxableTotal(),      color:'#06b6d4' },
-    { label:'Liquid',       val:liquidTotal(),       color:'#f59e0b' },
-  ];
-  if (allocChart) {
-    allocChart.data.datasets[0].data = cats.map(c=>c.val);
+function onAcctChange(input){
+  ACCTS[input.dataset.id]=parseFloat(input.value)||0;
+  document.getElementById('acct-total').textContent=fmtF(totalPortfolio());
+  if(allocChart){
+    allocChart.data.datasets[0].data=[taxDeferredTotal(),rothTotal(),taxableTotal(),liquidTotal()];
     allocChart.update();
   }
-  // Propagate to all other active renders
-  renderAll();
+  markDirty(); renderAll();
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // DASHBOARD
-// ═══════════════════════════════════════════════════════════════
-let trajChart = null;
+// ═══════════════════════════════════════════════════════════
+let trajChart=null, nwChart=null;
 
-function renderDashboard() {
-  const port = totalPortfolio();
-  const fire = findFireAge(S.target);
-  const gap  = Math.max(0, S.target - port);
-  const savingsRate = Math.round(S.savings*12/S.income*100);
+function renderDashboard(){
+  const port=totalPortfolio(),fire=findFireAge(S.target),gap=Math.max(0,S.target-port);
+  const savingsRate=Math.round(S.savings*12/S.income*100);
+  const nw=port+S.s529a+S.s529b+(S.homeValue-S.mortgage)+50000;
 
-  document.getElementById('kpi-grid').innerHTML = [
-    { label:'Portfolio', val:fmtF(port), cls:'g', sub:`${pct(port,S.target)}% to FIRE · ${savingsRate}% savings rate`, bar:pct(port,S.target), bc:'var(--green)' },
-    { label:'FIRE Gap',  val:fmt(gap),   cls:'a', sub:`${fire?fire.age-S.age+'y to go':'Adjust target'}` },
-    { label:'FIRE Age',  val:fire?.age||'65+', cls:fire?.age<=S.fireAge?'g':'a', sub:fire?'Year '+fire.year:'—' },
-    { label:'Net Worth', val:fmt(port+S.s529a+S.s529b+(S.homeValue-S.mortgage)+50000), cls:'b', sub:`${Math.round((port+S.s529a+S.s529b+(S.homeValue-S.mortgage)+50000)/S.income*10)/10}× gross income` },
-  ].map(k=>`
-    <div class="kpi">
-      <div class="kpi-label">${k.label}</div>
-      <div class="kpi-value ${k.cls}">${k.val}</div>
-      <div class="kpi-sub">${k.sub}</div>
-      ${k.bar?`<div class="kpi-bar"><div class="kpi-fill" style="width:${k.bar}%;background:${k.bc}"></div></div>`:''}
-    </div>`).join('');
+  document.getElementById('kpi-grid').innerHTML=[
+    {label:'Portfolio',val:fmtF(port),cls:'g',sub:`${pct(port,S.target)}% to FIRE · ${savingsRate}% savings rate`,bar:pct(port,S.target),bc:'var(--green)'},
+    {label:'FIRE Gap',val:fmt(gap),cls:'a',sub:`${fire?fire.age-S.age+'y remaining':'—'}`},
+    {label:'FIRE Age',val:fire?.age||'65+',cls:fire?.age<=S.fireAge?'g':'a',sub:fire?'Year '+fire.year:'—'},
+    {label:'Net Worth',val:fmt(nw),cls:'b',sub:`${Math.round(nw/S.income*10)/10}× gross income`},
+  ].map(k=>`<div class="kpi"><div class="kpi-label">${k.label}</div><div class="kpi-value ${k.cls}">${k.val}</div><div class="kpi-sub">${k.sub}</div>${k.bar?`<div class="kpi-bar"><div class="kpi-fill" style="width:${k.bar}%;background:${k.bc}"></div></div>`:''}</div>`).join('');
 
-  // Progress bars
-  const progs = [
-    { label:`Standard FIRE (${fmtF(S.target)})`, val:port, target:S.target, color:'var(--green)' },
-    { label:'Lean FIRE ($2.16M)',     val:port,    target:2160000, color:'var(--teal)' },
-    { label:`529 — Dawson (${fmtF(S.s529a)})`, val:S.s529a, target:200000, color:'var(--amber)' },
-    { label:`529 — Chip (${fmtF(S.s529b)})`,   val:S.s529b, target:200000, color:'var(--amber)' },
-  ];
-  document.getElementById('dash-progress').innerHTML = progs.map(p=>`
-    <div class="prog">
-      <div class="prog-hd"><span>${p.label}</span><span>${pct(p.val,p.target)}%</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:${pct(p.val,p.target)}%;background:${p.color}"></div></div>
-    </div>`).join('');
+  document.getElementById('dash-progress').innerHTML=[
+    {label:`Standard FIRE (${fmtF(S.target)})`,val:port,target:S.target,color:'var(--green)'},
+    {label:'Lean FIRE ($2.16M)',val:port,target:2160000,color:'var(--teal)'},
+    {label:`529 Dawson (${fmtF(S.s529a)})`,val:S.s529a,target:200000,color:'var(--amber)'},
+    {label:`529 Chip (${fmtF(S.s529b)})`,val:S.s529b,target:200000,color:'var(--amber)'},
+  ].map(p=>`<div class="prog"><div class="prog-hd"><span>${p.label}</span><span>${pct(p.val,p.target)}%</span></div><div class="prog-bar"><div class="prog-fill" style="width:${pct(p.val,p.target)}%;background:${p.color}"></div></div></div>`).join('');
 
-  // Income at retirement ages — derived from live portfolio
-  const incomeRows = [53,55,58,63].map(age => {
-    const d = project(age - S.age);
-    const p = d.at(-1).portfolio;
-    const ann = p * 0.04;
-    const net = ann * (1 - effectiveTaxRate(ann));
-    return `<tr ${age===S.fireAge?'class="hl"':''}><td>${age}</td><td class="mono">${fmt(p)}</td><td class="mono" style="color:var(--green)">${fmtF(ann)}</td><td class="mono">${fmtF(net)}</td><td class="mono" style="color:var(--text2)">${fmtF(net/12)}</td></tr>`;
-  });
-  document.getElementById('dash-income').innerHTML = `
-    <table class="dt"><thead><tr><th>Age</th><th>Portfolio</th><th>Gross 4%</th><th>Net est.</th><th>Monthly</th></tr></thead>
-    <tbody>${incomeRows.join('')}</tbody></table>
-    <div style="font-size:10px;color:var(--text3);margin-top:6px">Net = after estimated effective tax rate based on withdrawal amount. SS not included (eligible age 62+).</div>`;
+  const ssAt62=ssBenefit(62)*12;
+  document.getElementById('dash-income').innerHTML=`<table class="dt"><thead><tr><th>Age</th><th>Portfolio</th><th>4% gross</th><th>SS est.</th><th>Net/mo</th></tr></thead><tbody>`+
+    [53,55,58,63].map(age=>{
+      const d=project(age-S.age),p=d.at(-1).portfolio,ann=p*0.04;
+      const ss=age>=62?ssAt62:0;
+      const taxes=effectiveTaxTotal(ann,ss);
+      const netMo=Math.round((ann+ss-taxes.total)/12);
+      return `<tr ${age===S.fireAge?'class="hl"':''}><td>${age}</td><td class="mono">${fmt(p)}</td><td class="mono">${fmtF(ann)}</td><td class="mono" style="color:var(--teal)">${age>=62?'+'+fmtF(ss):'—'}</td><td class="mono g">${fmtF(netMo)}</td></tr>`;
+    }).join('')+`</tbody></table><div style="font-size:10px;color:var(--text3);margin-top:6px">Net includes SS at 62 where age ≥ 62 · Fed+MO taxes estimated · SS at FRA/70 would be higher</div>`;
 
-  // Timeline table
-  const data = project(20);
-  document.getElementById('timeline-body').innerHTML = data
-    .filter(d => d.age >= S.age && d.age <= 68)
-    .map(d => {
-      const inf  = d.portfolio / Math.pow(1+S.inflation, d.age-S.age);
-      const p    = pct(d.portfolio, S.target);
-      const ann  = d.portfolio * 0.04;
-      const isFire = d.portfolio >= S.target;
-      const isLean = d.portfolio >= 2160000 && !isFire;
-      const tag  = isFire ? '<span class="tag tag-g">FIRE ✓</span>' :
-                   isLean ? '<span class="tag tag-t">Lean</span>' :
-                   p >= 80 ? '<span class="tag tag-a">80%+</span>' : '';
-      return `<tr class="${isFire?'fire':d.age===S.fireAge?'hl':''}">
-        <td>${d.age}</td><td>${d.year}</td>
-        <td class="mono">${fmt(d.portfolio)}</td>
-        <td class="mono" style="color:var(--text2)">${fmt(inf)}</td>
-        <td class="mono">${p}%</td>
-        <td class="mono" style="color:var(--green)">${fmtF(ann)}</td>
-        <td class="mono" style="color:var(--text2)">${fmtF(ann/12)}</td>
-        <td>${tag}</td></tr>`;
-    }).join('');
+  // Timeline with RMD column
+  const data=project(20);
+  document.getElementById('timeline-body').innerHTML=data.filter(d=>d.age>=S.age&&d.age<=68).map(d=>{
+    const inf=d.portfolio/Math.pow(1+S.inflation,d.age-S.age);
+    const p=pct(d.portfolio,S.target),ann=d.portfolio*0.04;
+    const isFire=d.portfolio>=S.target,isLean=d.portfolio>=2160000&&!isFire;
+    const tag=isFire?'<span class="tag tag-g">FIRE ✓</span>':isLean?'<span class="tag tag-t">Lean</span>':p>=80?'<span class="tag tag-a">80%+</span>':'';
+    const hasRMD=d.age>=73?'<span class="tag tag-r">RMD</span>':'';
+    const ss=d.age>=62?ssAt62:0,taxes=effectiveTaxTotal(ann,ss);
+    return `<tr class="${isFire?'fire':d.age===S.fireAge?'hl':''}"><td>${d.age}</td><td>${d.year}</td><td class="mono">${fmt(d.portfolio)}</td><td class="mono" style="color:var(--text2)">${fmt(inf)}</td><td class="mono">${p}%</td><td class="mono g">${fmtF(ann)}</td><td class="mono g">${fmtF((ann+ss-taxes.total)/12)}</td><td>${hasRMD}</td><td>${tag}</td></tr>`;
+  }).join('');
 
   // Trajectory chart
-  const ages = data.map(d=>d.age);
-  const vals = data.map(d=>Math.round(d.portfolio/1000));
-  const tgt  = data.map(()=>Math.round(S.target/1000));
-  const lean = data.map(()=>Math.round(2160000/1000));
-  const ctx  = document.getElementById('chart-traj').getContext('2d');
-  if (trajChart) trajChart.destroy();
-  trajChart = new Chart(ctx, {
-    type:'line',
-    data:{ labels:ages, datasets:[
-      { label:'Portfolio', data:vals, borderColor:'#10d48e', backgroundColor:'rgba(16,212,142,.06)', borderWidth:2.5, pointRadius:0, fill:true, tension:.4 },
-      { label:'Standard FIRE', data:tgt, borderColor:'rgba(245,158,11,.5)', borderWidth:1, borderDash:[6,3], pointRadius:0, fill:false },
-      { label:'Lean FIRE', data:lean, borderColor:'rgba(6,182,212,.4)', borderWidth:1, borderDash:[3,4], pointRadius:0, fill:false },
-    ]},
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
-      plugins:{ legend:{ labels:{ color:'#94a3b8', font:{size:11} } }, tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: $${ctx.parsed.y}K` } } },
-      scales:{
-        x:{ ticks:{color:'#475569',font:{size:10}}, grid:{color:'#1e2d45'} },
-        y:{ ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'}, grid:{color:'#1e2d45'} }
-      }
-    }
-  });
+  const ages=data.map(d=>d.age);
+  const ctx=document.getElementById('chart-traj').getContext('2d');
+  if(trajChart)trajChart.destroy();
+  trajChart=new Chart(ctx,{type:'line',data:{labels:ages,datasets:[
+    {label:'Portfolio',data:data.map(d=>Math.round(d.portfolio/1000)),borderColor:'#10d48e',backgroundColor:'rgba(16,212,142,.06)',borderWidth:2.5,pointRadius:0,fill:true,tension:.4},
+    {label:'Standard FIRE',data:data.map(()=>Math.round(S.target/1000)),borderColor:'rgba(245,158,11,.5)',borderWidth:1,borderDash:[6,3],pointRadius:0,fill:false},
+    {label:'Lean FIRE',data:data.map(()=>2160),borderColor:'rgba(6,182,212,.35)',borderWidth:1,borderDash:[3,4],pointRadius:0,fill:false},
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{color:'#94a3b8',font:{size:11}}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: $${ctx.parsed.y}K`}}},
+    scales:{x:{ticks:{color:'#475569',font:{size:10}},grid:{color:'#1e2d45'}},y:{ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'},grid:{color:'#1e2d45'}}}}});
+
+  renderNetWorthChart();
+  renderContribTracker();
+  initWhatIf();
 }
 
-// ═══════════════════════════════════════════════════════════════
+function renderNetWorthChart(){
+  const ctx=document.getElementById('chart-nw').getContext('2d');
+  if(nwChart)nwChart.destroy();
+  if(snapshots.length<2){
+    nwChart=null;
+    const canvas=document.getElementById('chart-nw');
+    const c2=canvas.getContext('2d');
+    c2.clearRect(0,0,canvas.width,canvas.height);
+    c2.fillStyle='#475569';c2.font='12px Inter';c2.textAlign='center';
+    c2.fillText('Add 2+ snapshots to see history chart',canvas.width/2,100);
+    return;
+  }
+  nwChart=new Chart(ctx,{type:'line',data:{labels:snapshots.map(s=>s.date),datasets:[
+    {label:'Net Worth',data:snapshots.map(s=>Math.round(s.netWorth/1000)),borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,.06)',borderWidth:2,pointRadius:3,fill:true,tension:.3},
+    {label:'Portfolio',data:snapshots.map(s=>Math.round(s.portfolio/1000)),borderColor:'#10d48e',backgroundColor:'transparent',borderWidth:1.5,pointRadius:3,fill:false,tension:.3},
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#94a3b8',font:{size:11}}}},
+    scales:{x:{ticks:{color:'#475569',font:{size:10}},grid:{color:'#1e2d45'}},y:{ticks:{color:'#475569',font:{size:10},callback:v=>'$'+v+'K'},grid:{color:'#1e2d45'}}}}});
+}
+
+// ═══════════════════════════════════════════════════════════
 // NAV & ROUTING
-// ═══════════════════════════════════════════════════════════════
-function showPage(id, el) {
+// ═══════════════════════════════════════════════════════════
+function showPage(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  el.classList.add('active');
-  if (id==='dashboard')   renderDashboard();
-  if (id==='strategy')    { renderStrategyGrid(); renderScenDetail(); }
-  if (id==='advisor')     { renderAdvisorRecs(); initChatGreeting(); }
-  if (id==='actions')     renderNBA();
-  if (id==='accounts')    renderAccounts();
+  document.getElementById('page-'+id).classList.add('active'); el.classList.add('active');
+  if(id==='dashboard'){renderDashboard();}
+  if(id==='montecarlo'){if(!MC)setTimeout(runMonteCarlo,100);}
+  if(id==='strategy'){renderStrategyGrid();renderScenDetail();}
+  if(id==='tax'){renderTaxEngine();}
+  if(id==='advisor'){renderAdvisorRecs();initChatGreeting();}
+  if(id==='actions'){renderNBA();}
+  if(id==='accounts'){renderAccounts();}
 }
-
-function renderAll() {
-  const id = (document.querySelector('.page.active')||{}).id?.replace('page-','');
-  if (id==='dashboard')  renderDashboard();
-  if (id==='strategy')   { renderStrategyGrid(); renderScenDetail(); }
-  if (id==='advisor')    renderAdvisorRecs();
-  if (id==='actions')    renderNBA();
-  if (id==='accounts')   renderAccounts();
+function renderAll(){
+  const id=(document.querySelector('.page.active')||{}).id?.replace('page-','');
+  if(id==='dashboard')renderDashboard();
+  if(id==='strategy'){renderStrategyGrid();renderScenDetail();}
+  if(id==='tax')renderTaxEngine();
+  if(id==='advisor')renderAdvisorRecs();
+  if(id==='actions')renderNBA();
+  if(id==='accounts')renderAccounts();
 }
 
 // Wire MC sliders
@@ -1316,9 +1833,7 @@ function renderAll() {
  ['mc-ret','mc-ret-lbl',v=>v],['mc-lon','mc-lon-lbl',v=>v],['mc-sims','mc-sims-lbl',v=>(+v).toLocaleString()]
 ].forEach(([id,lbl,fn])=>document.getElementById(id).addEventListener('input',function(){document.getElementById(lbl).textContent=fn(+this.value);}));
 
-// Boot
-loadState();
-renderDashboard();
+loadState(); renderDashboard();
 </script>
 </body>
 </html>

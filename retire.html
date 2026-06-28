@@ -455,19 +455,20 @@ footer{text-align:center;padding:24px;color:var(--text3);font-size:11px;border-t
   </div>
 </div>
 
-<footer>FIRE OS v4 · Luker Household · retire.stluker.com · Not financial advice</footer>
+<footer>FIRE OS v5 · Luker Household · retire.stluker.com · Balances: Jun 24, 2026 CSV · Not financial advice</footer>
 
 <script>
 // ═══════════════════════════════════════════════════════════
 // CANONICAL ACCOUNT DATA
 // ═══════════════════════════════════════════════════════════
 const ACCOUNT_DEFS = [
-  { id:'a401k',    name:'401(k) GDIT — Fidelity 08093',       owner:'Paul',     type:'tax_deferred', cat:'retirement', balance:765711 },
-  { id:'aroth',    name:'Roth IRA — Fidelity 230-962807',      owner:'Paul',     type:'roth',         cat:'retirement', balance:40534  },
+  { id:'a401k',    name:'401(k) GDIT — Fidelity 08093',       owner:'Paul',     type:'tax_deferred', cat:'retirement', balance:854982 },
+  { id:'aroth',    name:'Roth IRA — Fidelity 230-962807',      owner:'Paul',     type:'roth',         cat:'retirement', balance:49825  },
   { id:'srollover',name:'Rollover IRA — Fidelity 225-248219',  owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:22639  },
   { id:'strad',    name:'Trad IRA — Fidelity 245-599645',      owner:'Savannah', type:'tax_deferred', cat:'retirement', balance:25000, flag:'pending_conversion' },
-  { id:'bjoint',   name:'Joint Brokerage — Fidelity Z33',      owner:'Joint',    type:'taxable',      cat:'brokerage',  balance:89361  },
-  { id:'bindiv',   name:'Individual — Fidelity 2EA',           owner:'Paul',     type:'taxable',      cat:'brokerage',  balance:7550   },
+  { id:'bjoint',   name:'Joint Brokerage — Fidelity Z33',      owner:'Joint',    type:'taxable',      cat:'brokerage',  balance:105676 },
+  { id:'bindiv',   name:'Individual — Fidelity 2EA',           owner:'Paul',     type:'taxable',      cat:'brokerage',  balance:9919   },
+  { id:'hsa',      name:'HSA — Fidelity 224-534844',           owner:'Paul',     type:'hsa',          cat:'benefits',   balance:34012  },
   { id:'hysa',     name:'HYSA + Savings',                       owner:'Joint',    type:'liquid',       cat:'liquid',     balance:72000  },
   { id:'cash',     name:'Cash (safe)',                           owner:'Joint',    type:'liquid',       cat:'liquid',     balance:20000  },
 ];
@@ -479,6 +480,7 @@ function taxDeferredTotal() { return ACCTS.a401k + ACCTS.srollover + ACCTS.strad
 function rothTotal()        { return ACCTS.aroth; }
 function taxableTotal()     { return ACCTS.bjoint + ACCTS.bindiv; }
 function liquidTotal()      { return ACCTS.hysa + ACCTS.cash; }
+function hsaTotal()         { return ACCTS.hsa || 0; }
 
 // ═══════════════════════════════════════════════════════════
 // STATE
@@ -488,12 +490,14 @@ const DEFAULTS = {
   growth:0.07, postGrowth:0.05, inflation:0.025, target:2700000,
   homeValue:630000, mortgage:307000, s529a:135000, s529b:87000
 };
+// June 24, 2026 CSV total: $1,194,053 (incl HSA $34K)
+// Investable ex-HSA: $1,160,041 — but HSA is triple-tax-advantaged; included in projections
 let S = { ...DEFAULTS };
 let snapshots = []; // [{date, portfolio, netWorth, label}]
 
 function loadState() {
   try {
-    const d = JSON.parse(localStorage.getItem('fire_os_v4')||'{}');
+    const d = JSON.parse(localStorage.getItem('fire_os_v5')||'{}');
     if (d.S)         S        = { ...DEFAULTS, ...d.S };
     if (d.ACCTS)     ACCTS    = { ...ACCTS, ...d.ACCTS };
     if (d.snapshots) snapshots = d.snapshots;
@@ -501,7 +505,7 @@ function loadState() {
   syncSettingsUI();
 }
 function saveState() {
-  localStorage.setItem('fire_os_v4', JSON.stringify({ S, ACCTS, snapshots, ts:Date.now() }));
+  localStorage.setItem('fire_os_v5', JSON.stringify({ S, ACCTS, snapshots, ts:Date.now() }));
   document.getElementById('save-dot').style.display = 'none';
   document.getElementById('save-btn').textContent = 'Saved ✓';
   setTimeout(()=>document.getElementById('save-btn').textContent='Save', 1500);
@@ -539,7 +543,7 @@ function syncSettingsUI() {
 function exportData() {
   const a=document.createElement('a');
   a.href='data:application/json,'+encodeURIComponent(JSON.stringify({S,ACCTS,snapshots,ts:new Date().toISOString()},null,2));
-  a.download='fire-os-export.json'; a.click();
+  a.download='fire-os-v5-export.json'; a.click();
 }
 function resetDefaults() {
   S={...DEFAULTS}; ACCOUNT_DEFS.forEach(a=>ACCTS[a.id]=a.balance); snapshots=[];
